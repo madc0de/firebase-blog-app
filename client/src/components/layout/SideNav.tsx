@@ -33,6 +33,8 @@ export default class SideNav extends React.Component<SideNavProps, any> {
         className={`side-nav ${visible ? "visible" : ""}`}
         onClick={this.closeClick}
       >
+      
+
         <CloseLink onCloseClick={onClose} />
         <Link to="/">Home</Link>
         {isAdmin && <Link to="/recent">Recent</Link>}

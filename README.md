@@ -17,14 +17,24 @@ This is a simple React blog using firestore as a backend.
 4. Deploy firiebase functions
 5. Deploy client
 
-## Setup
+### Create Firebase Project
 
-- Create a firebase project to host you client and functions, make note of your `firebase project name`.
-- Configuration
-  - client
-    - Copy firebase configuration to your clients `firebase.config.js` file
-  - firebase-functions
-    - enter your `firebase project name` in `./firebase-functions/.firebaserc`
+- Go to the [Google firebase console](https://console.firebase.google.com)
+- When done you will be taken to the project console.
+
+### Configuration the client
+
+- Select "Project Overview" on the top left.
+- Then select "Add firebase to your web app"
+- Copy the config
+
+```
+var config = {
+  apiKey: "AIzaSyDsEJPeMxqk-4QmDzuBSdkKFuAq.....",
+  authDomain: "<project-name>.firebaseapp.com",
+  ...
+};
+```
 
 ## `client` Setup
 

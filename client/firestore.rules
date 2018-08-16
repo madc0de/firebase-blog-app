@@ -5,10 +5,13 @@ service cloud.firestore {
       allow create: if validPost() && isSignedIn()    
       allow update: if validPost() && isSignedIn() && incommingData().userId == existingData().userId
     }
+    
     match /users/{userId} {
     	allow read: if isSignedIn();
-      allow write: if request.auth.uid == userId
+      allow create: if validUser() && isSignedIn() && userId == request.auth.uid 
+      allow update: if request.auth.uid == userId && validUser()                     
     }
+    
     match /postbody/{postId} {
     	allow read: if true;
       allow write: if isSignedIn() && 
@@ -20,10 +23,6 @@ service cloud.firestore {
     	allow read: if true;
     }    
     
-    function getRole(role) {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role]
-    }
-
     function validPost() {
     	return 
         incommingData().title != null &&
@@ -38,6 +37,12 @@ service cloud.firestore {
         incommingData().userId != null &&
         incommingData().body != null 
     }
+    
+    function validUser() {
+      return 
+        incommingData().email != null &&
+        incommingData().displayName != null
+    }
 
     function existingData() {
       return resource.data
@@ -50,5 +55,17 @@ service cloud.firestore {
     function isSignedIn() {
       return request.auth.uid != null
     }
+    
+    function getRole(role) {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role]
+    }
+
   }
 }
+
+
+
+
+
+
+

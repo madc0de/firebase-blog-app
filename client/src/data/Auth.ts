@@ -10,7 +10,7 @@ export const listenForAuthStateChange = (dispatch: Dispatch) => {
   });
 }; 
 
-const handlerAuthStateChange = (firebaseUser: firebase.User, dispatch: Dispatch) => {
+const handlerAuthStateChange = async (firebaseUser: firebase.User, dispatch: Dispatch) => {
   if (firebaseUser) {
     const userData: IUserData = {
       uid: firebaseUser.uid,
@@ -20,7 +20,7 @@ const handlerAuthStateChange = (firebaseUser: firebase.User, dispatch: Dispatch)
     };
 
     dispatch(userActions.userAuthenticatedAction(userData));
-    dispatch(userActions.ensureUserAccount(userData))
+    await dispatch(userActions.ensureUserAccount(userData))
   } else {
     dispatch(userActions.userSignedOut());
   }

@@ -12,7 +12,7 @@ const appInitizingReducer = (state: IAppInitState, action: IAction<any>) => {
         case actionType.user_authenticated: {
             return {...state, initialized: true }
         }
-        case actionType.user_not_authenticated: {
+        case actionType.user_signed_out: {
             return {...state, initialized: true }
         }
         default: return state

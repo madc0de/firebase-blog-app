@@ -7,11 +7,17 @@ export interface IBlogSettings {
   loaded: boolean;
 }
 
+export type UserRole = 'admin' | 'contributor'
+export interface IRole {
+  [rolename: string]: boolean
+}
+
 export interface IUserData {
   uid?: string;
   email: string;
   displayName: string;
   photoUrl?: string;
+  roles?: IRole
 }
 
 export interface IUser extends IDocument<IUserData> {

@@ -8,7 +8,7 @@ export const post_removed = 'post_removed'
 export const postbody_loaded = 'postbody_loaded'
 
 export const user_authenticated = 'user_authenticated'
-export const user_not_authenticated ='user_not_authenticated'
+export const user_signed_out ='user_not_authenticated'
 export const user_loaded = 'user_loaded'
 
 export const postview_set_status =  'postview_set_status'

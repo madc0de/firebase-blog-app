@@ -54,17 +54,17 @@ class App extends React.Component<AppProps & ConnectProps, {}> {
           <PrivateRoute
             exact
             path="/recent"
-            authenticated={authState.authenticated}
+            isAdmin={authState.isAdmin}
             component={RecentPosts}
           />
           <PrivateRoute
             path="/new-post"
-            authenticated={authState.authenticated}
+            isAdmin={authState.isAdmin}
             component={PostFormPage}
           />
           <PrivateRoute
             path="/edit-post/:postId"
-            authenticated={authState.authenticated}
+            isAdmin={authState.isAdmin}
             component={PostFormPage}
           />
         </div>

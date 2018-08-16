@@ -7,9 +7,9 @@ export interface IBlogSettings {
   loaded: boolean;
 }
 
-export type UserRole = 'admin' | 'contributor'
+export type UserRole = "admin" | "contributor";
 export interface IRole {
-  [rolename: string]: boolean
+  [rolename: string]: boolean;
 }
 
 export interface IUserData {
@@ -17,7 +17,7 @@ export interface IUserData {
   email: string;
   displayName: string;
   photoUrl?: string;
-  roles?: IRole
+  roles?: IRole;
 }
 
 export interface IUser extends IDocument<IUserData> {
@@ -73,6 +73,7 @@ export interface IAppInitState {
 
 export interface IAuthState {
   authenticated: boolean;
+  isAdmin: boolean;
   authUser: IUserData;
 }
 

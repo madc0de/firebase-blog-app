@@ -18,10 +18,11 @@ export const initail_BlogSetting: IBlogSettings =  {
 
 export const initial_AuthState: IAuthState = {
   authenticated: false,
+  isAdmin: false,
   authUser: {
     uid: '',
     email: '',
-    displayName: ''
+    displayName: '',
   }
 };
 

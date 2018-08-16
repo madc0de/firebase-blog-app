@@ -39,7 +39,7 @@ function handle_user_signed_out() {
   return newState;
 }
 
-function handle_user_loaded(state: IAuthState, action: IAction<IUser>) {
+function handle_user_loaded(state: IAuthState, action: IAction<IUser>): IAuthState {
   const userId = mapUtil.getMapKey(action.payload);
   const userData = mapUtil.getMapValue(action.payload) as IUserData;
   if (state.authUser.uid === userId) {
@@ -48,7 +48,8 @@ function handle_user_loaded(state: IAuthState, action: IAction<IUser>) {
       authUser: {
         ...state.authUser,
         roles: userData.roles
-      }
+      },
+      isAdmin: userData.roles && userData.roles.admin ? true : false
     };
   }
   return state;

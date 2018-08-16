@@ -2,13 +2,13 @@ import * as React from "react";
 import { Route, Redirect, withRouter } from "react-router-dom";
 
 const PrivateRoute = (props: any) => {
-  const { component: Component, authenticated, location, ...rest } = props;
+  const { component: Component, isAdmin, location, ...rest } = props;
 
-  if (authenticated == null) {
+  if (isAdmin == null) {
     throw Error('authenticated property required')
   }
 
-  if (authenticated === true) {
+  if (isAdmin === true) {
     return <Route {...rest} render={props => <Component {...props} />} />;
   }
 

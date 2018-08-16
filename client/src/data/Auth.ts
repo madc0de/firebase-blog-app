@@ -27,7 +27,7 @@ const handlerAuthStateChange = async (firebaseUser: firebase.User, dispatch: Dis
 };
 
 export const signInWithGoogle = async () => {
-  var provider = new firebase.auth.GoogleAuthProvider();
+  var provider = new firebase.auth.GoogleAuthProvider();  
   firebase.auth().signInWithPopup(provider);
 };
 

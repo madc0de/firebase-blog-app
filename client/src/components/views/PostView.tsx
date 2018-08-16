@@ -8,15 +8,16 @@ import Header from "../layout/Header";
 import PageContent from "../layout/PageContent";
 import Loading from "../layout/Loading";
 import Post from "../post/Post";
+import PostNotFound from "../post/PostNotFound";
 
 interface RouteParamProps {
   slug: string;
 }
 
 interface DispatchActionProps {
-    initView(): void
-    loading(): void
-    loadPost(slugOrId: string): void;
+  initView(): void;
+  loading(): void;
+  loadPost(slugOrId: string): void;
 }
 
 export interface PostViewProps
@@ -34,44 +35,53 @@ class PostView extends React.Component<
   constructor(props: PostViewProps & DispatchActionProps) {
     super(props);
 
-    props.initView()
+    props.initView();
   }
 
   componentDidUpdate(preProps: PostViewProps) {
     const { slug } = this.props.match.params;
-    const { loadingStatus } = this.props.postViewState
-    
-    if (loadingStatus === 'init') {
-      this.props.loadPost(slug)
+    const { loadingStatus } = this.props.postViewState;
+
+    if (loadingStatus === "init") {
+      this.props.loadPost(slug);
     }
   }
 
   getContent = () => {
     const { loadingStatus, post, error } = this.props.postViewState;
 
-    if (loadingStatus === 'init') {
-        return <div />
+    if (loadingStatus === "init") {
+      return <div />;
     }
     if (loadingStatus === "loading") {
-      return <Loading>Loading Post...</Loading>;
+      return;
+      <PageContent>
+        <Loading>Loading Post...</Loading>;
+      </PageContent>;
     }
     if (loadingStatus === "not-found") {
-      return <div>Post Not Found</div>;
+      return <PostNotFound />;
     }
     if (loadingStatus === "error") {
-      return <div>
-        <h4>Error loading post</h4>
-        <div>{error}</div>
-      </div>;
+      return (
+        <PageContent>
+          <h4>Error loading post</h4>
+          <div>{error}</div>
+        </PageContent>
+      );
     }
-    return <Post post={post as IPost} authState={this.props.authState} />;
+    return (
+      <PageContent>
+        <Post post={post as IPost} authState={this.props.authState} />
+      </PageContent>
+    )
   };
 
   render() {
     return (
       <div>
         <Header />
-        <PageContent>{this.getContent()}</PageContent>
+        {this.getContent()}
       </div>
     );
   }
@@ -86,10 +96,11 @@ const mapStateToProps = (state: IAppState) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-    initView: () => dispatch(postViewActions.postViewSetStatusAction("init")),
-    loadPost: (slugOrId: string) => dispatch(postViewActions.asyncPostViewLoadPostAction(slugOrId))
-})
-  
+  initView: () => dispatch(postViewActions.postViewSetStatusAction("init")),
+  loadPost: (slugOrId: string) =>
+    dispatch(postViewActions.asyncPostViewLoadPostAction(slugOrId))
+});
+
 const _PostPage = connect(
   mapStateToProps,
   mapDispatchToProps

@@ -1,27 +1,30 @@
 
 This is a simple React blog that presist posts in Firestore.
 
+### Folder structure
 
-### Clone the project
 ```
-npm i
+|-- client      // front end
+|-- functions   // backend triggers
 ```
+
+## Setup overview
+* run `npm i` in both `./client` and './functions/functions` folders
+
+
+## `client` Setup
 
 ### Create a firebase project
 *  [Firebase console](https://console.firebase.google.com/)
-*  Add a project
+*  Create a firebase project
 
-### Add the firebase config to the app
-*  In the project overview select `Add Firebase to your app`, 
-*  Copy the following and replace the contents of `src/firestore.config.js`
-```
- var config = {
-    apiKey: "",
-    authDomain: "",
-    databaseURL: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: ""
-};
-```
+### Copy paste firebase nitialize properties to client
+*  In the firebse console, select `Project Overview` -> `Add Firebase to you web app`
+*  Copy the `var config = {...} 
+*  Replace the config properites in `client/src/firebase.cnfig.js`
+
+
+
+
+
 

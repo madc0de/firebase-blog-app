@@ -1,11 +1,10 @@
-import { AnyAction } from "redux";
 import { FormReducer } from "redux-form";
 
-export  interface IBlogSettings {
-  blog_title: string
-  blog_description: string
-  blog_background_cover_url: string
-  loaded: boolean
+export interface IBlogSettings {
+  blog_title: string;
+  blog_description: string;
+  blog_background_cover_url: string;
+  loaded: boolean;
 }
 
 export interface IUserData {
@@ -23,7 +22,7 @@ export interface IUsersState {
   users: IUser[];
 }
 
-export type PostStatus = "draft" | "published"
+export type PostStatus = "draft" | "published";
 
 type Millisecons = number;
 
@@ -85,8 +84,8 @@ export type ILoadingStatus =
 export type ISubmitStatus = "" | "started" | "saved" | "error";
 
 export interface ILoadingState {
-  status: ILoadingStatus
-  error: string
+  status: ILoadingStatus;
+  error: string;
 }
 
 export interface IPostViewState {
@@ -115,7 +114,7 @@ export interface IAppState {
   form: FormReducer | Object;
 }
 
-export interface IAction<T> extends AnyAction {
+export interface IAction<T> {
   type: string;
   payload: T;
 }

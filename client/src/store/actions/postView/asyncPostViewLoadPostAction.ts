@@ -46,7 +46,7 @@ export const asyncPostViewLoadPostAction = (slugOrId: string) => async (
       if (!postData.body) {
         const body = await Posts.getPostBody(postId) as string;
         if (body) {
-          dispatch(postBodyLoadedAction({ postId, body, other: 33 }));
+          dispatch(postBodyLoadedAction({ postId, body }));
         }
       } else {
         console.log('post already has body')

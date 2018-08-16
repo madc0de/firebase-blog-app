@@ -8,18 +8,19 @@ export const listenForAuthStateChange = (dispatch: Dispatch) => {
   firebase.auth().onAuthStateChanged((firebaseUser: firebase.User) => {
     handlerAuthStateChange(firebaseUser, dispatch);
   });
-};
+}; 
 
 const handlerAuthStateChange = (firebaseUser: firebase.User, dispatch: Dispatch) => {
   if (firebaseUser) {
-    const user: IUserData = {
+    const userData: IUserData = {
       uid: firebaseUser.uid,
       email: firebaseUser.email as string,
       displayName: firebaseUser.displayName as string,
       photoUrl: firebaseUser.photoURL as string
     };
 
-    dispatch(userActions.userAuthenticatedAction(user));
+    dispatch(userActions.userAuthenticatedAction(userData));
+    dispatch(userActions.ensureUserAccount(userData))
   } else {
     dispatch(userActions.userSignedOut());
   }

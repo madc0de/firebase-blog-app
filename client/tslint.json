@@ -1,0 +1,9 @@
+{
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "src/components/forms/**/*.tsx"
+    ]
+  }
+}

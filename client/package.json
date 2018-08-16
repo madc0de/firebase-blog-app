@@ -1,0 +1,39 @@
+{
+  "name": "project",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "fecha": "^2.3.3",
+    "firebase": "^5.0.4",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts-ts": "2.16.0",
+    "redux": "^4.0.0",
+    "redux-form": "^7.4.2",
+    "redux-thunk": "^2.3.0",
+    "remove-markdown": "^0.3.0",
+    "showdown": "^1.8.6",
+    "valid-url": "^1.0.9"
+  },
+  "scripts": {
+    "start": "PORT=5050 react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "devDependencies": {
+    "@types/fecha": "^2.3.1",
+    "@types/jest": "^23.0.0",
+    "@types/node": "^10.3.2",
+    "@types/react": "^16.3.17",
+    "@types/react-dom": "^16.0.6",
+    "@types/react-redux": "^6.0.2",
+    "@types/react-router-dom": "^4.2.7",
+    "@types/redux-form": "^7.3.1",
+    "@types/remove-markdown": "^0.1.1",
+    "@types/showdown": "^1.7.4",
+    "typescript": "^2.9.1"
+  }
+}

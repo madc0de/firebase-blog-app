@@ -1,0 +1,16 @@
+
+
+@media only screen and (min-width: 800px) {
+    .page-content {
+        width: 800px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 1140px) {
+    .post-form-content {
+        width: 1140px;
+        margin: 0 auto;
+    }
+}
+

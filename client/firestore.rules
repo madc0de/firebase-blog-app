@@ -1,0 +1,49 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /posts/{postId} {
+      allow read: if true;
+      allow write: if validPost() && isSignedIn();        
+    }
+    match /users/{userId} {
+    	allow read: if isSignedIn();
+      allow write: if request.auth.uid == userId
+    }
+    match /postbody/{postId} {
+    	allow read: if true;
+      allow write: if isSignedIn() && 
+      		request.auth.uid == incommingData().userId  &&
+          validPostBody()          
+    }
+
+	  match /settings/blog {
+    	allow read: if true;
+    }    
+
+    function validPost() {
+    	return 
+        incommingData().title != null &&
+        incommingData().excerpt != null &&
+        incommingData().status != null &&
+        incommingData().userId == request.auth.uid
+    }
+    
+    function validPostBody() {
+    	return 
+        incommingData().postId != null &&
+        incommingData().userId != null &&
+        incommingData().body != null 
+    }
+
+    function existingData() {
+      return resource.data
+    }
+
+    function incommingData() {
+      return request.resource.data
+    }
+
+    function isSignedIn() {
+      return request.auth != null
+    }
+  }
+}

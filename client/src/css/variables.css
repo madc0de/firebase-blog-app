@@ -1,0 +1,15 @@
+:root {
+    --bgc-color: #f5f8fa;
+    --medium-screen: 560px;
+    --large-screen: 1140px;
+
+    --bold-color: rgba(0, 0, 0, 0.8);
+    --color: #3A4145;
+    --light-color: rgba(0, 0, 0, 0.3);
+    --heading-color:  #2E2E2E;
+    --post-meta-color: #9EABB3;
+
+    --font-bold: 700;
+    --font-normal: 300;
+    --input-padding: 0.5rem 1rem;
+}

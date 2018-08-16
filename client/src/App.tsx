@@ -2,7 +2,12 @@ import * as React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { IAppState, IAuthState, IAppInitState } from "./interface";
+import {
+  IAppState,
+  IAuthState,
+  IAppInitState,
+  IBlogSettings
+} from "./interface";
 
 import PublishedPosts from "./components/views/PublishedPosts";
 import RecentPosts from "./components/views/RecentPosts";
@@ -16,9 +21,18 @@ interface AppProps {}
 interface ConnectProps {
   authState: IAuthState;
   appInitState: IAppInitState;
+  blogSettings: IBlogSettings;
 }
 
-class App extends React.Component<AppProps & ConnectProps, any> {
+class App extends React.Component<AppProps & ConnectProps, {}> {
+
+
+  componentDidUpdate() {
+    if (this.props.blogSettings.loaded && !document.title) {
+      document.title = this.props.blogSettings.blog_title
+    }
+  }
+
   public render() {
     const { authState, appInitState } = this.props;
 
@@ -27,7 +41,7 @@ class App extends React.Component<AppProps & ConnectProps, any> {
       authState == null ||
       authState.authenticated == null
     ) {
-      return <Loading>Pauly's Blog...</Loading>;
+      return <Loading>Loading...</Loading>;
     }
 
     return (
@@ -59,11 +73,14 @@ class App extends React.Component<AppProps & ConnectProps, any> {
   }
 }
 
-const _App = connect((state: IAppState) => {
+const mapStateToProps = (state: IAppState): ConnectProps => {
   return {
     authState: state.authState,
-    appInitState: state.appInitState
+    appInitState: state.appInitState,
+    blogSettings: state.blogSettingsState
   };
-})(App);
+}
+
+const _App = connect(mapStateToProps)(App);
 
 export default _App;

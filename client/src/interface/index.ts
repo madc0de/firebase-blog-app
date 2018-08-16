@@ -1,10 +1,11 @@
 import { AnyAction } from "redux";
 import { FormReducer } from "redux-form";
 
-export  interface IBlogSetting {
+export  interface IBlogSettings {
   blog_title: string
   blog_description: string
   blog_background_cover_url: string
+  loaded: boolean
 }
 
 export interface IUser {
@@ -102,7 +103,7 @@ export interface IPostFormState {
 
 export interface IAppState {
   appInitState: IAppInitState;
-  blogSettingState: IBlogSetting;
+  blogSettingsState: IBlogSettings;
   authState: IAuthState;
   postsState: IPostsState;
   usersState: IUsersState;

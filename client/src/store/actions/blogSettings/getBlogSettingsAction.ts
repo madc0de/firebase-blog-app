@@ -1,9 +1,10 @@
-import { Dispatch } from "redux";
+import { Dispatch, } from "redux";
 import { BlogSettings } from "../../../data";
 import { blogSettingsLoadedAction } from "./blogSettingsLoadedAction";
 import { IGetState } from "../../../interface";
 
-export const asyncGetBlogSettingsAction = () => async (
+
+export const asyncGetBlogSettingsAction = (): any => async (
   dispatch: Dispatch,
   getState: IGetState
 ) => {

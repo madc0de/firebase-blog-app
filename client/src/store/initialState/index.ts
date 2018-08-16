@@ -1,6 +1,6 @@
 import {
   IAuthState,
-  IBlogSetting,
+  IBlogSettings,
   IUsersState,
   IPostData,
   IPostsState,
@@ -9,10 +9,11 @@ import {
   IPostFormValues
 } from '../../interface';
 
-export const initail_BlogSetting: IBlogSetting =  {
-  blog_title: 'Firestore Hosted Blog',
-  blog_description: 'describe your blog',
-  blog_background_cover_url: ''
+export const initail_BlogSetting: IBlogSettings =  {
+  blog_title: '',
+  blog_description: '',
+  blog_background_cover_url: '',
+  loaded: false
 }
 
 export const initial_AuthState: IAuthState = {

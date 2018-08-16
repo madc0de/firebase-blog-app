@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import App from './App';
 import { initStore, BlogStore } from './store/store'
 import registerServiceWorker from './registerServiceWorker';
+import { blogSettingActions } from './store/actions'
 
 import { listenForAuthStateChange } from './data/Auth'
 
@@ -16,6 +17,9 @@ import './css/large.css'
 
 initStore(store => {
   listenForAuthStateChange(store.dispatch)
+  store.dispatch(blogSettingActions.asyncGetBlogSettingsAction())
+  console.log('store.dispatch')
+
   render(store)
 })
 

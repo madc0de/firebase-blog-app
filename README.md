@@ -1,6 +1,6 @@
 # Firesttore based blog app
 
-This is a simple React blog using firestore as a backend.
+Firebase offers
 
 ## Folder structure
 

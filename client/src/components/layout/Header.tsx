@@ -38,11 +38,11 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
     this.props.loadBlogSettings()  
   }
 
-  showNav = (e: React.SyntheticEvent) => {
+  showNav = () => {
     this.setNavVisible(true);
   };
 
-  hideNav = (e: React.SyntheticEvent) => {
+  hideNav = () => {
     this.setNavVisible(false);
   };
 
@@ -65,7 +65,7 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
         </header>
         <SideNav
           visible={this.state.navVisible}
-          onCloseClick={this.hideNav}
+          onClose={this.hideNav}
           authState={this.props.authState}
         />
       </React.Fragment>

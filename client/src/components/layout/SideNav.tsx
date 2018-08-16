@@ -14,16 +14,25 @@ const CloseLink = ({ onCloseClick }: { onCloseClick: Function }) => {
 export interface SideNavProps {
   visible: boolean;
   authState: IAuthState;
-  onCloseClick: Function;
+  onClose: Function;
 }
 
 export default class SideNav extends React.Component<SideNavProps, any> {
+
+  closeClick = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    this.props.onClose();
+  }
+
   public render() {
-    const { authState, visible, onCloseClick } = this.props;
+    const { authState, visible, onClose } = this.props;
     const { authenticated } = authState;
     return (
-      <div className={`side-nav ${visible ? "visible" : ""}`}>
-        <CloseLink onCloseClick={onCloseClick} />
+      <div
+        className={`side-nav ${visible ? "visible" : ""}`}
+        onClick={this.closeClick}
+      >
+        <CloseLink onCloseClick={onClose} />
         <Link to="/">Home</Link>
         {authenticated && <Link to="/recent">Recent</Link>}
         {authenticated && <Link to="/new-post">New Post</Link>}

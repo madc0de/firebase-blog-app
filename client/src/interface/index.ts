@@ -8,12 +8,15 @@ export  interface IBlogSettings {
   loaded: boolean
 }
 
-export interface IUser {
+export interface IUserData {
   uid?: string;
   email: string;
   displayName: string;
   photoUrl?: string;
-  authenticated?: boolean;
+}
+
+export interface IUser extends IDocument<IUserData> {
+  [userId: string]: IUserData;
 }
 
 export interface IUsersState {
@@ -65,7 +68,7 @@ export interface IAppInitState {
 
 export interface IAuthState {
   authenticated: boolean;
-  authUser: IUser;
+  authUser: IUserData;
 }
 
 export interface IPostsState {

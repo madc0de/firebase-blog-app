@@ -1,9 +1,9 @@
-import { IAuthState, IUser, IAction } from '../../interface'
+import { IAuthState, IUserData, IAction } from '../../interface'
 import * as actionType from '../actions/actionType'
 import { initial_AuthState } from '../../store/initialState'
 
 
-const authStateReducer = (state: IAuthState, action: IAction<IUser>) => {
+const authStateReducer = (state: IAuthState, action: IAction<IUserData>) => {
     state = state ? state : initial_AuthState
 
     switch (action.type) {

@@ -1,6 +1,7 @@
 import { IUsersState, IUser, IAction } from "../../interface";
 import { initial_UsersState } from "../../store/initialState";
 import * as actionType from "../actions/actionType";
+import { mapUtil } from '../../utils';
 
 const usersStateReduder = (
   state: IUsersState,
@@ -9,24 +10,25 @@ const usersStateReduder = (
   state = state ? state : initial_UsersState;
 
   switch (action.type) {
-    case actionType.user_added: {
-      return apply_user_to_state(state, action.payload);
+    case actionType.user_loaded: {
+      return handle_user_loaded(state, action.payload);
     }
     default:
       return state;
   }
 };
 
-function apply_user_to_state(
+function handle_user_loaded(
   state: IUsersState,
-  incommingUser: IUser
+  user: IUser
 ): IUsersState {
-  const index = state.users.findIndex(user => user.uid === incommingUser.uid);
+  const userId = mapUtil.getMapKey(user)
+  const index = state.users.findIndex(user => mapUtil.getMapKey(user) === userId);
 
   if (index < 0) {
     return {
       ...state,
-      users: [...state.users, incommingUser]
+      users: [...state.users, user]
     };
   }
 
@@ -34,7 +36,7 @@ function apply_user_to_state(
     ...state,
     users: [
       ...state.users.slice(0, index),
-      incommingUser,
+      user,
       ...state.users.slice(index + 1)
     ]
   };

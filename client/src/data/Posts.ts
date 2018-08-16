@@ -52,9 +52,9 @@ export const getPostBody = async (
 };
 
 const getPostByDocRef = async (ref: firebase.firestore.DocumentReference) => {
-  const docSnap = await ref.get();
-  const post = mapUtil.snapshotToMap(docSnap) as IPost;
-  return post;
+const docSnap = await ref.get();
+const post = mapUtil.snapshotToMap(docSnap) as IPost;
+return post;
 };
 
 const getPostsFromQuerySnapshot = (

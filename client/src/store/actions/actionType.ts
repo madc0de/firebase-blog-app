@@ -9,7 +9,7 @@ export const postbody_loaded = 'postbody_loaded'
 
 export const user_authenticated = 'user_authenticated'
 export const user_not_authenticated ='user_not_authenticated'
-export const user_added = 'user_added'
+export const user_loaded = 'user_loaded'
 
 export const postview_set_status =  'postview_set_status'
 export const postview_loaded =  'postview_loaded'

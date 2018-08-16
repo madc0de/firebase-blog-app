@@ -4,12 +4,22 @@ This is a simple React blog that presist posts in Firestore.
 ### Folder structure
 
 ```
-|-- client      // front end
-|-- functions   // backend triggers
+|-- client               // front end
+|-- firebase-functions   // backend triggers
 ```
 
-## Setup overview
-* run `npm i` in both `./client` and './functions/functions` folders
+### Setup
+1.  Create firebase project 
+2.  Configure `client` and `firebase-functions` to point to your firebase project.
+3.  Run initialize the firestore database
+
+## Setup
+* Create a firebase project to host you client and functions, make note of your `firebase project name`.
+* Configuration 
+    * client
+        * Copy firebase configuration to your clients `firebase.config.js` file
+    * firebase-functions
+        * enter your `firebase project name` in `./firebase-functions/.firebaserc`
 
 
 ## `client` Setup

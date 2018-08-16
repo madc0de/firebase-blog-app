@@ -1,0 +1,32 @@
+{
+  "indexes": [
+    {
+      "collectionId": "posts",
+      "state": "READY",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "number",
+          "mode": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "state": "READY",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "publish_date",
+          "mode": "DESCENDING"
+        }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 			"path": "client"
 		},
 		{
-			"path": "functions"
+			"path": "firebase-functions"
 		}
 	],
 	"settings": {}

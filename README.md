@@ -1,6 +1,12 @@
-# Firesttore based blog app
+# Firestore React Redux Typescript Blog App
 
-Firebase offers
+__Motivation__: Firebase hosting offers a cost effective way to store your data as well as host your apps front and back end.  
+
+Since it is backed by google's CDN, your the response time is faster than the free tier on other hosting platforms.
+
+[Firestore security rules](https://firebase.google.com/docs/firestore/security/get-started) allow scripting of create, update, delete, access rules without hand rolling your own backend validation service.  It's a mintor pain to decode.  The beta security rules simulator is buggy and labor intensive to run.  But if you squint, you can see the elegance of having your data access rules in one document.
+
+It's not all roses.  You will need the firebase functions/cloud functions roll your own referential integrity.  This is made harder by not having the ability to setup debug those functions.  
 
 ## Folder structure
 
@@ -9,42 +15,75 @@ Firebase offers
 |-- firebase-functions   // backend triggers
 ```
 
-## Setup Overview
+## Setup
 
-1. Create firebase project
-2. Configure `client` and `firebase-functions` to point to your firebase project
-3. Run initialize the firestore database
-4. Deploy firiebase functions
-5. Deploy client
+1. Clone and installed packages
+2. Create your google firebase project
+3. Configure `client`
+4. Configure `firebase-functions`
+5. Build and deploy
 
-### Create Firebase Project
+### Clone and installed packages
 
-- Go to the [Google firebase console](https://console.firebase.google.com)
-- When done you will be taken to the project console.
+- clone the repository, then:
+  - `cd client` + `npm i`
+  - `cd firebase-functions/functions` + 'npm i`
 
-### Configuration the client
+### Create a Firebase Project
 
-- Select "Project Overview" on the top left.
-- Then select "Add firebase to your web app"
-- Copy the config
+- [Google firebase console](https://console.firebase.google.com)
+- Add a project (make note of the **project name**)
 
+### Configure `client`
+
+- In the `client` folder
+  - Point `.firebaserc` at your project
+
+```javascript
+{
+  "projects": {
+    "default": "<project-name>"
+  }
+}
 ```
+
+- In the google firebase console select "Project Overview" -> "Add Firebase to your web app"
+- Copy the config properites
+- In the `client/src` folder
+  - Replace the config with the one from your project
+
+```javascript
 var config = {
-  apiKey: "AIzaSyDsEJPeMxqk-4QmDzuBSdkKFuAq.....",
+  apiKey: "<your project api key>",
   authDomain: "<project-name>.firebaseapp.com",
-  ...
+  /* ... */
 };
 ```
 
-## `client` Setup
+### Configure `firebase-functions`
 
-### Create a firebase project
+Replace `<project name>` in `.firebaserc` with yours
 
-- [Firebase console](https://console.firebase.google.com/)
-- Create a firebase project
+```javascript
+{
+  "projects": {
+    "default": "<project-name>"
+  }
+}
+```
 
-### Copy paste firebase nitialize properties to client
+### Build and deploy
 
-- In the firebse console, select `Project Overview` -> `Add Firebase to you web app`
-- Copy the `var config = {...}
-- Replace the config properites in `client/src/firebase.cnfig.js`
+To deploy you will need [firebase-tools](https://firebase.google.com/docs/hosting/quickstart)  `npm install -g firebase-tools`
+
+#### client
+
+This runs off firebase hosting.  
+
+- client
+  - `npm run build`
+  - `firebase deploy`
+
+- firebase-functions
+  - `cd functions` then `npm run build`
+  - `firebase deploy --only functions`

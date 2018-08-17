@@ -1,0 +1,21 @@
+[debug] [2018-08-17T04:57:30.322Z] ----------------------------------------------------------------------
+[debug] [2018-08-17T04:57:30.324Z] Command:       /Users/paulkrisadaolarn/.nvm/versions/node/v8.11.1/bin/node /Users/paulkrisadaolarn/.nvm/versions/node/v8.11.1/bin/firebase deploy --only function
+[debug] [2018-08-17T04:57:30.325Z] CLI Version:   4.1.1
+[debug] [2018-08-17T04:57:30.325Z] Platform:      darwin
+[debug] [2018-08-17T04:57:30.325Z] Node Version:  v8.11.1
+[debug] [2018-08-17T04:57:30.325Z] Time:          Fri Aug 17 2018 11:57:30 GMT+0700 (+07)
+[debug] [2018-08-17T04:57:30.325Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-08-17T04:57:30.336Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-08-17T04:57:30.337Z] > authorizing via signed-in user
+[debug] [2018-08-17T04:57:30.338Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-08-17T04:57:30.338Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2018-08-17T04:57:36.486Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-17T04:57:36.496Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/pauly-blog  
+ 
+[debug] [2018-08-17T04:58:06.510Z] Error: getaddrinfo ENOTFOUND admin.firebase.com admin.firebase.com:443
+    at errnoException (dns.js:50:10)
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:92:26)
+[error] 
+[error] Error: Server Error. getaddrinfo ENOTFOUND admin.firebase.com admin.firebase.com:443

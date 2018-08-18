@@ -9,7 +9,7 @@ export async function update_post_count(option: IncrementOption) {
     let post_count: number = metadataDoc.exists
       ? metadataDoc.data().post_count
       : 0;
-    post_count = option === "increment" ? post_count + 1 : post_count - 1;
+      post_count = option === "increment" ? post_count + 1 : post_count - 1;
     await ref.set({ post_count }, { merge: true });
     return post_count;
   } catch (err) {
@@ -22,7 +22,7 @@ export async function update_user_count(option: IncrementOption) {
     const ref = admin.firestore().doc("metadata/values");
     const metadataDoc = await ref.get();
     let user_count: number = metadataDoc.exists
-      ? metadataDoc.data().post_count
+      ? metadataDoc.data().user_count
       : 0;
     user_count = option === "increment" ? user_count + 1 : user_count - 1;
     await ref.set({ user_count }, { merge: true });
@@ -31,4 +31,3 @@ export async function update_user_count(option: IncrementOption) {
     return err;
   }
 }
-

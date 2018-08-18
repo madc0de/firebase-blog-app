@@ -1,6 +1,8 @@
 import * as functions from "firebase-functions";
 import { DocumentSnapshot } from "@google-cloud/firestore";
-import * as actions from "../actions";
+
+import * as postBodyActions from "../actions/postBodyActions";
+import * as metaDataActions from "../actions/metaDataActions";
 
 export async function handle_post_create(
   doc: DocumentSnapshot,
@@ -10,9 +12,9 @@ export async function handle_post_create(
     const id = doc.id;
     const data = doc.data();
 
-    await actions.set_postBody(id, data.userId, data.body);
+    await postBodyActions.set_postBody(id, data.userId, data.body);
 
-    const post_count = await actions.update_post_count("increment");
+    const post_count = await metaDataActions.update_post_count("increment");
     // remove post body, set post_umber. created_date
     return doc.ref.set(
       { body: "", post_number: post_count, created_date: Date.now() },
@@ -51,15 +53,14 @@ export async function handle_post_write(
     const id = change.after.id;
     const data = change.after.data();
 
+    // pevent infinite loop
     if (!data.body || data.body.trim().length === 0) {
       return null;
     }
 
-    await actions.set_postBody(id, data.userId, data.body);
-
-    // remove post.body to save space
-    data.body = "";
-    return change.after.ref.set(data, { merge: true });
+    await postBodyActions.set_postBody(id, data.userId, data.body);
+    // post body can be removed
+    return change.after.ref.set({ body: ''}, { merge: true });
   } catch (err) {
     return err;
   }
@@ -71,8 +72,8 @@ export async function handle_post_delete(
 ) {
   try {
     const postId = doc.id;
-    await actions.delete_postBody(postId);
-    return actions.update_post_count("decrement");
+    await postBodyActions.delete_postBody(postId);
+    return metaDataActions.update_post_count("decrement");
   } catch (err) {
     return err;
   }

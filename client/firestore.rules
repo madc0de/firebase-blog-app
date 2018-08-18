@@ -1,3 +1,13 @@
+
+function isUser(user) {
+  return  
+    user.size() <= 5 &&
+      user.email is string && user.email.size() <= 254 &&
+      user.displayName is string && user.displayName.size() <= 254 &&
+      user.photoUrl is string && user.photoUrl.size() < 2038 &&
+      user.roles != null
+}
+    
 service cloud.firestore {
   match /databases/{database}/documents {
     match /posts/{postId} {
@@ -8,9 +18,9 @@ service cloud.firestore {
     
     match /users/{userId} {
     	allow read: if isSignedIn();
-      allow create: if validUser() && isSignedIn() && userId == request.auth.uid 
-      allow update: if request.auth.uid == userId && validUser()                     
-    }
+      allow create: if isUser(request.resource.data) && isSignedIn() && userId == request.auth.uid
+      allow update: if isUser(request.resource.data) && request.auth.uid == userId 
+    } 
     
     match /postbody/{postId} {
     	allow read: if true;
@@ -41,17 +51,11 @@ service cloud.firestore {
         incommingData().userId != null &&
         incommingData().body != null 
     }
-    
-    function validUser() {
-      return 
-        incommingData().email != null &&
-        incommingData().displayName != null
-    }
 
     function existingData() {
       return resource.data
     }
-
+    
     function incommingData() {
       return request.resource.data
     }
@@ -59,16 +63,5 @@ service cloud.firestore {
     function isSignedIn() {
       return request.auth.uid != null
     }
-    
-    function getRole(role) {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role]
-    }
   }
 }
-
-
-
-
-
-
-

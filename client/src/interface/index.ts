@@ -16,8 +16,8 @@ export interface IUserData {
   uid?: string;
   email: string;
   displayName: string;
-  photoUrl?: string;
-  roles?: IRole;
+  photoUrl: string;
+  roles: IRole;
 }
 
 export interface IMetaData {

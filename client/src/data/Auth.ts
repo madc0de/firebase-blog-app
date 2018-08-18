@@ -16,7 +16,8 @@ const handlerAuthStateChange = async (firebaseUser: firebase.User, dispatch: Dis
       uid: firebaseUser.uid,
       email: firebaseUser.email as string,
       displayName: firebaseUser.displayName as string,
-      photoUrl: firebaseUser.photoURL as string
+      photoUrl: firebaseUser.photoURL as string,
+      roles: {}
     };
 
     dispatch(userActions.userAuthenticatedAction(userData));

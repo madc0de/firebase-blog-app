@@ -17,3 +17,18 @@ export async function update_post_count(option: IncrementOption) {
   }
 }
 
+export async function update_user_count(option: IncrementOption) {
+  try {
+    const ref = admin.firestore().doc("metadata/values");
+    const metadataDoc = await ref.get();
+    let user_count: number = metadataDoc.exists
+      ? metadataDoc.data().post_count
+      : 0;
+    user_count = option === "increment" ? user_count + 1 : user_count - 1;
+    await ref.set({ user_count }, { merge: true });
+    return user_count;
+  } catch (err) {
+    return err;
+  }
+}
+

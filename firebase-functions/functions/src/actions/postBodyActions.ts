@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 
-export async function set_postbody_doc(
+export async function set_postBody(
   postId: string,
   userId: string,
   body: string
@@ -13,3 +13,12 @@ export async function set_postbody_doc(
     return err;
   }
 }
+
+export async function delete_postBody(postId: string) {
+  try {
+    return admin.firestore().doc(`postbody/${postId}`).delete()
+  } catch (err) {
+    return err
+  }
+}
+

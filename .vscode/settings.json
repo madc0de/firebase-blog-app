@@ -1,0 +1,5 @@
+{
+  "files.exclude": {
+    "firebase-functions/functions/lib": true
+  }
+}

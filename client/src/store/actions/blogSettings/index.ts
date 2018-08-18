@@ -1,2 +1,2 @@
 export * from './blogSettingsLoadedAction'
-export * from './getBlogSettingsAction'
+export * from './loadBlogSettingsAction'

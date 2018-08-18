@@ -9,7 +9,7 @@ import {
 import { initial_PostFormState } from '../../store/initialState';
 import { getMapKey } from '../../utils/mapUtil';
 
-const reducer = (
+export const postFormReducer = (
   state: IPostFormState,
   action: IAction<string | IPost | IPostFormValues | string | undefined>
 ): IPostFormState => {
@@ -34,8 +34,6 @@ const reducer = (
       return state;
   }
 };
-
-export default reducer;
 
 const handle_set_status = (
   state: IPostFormState,

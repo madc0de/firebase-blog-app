@@ -7,7 +7,7 @@ import {
 } from "../../interface";
 import { initial_PostViewState } from '../../store/initialState';
 
-const reducer = (
+export const postViewReducer = (
   state: IPostViewState,
   action: IAction<string | IPost | undefined>
 ) => {
@@ -26,8 +26,6 @@ const reducer = (
       return state;
   }
 };
-
-export default reducer;
 
 const handle_postpage_set_status = (
   state: IPostViewState,

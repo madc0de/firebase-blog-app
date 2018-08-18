@@ -3,7 +3,7 @@ import { initial_UsersState } from "../../store/initialState";
 import * as actionType from "../actions/actionType";
 import { mapUtil } from '../../utils';
 
-const usersStateReduder = (
+export const userReducer = (
   state: IUsersState,
   action: IAction<IUser>
 ): IUsersState => {
@@ -41,5 +41,3 @@ function handle_user_loaded(
     ]
   };
 }
-
-export default usersStateReduder;

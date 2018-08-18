@@ -3,7 +3,7 @@ import * as actionType from "../actions/actionType";
 import { initial_AuthState } from "../../store/initialState";
 import { mapUtil } from "../../utils";
 
-const authStateReducer = (
+export const authReducer = (
   state: IAuthState,
   action: IAction<IUserData | IUser>
 ) => {
@@ -20,8 +20,6 @@ const authStateReducer = (
       return state;
   }
 };
-
-export default authStateReducer;
 
 const handle_user_authenticated = (
   state: IAuthState,

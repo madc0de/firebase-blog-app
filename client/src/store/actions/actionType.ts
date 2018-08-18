@@ -22,3 +22,4 @@ export const postform_submit_start = 'postform_submit_start'
 export const postform_submit_success = 'postform_submit_success'
 export const postform_submit_error = 'postform_submit_error'
 
+export const metadata_loaded = 'metadata_loaded'

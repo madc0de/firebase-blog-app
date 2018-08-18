@@ -3,7 +3,7 @@ import { IBlogSettings } from '../../interface'
 import * as actionType from '../actions/actionType'
 import { initail_BlogSetting } from '../initialState';
 
-const reducer = (state: IBlogSettings = initail_BlogSetting, action: IAction<IBlogSettings>): IBlogSettings => {
+export const blogSettingsReducer = (state: IBlogSettings = initail_BlogSetting, action: IAction<IBlogSettings>): IBlogSettings => {
     switch(action.type) {
         case actionType.blogsetting_loaded: {
             return { 
@@ -16,4 +16,3 @@ const reducer = (state: IBlogSettings = initail_BlogSetting, action: IAction<IBl
     }
 }
 
-export default reducer

@@ -20,6 +20,11 @@ export interface IUserData {
   roles?: IRole;
 }
 
+export interface IMetaData {
+  post_count: number;
+  user_count: number;
+}
+
 export interface IUser extends IDocument<IUserData> {
   [userId: string]: IUserData;
 }
@@ -113,6 +118,7 @@ export interface IPostFormState {
 export interface IAppState {
   appInitState: IAppInitState;
   blogSettingsState: IBlogSettings;
+  metaDataState: IMetaData;
   authState: IAuthState;
   postsState: IPostsState;
   usersState: IUsersState;

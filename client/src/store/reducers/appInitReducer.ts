@@ -2,7 +2,7 @@ import { IAction } from '../../interface'
 import { IAppInitState } from '../../interface'
 import * as actionType from '../actions/actionType'
 
-const appInitizingReducer = (state: IAppInitState, action: IAction<any>) => {
+export const appInitReducer = (state: IAppInitState, action: IAction<any>) => {
 
     if (!state) {
         state = { initialized: false }
@@ -19,4 +19,3 @@ const appInitizingReducer = (state: IAppInitState, action: IAction<any>) => {
     }
 }
 
-export default appInitizingReducer

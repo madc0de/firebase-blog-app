@@ -4,7 +4,7 @@ import { blogSettingsLoadedAction } from "./blogSettingsLoadedAction";
 import { IGetState } from "../../../interface";
 
 
-export const asyncGetBlogSettingsAction = (): any => async (
+export const loadBlogSettingsAction = (): any => async (
   dispatch: Dispatch,
   getState: IGetState
 ) => {

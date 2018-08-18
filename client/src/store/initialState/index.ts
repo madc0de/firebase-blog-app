@@ -6,7 +6,8 @@ import {
   IPostsState,
   IPostViewState,
   IPostFormState,
-  IPostFormValues
+  IPostFormValues,
+  IMetaData
 } from '../../interface';
 
 export const initail_BlogSetting: IBlogSettings =  {
@@ -14,6 +15,11 @@ export const initail_BlogSetting: IBlogSettings =  {
   blog_description: '',
   blog_background_cover_url: '',
   loaded: false
+}
+
+export const initial_MetaData: IMetaData = {
+  post_count: 0,
+  user_count: 0
 }
 
 export const initial_AuthState: IAuthState = {

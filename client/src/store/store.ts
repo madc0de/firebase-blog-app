@@ -9,23 +9,18 @@ import thunk from "redux-thunk";
 import { reducer as formReducer } from "redux-form";
 import { IAppState, IAction } from "../interface";
 
-// reducers
-import appInitReducer from "./reduers/appInitReducer";
-import blogSettingReducer from "./reduers/blogSettingsReducer";
-import postsStateReducer from "./reduers/postReducer";
-import authStateReducer from "./reduers/authStateReducer";
-import usersStateReducer from "./reduers/usersReducer";
-import postViewReducer from "./reduers/postViewReducer";
-import postFormReducer from "./reduers/postFormReducer";
+import * as  reducers from './reducers'
+
 
 const rootReducer: Reducer<IAppState, IAction<any>> = combineReducers({
-  appInitState: appInitReducer,
-  blogSettingsState: blogSettingReducer,
-  postsState: postsStateReducer,
-  authState: authStateReducer,
-  usersState: usersStateReducer,
-  postViewState: postViewReducer,
-  postFormState: postFormReducer,
+  appInitState: reducers.appInitReducer,
+  blogSettingsState: reducers.blogSettingsReducer,
+  metaDataState: reducers.metaDataReducer,
+  postsState: reducers.postReducer,
+  authState: reducers.authReducer,
+  usersState: reducers.userReducer,
+  postViewState: reducers.postViewReducer,
+  postFormState: reducers.postFormReducer,
   form: formReducer
 });
 

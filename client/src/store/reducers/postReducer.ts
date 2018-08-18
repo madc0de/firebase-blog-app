@@ -9,7 +9,7 @@ import { initial_PostsState } from "../../store/initialState";
 import * as actionType from "../actions/actionType";
 import * as mapUtil from "../../utils/mapUtil";
 
-const postsStateReducer = (
+export const postReducer = (
   state: IPostsState,
   action: IAction<IPost | IPostBody | string>
 ) => {
@@ -86,4 +86,4 @@ const handle_post_loaded = (
   };
 };
 
-export default postsStateReducer;
+export default postReducer;

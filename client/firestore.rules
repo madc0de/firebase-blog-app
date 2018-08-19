@@ -1,24 +1,50 @@
 
+function existingData() {
+  return resource.data
+}
+
+function incommingData() {
+  return request.resource.data
+}
+
+function isSignedIn() {
+  return request.auth.uid != null
+}
+
 function isUser(user) {
   return  
-    user.size() <= 5 &&
+    user.size() <= 8 &&
       user.email is string && user.email.size() <= 254 &&
       user.displayName is string && user.displayName.size() <= 254 &&
       user.photoUrl is string && user.photoUrl.size() < 2038 &&
       user.roles != null
+}
+
+function isPost(post) {
+  return 
+    post.title is string && post.title.size() < 150 &&
+    post.excerpt is string && post.excerpt.size() < 500 &&
+    post.status is string && post.status == 'draft' || post.status == 'published' &&
+    post.userId == request.auth.uid
+}
+
+function isPostBody(postBody) {
+  return 
+    postBody.userId is string &&
+    postBody.body is string
 }
     
 service cloud.firestore {
   match /databases/{database}/documents {
     match /posts/{postId} {
       allow read: if true;      
-      allow create: if validPost() && isSignedIn()    
-      allow update: if validPost() && isSignedIn() && incommingData().userId == existingData().userId
+      allow create: if isPost(request.resource.data) && isSignedIn()    
+      allow update: if isPost(request.resource.data) && isSignedIn() && incommingData().userId == existingData().userId
     }
     
     match /users/{userId} {
     	allow read: if isSignedIn();
-      allow create: if isUser(request.resource.data) && isSignedIn() && userId == request.auth.uid
+      allow create: if isUser(request.resource.data) && isSignedIn()
       allow update: if isUser(request.resource.data) && request.auth.uid == userId 
     } 
     
@@ -26,7 +52,7 @@ service cloud.firestore {
     	allow read: if true;
       allow write: if isSignedIn() && 
       		request.auth.uid == incommingData().userId  &&
-          validPostBody()          
+          isPostBody(request.resource.data)          
     }
     
     match /metadata/values {
@@ -36,32 +62,5 @@ service cloud.firestore {
 	  match /settings/blog {
     	allow read: if true;
     }    
-    
-    function validPost() {
-    	return 
-        incommingData().title != null &&
-        incommingData().excerpt != null &&
-        incommingData().status != null &&
-        incommingData().userId == request.auth.uid
-    }
-    
-    function validPostBody() {
-    	return 
-        incommingData().postId != null &&
-        incommingData().userId != null &&
-        incommingData().body != null 
-    }
-
-    function existingData() {
-      return resource.data
-    }
-    
-    function incommingData() {
-      return request.resource.data
-    }
-
-    function isSignedIn() {
-      return request.auth.uid != null
-    }
   }
 }

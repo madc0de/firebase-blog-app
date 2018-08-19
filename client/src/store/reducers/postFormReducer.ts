@@ -7,7 +7,7 @@ import {
   IPostFormValues
 } from '../../interface';
 import { initial_PostFormState } from '../../store/initialState';
-import { getMapKey } from '../../utils/mapUtil';
+import { getKey } from '../../utils/mapUtil';
 
 export const postFormReducer = (
   state: IPostFormState,
@@ -69,7 +69,7 @@ const handle_submit_success = (
 ): IPostFormState => ({
   ...state,
   submitStatus: 'saved',
-  postId: getMapKey(action.payload)
+  postId: getKey(action.payload)
 });
 
 const handle_submit_error = (

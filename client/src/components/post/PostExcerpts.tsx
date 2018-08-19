@@ -12,9 +12,9 @@ export function comparePostPublishedDescending(
   postA: IPost,
   postB: IPost
 ): number {
-  const date_a = (mapUtil.getMapValue(postA) as IPostData)
+  const date_a = (mapUtil.getValue(postA) as IPostData)
     .publish_date as number;
-  const date_b = (mapUtil.getMapValue(postB) as IPostData)
+  const date_b = (mapUtil.getValue(postB) as IPostData)
     .publish_date as number;
   return date_a > date_b ? -1 : 1;
 }
@@ -23,9 +23,9 @@ export function compareUpdatedDateDescending(
   postA: IPost,
   postB: IPost
 ): number {
-  const date_a = (mapUtil.getMapValue(postA) as IPostData)
+  const date_a = (mapUtil.getValue(postA) as IPostData)
     .updated_date as number;
-  const date_b = (mapUtil.getMapValue(postB) as IPostData)
+  const date_b = (mapUtil.getValue(postB) as IPostData)
     .updated_date as number;
   return date_a > date_b ? -1 : 1;
 }
@@ -34,7 +34,7 @@ const filterPosts = (posts: IPost[], filterBy: PostExcerptFilter) => {
   if (filterBy === "published") {
     return posts.filter(
       post =>
-        (mapUtil.getMapValue(post) as IPostData).status === filterBy
+        (mapUtil.getValue(post) as IPostData).status === filterBy
     );
   }
 

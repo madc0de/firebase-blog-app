@@ -11,7 +11,7 @@ interface PostProps {
 
 const Post: React.SFC<PostProps> = props => {
   const { post, authState } = props;
-  const postData = mapUtil.getMapValue(post) as IPostData;
+  const postData = mapUtil.getValue(post) as IPostData;
 
   return (
     <div className="post">

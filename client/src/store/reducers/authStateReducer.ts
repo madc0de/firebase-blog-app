@@ -26,8 +26,8 @@ const handle_user_authenticated = (
   action: IAction<IUser>
 ): IAuthState => {
   const user = action.payload as IUser
-  const userId = mapUtil.getMapKey(user)
-  const userData = mapUtil.getMapValue(user) as IUserData
+  const userId = mapUtil.getKey(user)
+  const userData = mapUtil.getValue(user) as IUserData
   return {
     ...initial_AuthState,
     authenticated: true,
@@ -42,8 +42,8 @@ function handle_user_signed_out() {
 }
 
 function handle_user_loaded(state: IAuthState, action: IAction<IUser>): IAuthState {
-  const userId = mapUtil.getMapKey(action.payload);
-  const userData = mapUtil.getMapValue(action.payload) as IUserData;
+  const userId = mapUtil.getKey(action.payload);
+  const userData = mapUtil.getValue(action.payload) as IUserData;
   if (state.authUserId === userId) {
     return {
       ...state,

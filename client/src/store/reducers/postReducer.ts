@@ -38,7 +38,7 @@ const handle_post_removed = (
 ) => {
   const postId = action.payload as string;
   const index = state.posts.findIndex(
-    post => mapUtil.getMapKey(post) === postId
+    post => mapUtil.getKey(post) === postId
   );
   return {
     ...state,
@@ -51,11 +51,11 @@ const handle_postbody_loaded = (
   postBody: IPostBody
 ) => {
   const index = postsState.posts.findIndex(
-    docPost => mapUtil.getMapKey(docPost) === postBody.postId
+    docPost => mapUtil.getKey(docPost) === postBody.postId
   );
   if (index >= 0) {
     const post = postsState.posts[index];
-    const postData = mapUtil.getMapValue(post) as IPostData;
+    const postData = mapUtil.getValue(post) as IPostData;
     postData.body = postBody.body;
   }
   return postsState;
@@ -65,9 +65,9 @@ const handle_post_loaded = (
   postsState: IPostsState,
   post: IPost
 ): IPostsState => {
-  const postId = mapUtil.getMapKey(post);
+  const postId = mapUtil.getKey(post);
   const index = postsState.posts.findIndex(
-    docPost => mapUtil.getMapKey(docPost) === postId
+    docPost => mapUtil.getKey(docPost) === postId
   );
   let posts: IPost[] = [];
   if (index < 0) {

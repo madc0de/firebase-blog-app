@@ -22,8 +22,8 @@ function handle_user_loaded(
   state: IUsersState,
   user: IUser
 ): IUsersState {
-  const userId = mapUtil.getMapKey(user)
-  const index = state.users.findIndex(user => mapUtil.getMapKey(user) === userId);
+  const userId = mapUtil.getKey(user)
+  const index = state.users.findIndex(user => mapUtil.getKey(user) === userId);
 
   if (index < 0) {
     return {

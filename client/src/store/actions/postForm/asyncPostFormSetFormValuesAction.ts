@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { getMapKey, getMapValue } from "../../../utils/mapUtil";
+import { getKey, getValue } from "../../../utils/mapUtil";
 import {
   IGetState,
   IPost,
@@ -32,7 +32,7 @@ export const async_existingPost_SetFormValuesAction = (postId: string) => async 
     }
 
     if (post) {
-      const postData = getMapValue(post) as IPostData;
+      const postData = getValue(post) as IPostData;
       if (!postData.body) {
         postData.body = (await getPostBody(postId)) as string;
       }
@@ -74,8 +74,8 @@ const getNewPostFormValues = (
 };
 
 const getFormValuesFromPost = (post: IPost): IPostFormValues => {
-  const postId = getMapKey(post);
-  const postData = getMapValue(post) as IPostData;
+  const postId = getKey(post);
+  const postData = getValue(post) as IPostData;
   const formValues: IPostFormValues = {
     ...postData,
     postId,
@@ -91,7 +91,7 @@ function getPostFromState(
   postId: string
 ): IPost | undefined {
   return getState().postsState.posts.find(post => {
-    let record_postId = getMapKey(post);
+    let record_postId = getKey(post);
     return record_postId === postId;
   });
 }

@@ -1,11 +1,11 @@
 import * as firebase from 'firebase/app'
 
-export function getMapKey(obj: Object) {
+export function getKey(obj: Object) {
     return Object.keys(obj)[0]
 }
 
-export function getMapValue<T>(obj:Object): T {
-    const id = getMapKey(obj)
+export function getValue<T>(obj:Object): T {
+    const id = getKey(obj)
     return obj[id] as T
 }
 

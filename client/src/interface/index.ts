@@ -13,7 +13,6 @@ export interface IRole {
 }
 
 export interface IUserData {
-  uid?: string;
   email: string;
   displayName: string;
   photoUrl: string;
@@ -79,7 +78,8 @@ export interface IAppInitState {
 export interface IAuthState {
   authenticated: boolean;
   isAdmin: boolean;
-  authUser: IUserData;
+  authUserId: string;
+  authUserData: IUserData;
 }
 
 export interface IPostsState {

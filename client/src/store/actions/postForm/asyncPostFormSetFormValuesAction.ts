@@ -51,10 +51,10 @@ export const async_newPost_SetFormValuesAction = () => async (
   getState: IGetState
 ) => {
   try {
-    const autUser = getState().authState.authUser;
+    const authState = getState().authState
     const formValues = getNewPostFormValues(
-      autUser.uid as string,
-      autUser.photoUrl as string
+      authState.authUserId,
+      authState.authUserData.photoUrl as string
     );
     return dispatch(postFormSetValuesAction(formValues));
   } catch (error) {

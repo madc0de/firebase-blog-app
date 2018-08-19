@@ -11,7 +11,7 @@ export const authReducer = (
 
   switch (action.type) {
     case actionType.user_authenticated:
-     return handle_user_authenticated(state, action as IAction<IUserData>);
+     return handle_user_authenticated(state, action as IAction<IUser>);
     case actionType.user_signed_out:
       return handle_user_signed_out();
     case actionType.user_loaded:
@@ -23,12 +23,16 @@ export const authReducer = (
 
 const handle_user_authenticated = (
   state: IAuthState,
-  action: IAction<IUserData>
+  action: IAction<IUser>
 ): IAuthState => {
+  const user = action.payload as IUser
+  const userId = mapUtil.getMapKey(user)
+  const userData = mapUtil.getMapValue(user) as IUserData
   return {
     ...initial_AuthState,
     authenticated: true,
-    authUser: action.payload as IUserData
+    authUserId: userId,
+    authUserData: userData
   };
 };
 
@@ -40,11 +44,11 @@ function handle_user_signed_out() {
 function handle_user_loaded(state: IAuthState, action: IAction<IUser>): IAuthState {
   const userId = mapUtil.getMapKey(action.payload);
   const userData = mapUtil.getMapValue(action.payload) as IUserData;
-  if (state.authUser.uid === userId) {
+  if (state.authUserId === userId) {
     return {
       ...state,
-      authUser: {
-        ...state.authUser,
+      authUserData: {
+        ...state.authUserData,
         roles: userData.roles
       },
       isAdmin: userData.roles && userData.roles.admin ? true : false

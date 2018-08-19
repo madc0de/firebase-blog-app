@@ -51,7 +51,7 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
                 Signin with Google
               </button>
             ) : (
-              <h3>Already signed in as {authState.authUser.displayName}</h3>
+              <h3>Already signed in as {authState.authUserData.displayName}</h3>
             )}
           </div>
         </section>

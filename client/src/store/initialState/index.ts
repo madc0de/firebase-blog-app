@@ -2,6 +2,7 @@ import {
   IAuthState,
   IBlogSettings,
   IUsersState,
+  IUserData,
   IPostData,
   IPostsState,
   IPostViewState,
@@ -22,14 +23,18 @@ export const initial_MetaData: IMetaData = {
   user_count: 0
 }
 
+export const initial_UserData: IUserData = {
+  email: '',
+  displayName: '',
+  photoUrl: '',
+  roles: {}
+}
+
 export const initial_AuthState: IAuthState = {
   authenticated: false,
   isAdmin: false,
-  authUser: {
-    uid: '',
-    email: '',
-    displayName: '',
-  }
+  authUserId: '',
+  authUserData: initial_UserData  
 };
 
 export const initial_PostsState: IPostsState = {
@@ -40,7 +45,7 @@ export const initial_UsersState: IUsersState = {
   users: []
 };
 
-export const initial_PostDataState: IPostData = {
+export const initial_PostData: IPostData = {
   userId: '',
   title: '',
   body: '',
@@ -60,7 +65,7 @@ export const initial_PostViewState: IPostViewState = {
 };
 
 export const initial_PostFormValuesState: IPostFormValues = {
-  ...initial_PostDataState,
+  ...initial_PostData,
   postId: '',
   publish_date_string: '',
   userId: '',

@@ -1,8 +1,8 @@
-import { IAction } from '../../interface'
-import { IAppInitState } from '../../interface'
 import * as actionType from '../actions/actionType'
+import { AppInitState } from '../../interface/AppInitState';
+import { ReduxAction } from '../../interface/ReduxAction';
 
-export const appInitReducer = (state: IAppInitState, action: IAction<any>) => {
+export const appInitReducer = (state: AppInitState, action: ReduxAction<any>) => {
 
     if (!state) {
         state = { initialized: false }

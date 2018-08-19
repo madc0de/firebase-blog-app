@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { IAuthState } from "../../interface";
+import { AuthState } from "../../interface/AuthState";
 
 const CloseLink = ({ onCloseClick }: { onCloseClick: Function }) => {
   return (
@@ -13,7 +13,7 @@ const CloseLink = ({ onCloseClick }: { onCloseClick: Function }) => {
 
 export interface SideNavProps {
   visible: boolean;
-  authState: IAuthState;
+  authState: AuthState;
   onClose: Function;
 }
 

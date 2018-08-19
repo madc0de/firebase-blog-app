@@ -1,11 +1,5 @@
 import { Dispatch } from "redux";
 import { getKey, getValue } from "../../../utils/mapUtil";
-import {
-  IGetState,
-  IPost,
-  IPostData,
-  IPostFormValues,
-} from "../../../interface";
 import { Posts } from "../../../data";
 import { getPostBody } from "../../../data/Posts";
 import { initial_PostFormValuesState } from "../../initialState";
@@ -14,16 +8,19 @@ import { formatDate } from "../../../utils/dateUtil";
 import { postFormSetStatusAction } from './postFormSetStatusAction'
 import { postFormSetValuesAction } from './postFormSetValuesAction'
 import { postLoadedAction } from '../post'
+import { GetStateFn } from "../../../interface/GetStateFn";
+import { PostData, PostDocument } from "../../../interface/PostData";
+import { PostFormValues } from "../../../interface/PostFormValues";
 
 export const async_existingPost_SetFormValuesAction = (postId: string) => async (
   dispatch: Dispatch,
-  getState: IGetState
+  getState: GetStateFn
 ) => {
   try {
 
     dispatch(postFormSetStatusAction("loading"));
 
-    let post: IPost | undefined = getPostFromState(getState, postId);
+    let post: PostDocument | undefined = getPostFromState(getState, postId);
     if (!post) {
       post = await Posts.getPostById(postId);
       if (post) {
@@ -32,7 +29,7 @@ export const async_existingPost_SetFormValuesAction = (postId: string) => async 
     }
 
     if (post) {
-      const postData = getValue(post) as IPostData;
+      const postData = getValue(post) as PostData;
       if (!postData.body) {
         postData.body = (await getPostBody(postId)) as string;
       }
@@ -48,7 +45,7 @@ export const async_existingPost_SetFormValuesAction = (postId: string) => async 
 
 export const async_newPost_SetFormValuesAction = () => async (
   dispatch: Dispatch,
-  getState: IGetState
+  getState: GetStateFn
 ) => {
   try {
     const authState = getState().authState
@@ -65,7 +62,7 @@ export const async_newPost_SetFormValuesAction = () => async (
 const getNewPostFormValues = (
   userId: string,
   photoUrl: string
-): IPostFormValues => {
+): PostFormValues => {
   return {
     ...initial_PostFormValuesState,
     userId,
@@ -73,10 +70,10 @@ const getNewPostFormValues = (
   };
 };
 
-const getFormValuesFromPost = (post: IPost): IPostFormValues => {
+const getFormValuesFromPost = (post: PostDocument): PostFormValues => {
   const postId = getKey(post);
-  const postData = getValue(post) as IPostData;
-  const formValues: IPostFormValues = {
+  const postData = getValue(post) as PostData;
+  const formValues: PostFormValues = {
     ...postData,
     postId,
     publish_date_string: postData.publish_date
@@ -87,9 +84,9 @@ const getFormValuesFromPost = (post: IPost): IPostFormValues => {
 };
 
 function getPostFromState(
-  getState: IGetState,
+  getState: GetStateFn,
   postId: string
-): IPost | undefined {
+): PostDocument | undefined {
   return getState().postsState.posts.find(post => {
     let record_postId = getKey(post);
     return record_postId === postId;

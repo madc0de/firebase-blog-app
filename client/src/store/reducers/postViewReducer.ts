@@ -1,15 +1,13 @@
 import * as actionType from "../actions/actionType";
-import {
-  IAction,
-  IPost,
-  IPostViewState,
-  ILoadingStatus
-} from "../../interface";
 import { initial_PostViewState } from '../../store/initialState';
+import { PostDocument } from "../../interface/PostData";
+import { PostViewState } from "../../interface/PostViewState";
+import { ReduxAction } from "../../interface/ReduxAction";
+import { LoadingStatus } from "../../interface/LoadingStatus";
 
 export const postViewReducer = (
-  state: IPostViewState,
-  action: IAction<string | IPost | undefined>
+  state: PostViewState,
+  action: ReduxAction<string | PostDocument | undefined>
 ) => {
   state = state ? state : initial_PostViewState;
   switch (action.type) {
@@ -28,30 +26,30 @@ export const postViewReducer = (
 };
 
 const handle_postpage_set_status = (
-  state: IPostViewState,
-  action: IAction<string | IPost | undefined>
-): IPostViewState => {
+  state: PostViewState,
+  action: ReduxAction<string | PostDocument | undefined>
+): PostViewState => {
   return {
     ...state,
-    loadingStatus: action.payload as ILoadingStatus
+    loadingStatus: action.payload as LoadingStatus
   };
 };
 
 const handle_postpage_loaded = (
-  state: IPostViewState,
-  action: IAction<string | IPost | undefined>
-): IPostViewState => {
+  state: PostViewState,
+  action: ReduxAction<string | PostDocument | undefined>
+): PostViewState => {
   return {
     ...state,
     loadingStatus: "loaded",
-    post: action.payload as IPost
+    post: action.payload as PostDocument
   };
 };
 
 const handle_postpage_error = (
-  state: IPostViewState,
-  action: IAction<string | IPost | undefined>
-): IPostViewState => {
+  state: PostViewState,
+  action: ReduxAction<string | PostDocument | undefined>
+): PostViewState => {
   return {
     ...state,
     loadingStatus: "error",

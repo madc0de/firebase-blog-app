@@ -1,17 +1,18 @@
 import * as React from "react";
 import Markdown from "./Makrdown";
 import PostMeta from "../layout/PostMeta";
-import { IPost, IPostData, IAuthState } from "../../interface";
 import * as mapUtil from "../../utils/mapUtil";
+import { PostDocument, PostData } from "../../interface/PostData";
+import { AuthState } from "../../interface/AuthState";
 
 interface PostProps {
-  post: IPost;
-  authState: IAuthState;
+  post: PostDocument;
+  authState: AuthState;
 }
 
 const Post: React.SFC<PostProps> = props => {
   const { post, authState } = props;
-  const postData = mapUtil.getValue(post) as IPostData;
+  const postData = mapUtil.getValue(post) as PostData;
 
   return (
     <div className="post">

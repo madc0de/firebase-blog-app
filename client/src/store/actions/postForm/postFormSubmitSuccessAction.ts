@@ -1,12 +1,10 @@
-import {
-  IPost,
-  IAction,
-} from "../../../interface";
 import * as actionType from "../actionType";
+import { PostDocument } from "../../../interface/PostData";
+import { ReduxAction } from "../../../interface/ReduxAction";
 
 export const postFormSubmitSuccess = (
-  post: IPost
-): IAction<IPost> => ({
+  post: PostDocument
+): ReduxAction<PostDocument> => ({
   type: actionType.postform_submit_success,
   payload: post
 });

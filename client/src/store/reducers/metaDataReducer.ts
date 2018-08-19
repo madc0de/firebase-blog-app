@@ -1,9 +1,9 @@
-import { IAction } from '../../interface'
-import { IMetaData } from '../../interface'
 import * as actionType from '../actions/actionType'
 import { initial_MetaData } from '../initialState';
+import { BlogMetaData } from '../../interface/BlogMetaData';
+import { ReduxAction } from '../../interface/ReduxAction';
 
-export const metaDataReducer = (state: IMetaData = initial_MetaData, action: IAction<IMetaData>) => {
+export const metaDataReducer = (state: BlogMetaData = initial_MetaData, action: ReduxAction<BlogMetaData>) => {
   switch(action.type) {
     case actionType.metadata_loaded: {
       return handle_metadata_loaded(state, action)
@@ -12,7 +12,7 @@ export const metaDataReducer = (state: IMetaData = initial_MetaData, action: IAc
   }
 }
 
-function handle_metadata_loaded(state: IMetaData, action: IAction<IMetaData>) {
+function handle_metadata_loaded(state: BlogMetaData, action: ReduxAction<BlogMetaData>) {
   return {
     ...state,
     ...action.payload

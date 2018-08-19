@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import Header from "../layout/Header";
 import PostForm from "../forms/PostForm";
-// import { getMapKey } from "../../utils/mapUtil";
-import { IAppState, IPostFormState } from "../../interface";
 import { postFormActions } from "../../store/actions";
+import { PostFormState } from "../../interface/PostFormState";
+import { AppState } from "../../interface/AppState";
 interface RouteParamProps {
   postId: string | undefined;
 }
@@ -19,10 +19,10 @@ interface DispatchToProps {
 export interface PostFormViewProps
   extends DispatchToProps,
     RouteComponentProps<RouteParamProps> {
-  postFormState: IPostFormState;
+  postFormState: PostFormState;
 }
 
-class PostFormView extends React.Component<PostFormViewProps, IPostFormState> {
+class PostFormView extends React.Component<PostFormViewProps, PostFormState> {
   constructor(props: PostFormViewProps) {
     super(props);
 
@@ -78,7 +78,7 @@ class PostFormView extends React.Component<PostFormViewProps, IPostFormState> {
   }
 }
 
-const mapStateToProps = (state: IAppState) => ({
+const mapStateToProps = (state: AppState) => ({
   postFormState: state.postFormState
 });
 

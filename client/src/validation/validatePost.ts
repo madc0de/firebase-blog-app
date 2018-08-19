@@ -1,6 +1,7 @@
-import { IPostFormValues, PostStatus } from "../interface";
+import { PostStatus } from "../interface/PostData";
+import { PostFormValues } from "../interface/PostFormValues";
 
-export const validatePostFormValues = (values: IPostFormValues) => {
+export const validatePostFormValues = (values: PostFormValues) => {
   const errors: any = {};
 
   if (!values.title) {

@@ -1,11 +1,12 @@
 import { Dispatch } from "redux";
-import { IUserData, IGetState } from "../../../interface";
 import * as Users from "../../../data/Users";
 import { userLoadedAction } from "./userLoadedAction";
+import { UserData } from "../../../interface/UserData";
+import { GetStateFn } from "../../../interface/GetStateFn";
 
-export const ensureUserAccount = (userId: string, userData: IUserData): any => async (
+export const ensureUserAccount = (userId: string, userData: UserData): any => async (
   dispatch: Dispatch,
-  getSate: IGetState
+  getSate: GetStateFn
 ) => {
   try {
     let user = await Users.getUser(userId as string);

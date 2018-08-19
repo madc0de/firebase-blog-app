@@ -2,8 +2,8 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 import { Dispatch } from "redux";
 import { userActions } from "../store/actions/";
-import { IUser, IUserData } from "../interface";
 import { initial_UserData } from "../store/initialState";
+import { UserData, UserDocument } from "../interface/UserData";
 
 export const listenForAuthStateChange = (dispatch: Dispatch) => {
   firebase.auth().onAuthStateChanged((firebaseUser: firebase.User) => {
@@ -17,13 +17,13 @@ const handlerAuthStateChange = async (
 ) => {
   if (firebaseUser) {
     const userId = firebaseUser.uid
-    const userData: IUserData = {
+    const userData: UserData = {
       ...initial_UserData,
       email: firebaseUser.email as string,
       displayName: firebaseUser.displayName as string,
       photoUrl: firebaseUser.photoURL as string,
     }
-    const user: IUser = {
+    const user: UserDocument = {
       [userId]: userData
     };
 

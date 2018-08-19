@@ -1,15 +1,15 @@
 import { Dispatch, } from "redux";
 import { BlogSettings } from "../../../data";
 import { blogSettingsLoadedAction } from "./blogSettingsLoadedAction";
-import { IGetState } from "../../../interface";
-
+import { GetStateFn } from "../../../interface/GetStateFn";
+import { BlogSettingData } from "../../../interface/BlogSettingData";
 
 export const loadBlogSettingsAction = (): any => async (
   dispatch: Dispatch,
-  getState: IGetState
+  getState: GetStateFn
 ) => {
   try {
-    const blogSettings = await BlogSettings.getBlogSettings();
+    const blogSettings = await BlogSettings.getBlogSettings() as BlogSettingData
     return dispatch(blogSettingsLoadedAction(blogSettings));
   } catch (error) {
     return error;

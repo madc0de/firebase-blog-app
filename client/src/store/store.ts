@@ -7,12 +7,13 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import { reducer as formReducer } from "redux-form";
-import { IAppState, IAction } from "../interface";
 
 import * as  reducers from './reducers'
+import { AppState } from "../interface/AppState";
+import { ReduxAction } from "../interface/ReduxAction";
 
 
-const rootReducer: Reducer<IAppState, IAction<any>> = combineReducers({
+const rootReducer: Reducer<AppState, ReduxAction<any>> = combineReducers({
   appInitState: reducers.appInitReducer,
   blogSettingsState: reducers.blogSettingsReducer,
   metaDataState: reducers.metaDataReducer,
@@ -24,7 +25,7 @@ const rootReducer: Reducer<IAppState, IAction<any>> = combineReducers({
   form: formReducer
 });
 
-export type BlogStore = Store<IAppState>;
+export type BlogStore = Store<AppState>;
 
 export function initStore(cb: (store: BlogStore) => void) {
   let devtools: any = window["devToolsExtension"]

@@ -1,12 +1,10 @@
-import {
-  IAction,
-  IPostFormValues
-} from "../../../interface";
 import * as actionType from "../actionType";
+import { ReduxAction } from "../../../interface/ReduxAction";
+import { PostFormValues } from "../../../interface/PostFormValues";
 
 export const postFormSetValuesAction = (
-  postFormVAlues: IPostFormValues
-): IAction<IPostFormValues> => ({
+  postFormVAlues: PostFormValues
+): ReduxAction<PostFormValues> => ({
   type: actionType.postform_values,
   payload: postFormVAlues
 });

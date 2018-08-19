@@ -2,16 +2,18 @@ import * as React from "react";
 import { Header, PageContent } from "../layout";
 import PostExcerpts from "../post/PostExcerpts";
 import { connect } from "react-redux";
-import { IAppState, IAuthState, IPost } from "../../interface";
 import { postActions } from "../../store/actions";
+import { PostDocument } from "../../interface/PostData";
+import { AuthState } from "../../interface/AuthState";
+import { AppState } from "../../interface/AppState";
 
 interface MappedDispatchProps {
   loadRencenltyUpdatedPosts(): void;
 }
 
 interface Props extends MappedDispatchProps {
-  posts: IPost[];
-  authState: IAuthState;
+  posts: PostDocument[];
+  authState: AuthState;
 }
 
 class RecentPosts extends React.Component<Props, {}> {
@@ -37,7 +39,7 @@ class RecentPosts extends React.Component<Props, {}> {
   }
 }
 
-const mapStateToProps = (state: IAppState) => ({
+const mapStateToProps = (state: AppState) => ({
   posts: state.postsState.posts,
   authState: state.authState
 });

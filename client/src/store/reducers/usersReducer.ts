@@ -1,12 +1,14 @@
-import { IUsersState, IUser, IAction } from "../../interface";
 import { initial_UsersState } from "../../store/initialState";
 import * as actionType from "../actions/actionType";
 import { mapUtil } from '../../utils';
+import { UserDocument } from "../../interface/UserData";
+import { UsersState } from "../../interface/UserState";
+import { ReduxAction } from "../../interface/ReduxAction";
 
 export const userReducer = (
-  state: IUsersState,
-  action: IAction<IUser>
-): IUsersState => {
+  state: UsersState,
+  action: ReduxAction<UserDocument>
+): UsersState => {
   state = state ? state : initial_UsersState;
 
   switch (action.type) {
@@ -19,9 +21,9 @@ export const userReducer = (
 };
 
 function handle_user_loaded(
-  state: IUsersState,
-  user: IUser
-): IUsersState {
+  state: UsersState,
+  user: UserDocument
+): UsersState {
   const userId = mapUtil.getKey(user)
   const index = state.users.findIndex(user => mapUtil.getKey(user) === userId);
 

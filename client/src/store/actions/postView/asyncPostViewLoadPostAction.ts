@@ -9,23 +9,20 @@ import {
  } from '../postView'
 import {  Dispatch } from "redux";
 import { getKey, getValue } from "../../../utils/mapUtil";
-import {
-  IGetState,
-  IPost,
-  IPostData,
-} from "../../../interface";
 import { Posts } from '../../../data';
+import { GetStateFn } from '../../../interface/GetStateFn';
+import { PostDocument, PostData } from '../../../interface/PostData';
 
 
 export const asyncPostViewLoadPostAction = (slugOrId: string) => async (
   dispatch: Dispatch,
-  getState: IGetState
+  getState: GetStateFn
 ) => {
   try {
     dispatch(postViewSetStatusAction("loading"));
-    let post: IPost | undefined = getState().postsState.posts.find(post => {
+    let post: PostDocument | undefined = getState().postsState.posts.find(post => {
       let postId = getKey(post);
-      let slug = (getValue(post) as IPostData).slug;
+      let slug = (getValue(post) as PostData).slug;
       return slugOrId === postId || slugOrId === slug;
     });
 
@@ -41,7 +38,7 @@ export const asyncPostViewLoadPostAction = (slugOrId: string) => async (
 
     if (post) {
       const postId = getKey(post);
-      const postData = getValue(post) as IPostData;
+      const postData = getValue(post) as PostData;
 
       if (!postData.body) {
         const body = await Posts.getPostBody(postId) as string;

@@ -1,16 +1,17 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { IPost, IPostData, IAuthState } from "../../interface";
 import { formateDateIf, formatDateTimeIf } from "../../utils/dateUtil";
+import { AuthState } from "../../interface/AuthState";
+import { PostData, PostDocument } from "../../interface/PostData";
 
 interface PostMetaProps {
-  post: IPost
-  authState: IAuthState
+  post: PostDocument
+  authState: AuthState
 }
 
 const PostMeta: React.SFC<PostMetaProps> = ({ post, authState }) => {  
   const postId = Object.keys(post)[0];
-  const postData = post[postId] as IPostData;
+  const postData = post[postId] as PostData;
   const canEdit = authState.authenticated && authState.authUserId === postData.userId
 
   const date =

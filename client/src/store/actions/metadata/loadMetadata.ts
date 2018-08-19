@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { Metadata } from '../../../data'
 import * as actionType from '../actionType'
-import { IMetaData } from '../../../interface';
+import { BlogMetaData } from '../../../interface/BlogMetaData';
 
 export const loadMetadataAction = (): any => async (
   dispatch: Dispatch
@@ -10,7 +10,7 @@ export const loadMetadataAction = (): any => async (
     const metadata = await Metadata.getMetadata()
     dispatch({
       type:actionType.metadata_loaded,
-      payload: metadata as IMetaData
+      payload: metadata as BlogMetaData
     })
     return metadata
   } catch(err) {

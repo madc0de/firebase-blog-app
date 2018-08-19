@@ -1,11 +1,5 @@
 /*  tslint:disable */
 import * as React from "react";
-import {
-  IAppState,
-  IPostFormValues,
-  PostStatus,
-  IPostFormState
-} from "../../interface";
 import { connect } from "react-redux";
 import {
   Field,
@@ -21,13 +15,17 @@ import {
 } from "../../form/RenderFields";
 import { validatePostFormValues } from "../../validation/validatePost";
 import { postFormActions } from "../../store/actions";
+import { PostFormState } from "../../interface/PostFormState";
+import { PostFormValues } from "../../interface/PostFormValues";
+import { PostStatus } from "../../interface/PostData";
+import { AppState } from "../../interface/AppState";
 
 interface MapStateProps {
-  postFormState: IPostFormState;
+  postFormState: PostFormState;
 }
 
 interface MapDispatchProps {
-  savePost(postId: string, formValues: IPostFormValues): void;
+  savePost(postId: string, formValues: PostFormValues): void;
 }
 
 interface PostFormProps extends MapDispatchProps, MapStateProps {
@@ -35,10 +33,10 @@ interface PostFormProps extends MapDispatchProps, MapStateProps {
 }
 
 class PostForm extends React.Component<
-  PostFormProps & InjectedFormProps<IPostFormValues>,
+  PostFormProps & InjectedFormProps<PostFormValues>,
   {}
 > {
-  savePost = async (values: IPostFormValues) => {
+  savePost = async (values: PostFormValues) => {
     const { postId } = this.props.initialValues;
     await this.props.savePost(postId as string, values);
   };
@@ -108,12 +106,12 @@ class PostForm extends React.Component<
   }
 }
 
-const mapStateToProps = (state: IAppState) => ({
+const mapStateToProps = (state: AppState) => ({
   postFormState: state.postFormState
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  savePost: (postId: string, formValues: IPostFormValues) =>
+  savePost: (postId: string, formValues: PostFormValues) =>
     dispatch(postFormActions.asyncSavePostAction(postId, formValues))
 });
 

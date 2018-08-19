@@ -1,17 +1,18 @@
 import * as React from "react";
 import PostMeta from "../layout/PostMeta";
-import { IPost, IPostData, IAuthState } from "../../interface";
 import { Link } from "react-router-dom";
+import { PostDocument, PostData } from "../../interface/PostData";
+import { AuthState } from "../../interface/AuthState";
 
 export interface PostExcerptProps {
-  post: IPost;
-  authState: IAuthState;
+  post: PostDocument;
+  authState: AuthState;
 }
 
 export default function PostExcerpt(props: PostExcerptProps) {
   const { post, authState } = props;
   const postId = Object.keys(post)[0];
-  const postData = post[postId] as IPostData;
+  const postData = post[postId] as PostData;
   const abbreviatedBodyText = postData.excerpt
 
   return (

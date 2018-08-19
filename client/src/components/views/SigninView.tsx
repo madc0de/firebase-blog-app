@@ -1,12 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { signInWithGoogle } from "../../data/Auth";
-import { IAppState, IAuthState } from "../../interface";
 import { Redirect, RouteComponentProps, withRouter } from "react-router-dom";
 import Header from "../layout/Header";
+import { AuthState } from "../../interface/AuthState";
+import { AppState } from "../../interface/AppState";
 
 interface ConnectProps {
-  authState: IAuthState;
+  authState: AuthState;
 }
 interface SigninState {
   from: any;
@@ -60,7 +61,7 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
   }
 }
 
-const _SigninView = connect((state: IAppState) => ({
+const _SigninView = connect((state: AppState) => ({
   authState: state.authState
 }))(withRouter(SigninView));
 

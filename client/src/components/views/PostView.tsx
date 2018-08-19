@@ -1,7 +1,6 @@
 import * as React from "react";
 // import { Dispatch } from "redux";
 import { connect, DispatchProp } from "react-redux";
-import { IAppState, IPostViewState, IPost, IAuthState } from "../../interface";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { postViewActions } from "../../store/actions";
 import Header from "../layout/Header";
@@ -9,6 +8,10 @@ import PageContent from "../layout/PageContent";
 import Loading from "../layout/Loading";
 import Post from "../post/Post";
 import PostNotFound from "../post/PostNotFound";
+import { PostDocument } from "../../interface/PostData";
+import { PostViewState } from "../../interface/PostViewState";
+import { AuthState } from "../../interface/AuthState";
+import { AppState } from "../../interface/AppState";
 
 interface RouteParamProps {
   slug: string;
@@ -23,14 +26,14 @@ interface DispatchActionProps {
 export interface PostViewProps
   extends RouteComponentProps<RouteParamProps>,
     DispatchProp<any> {
-  posts: IPost[];
-  postViewState: IPostViewState;
-  authState: IAuthState;
+  posts: PostDocument[];
+  postViewState: PostViewState;
+  authState: AuthState;
 }
 
 class PostView extends React.Component<
   PostViewProps & DispatchActionProps,
-  IPostViewState
+  PostViewState
 > {
   constructor(props: PostViewProps & DispatchActionProps) {
     super(props);
@@ -72,7 +75,7 @@ class PostView extends React.Component<
     }
     return (
       <PageContent>
-        <Post post={post as IPost} authState={this.props.authState} />
+        <Post post={post as PostDocument} authState={this.props.authState} />
       </PageContent>
     )
   };
@@ -87,7 +90,7 @@ class PostView extends React.Component<
   }
 }
 
-const mapStateToProps = (state: IAppState) => {
+const mapStateToProps = (state: AppState) => {
   return {
     posts: state.postsState.posts,
     postViewState: state.postViewState,

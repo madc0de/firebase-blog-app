@@ -1,13 +1,10 @@
-import { ActionCreator } from "redux";
-import {
-  IAction,
-  IPost,
-} from "../../../interface";
 import * as actionType from "../actionType";
+import { ReduxAction } from "../../../interface/ReduxAction";
+import { PostDocument } from "../../../interface/PostData";
 
-export const postRemovedAction: ActionCreator<IAction<IPost | string>> = (
+export const postRemovedAction = (
   postId: string
-) => ({
+): ReduxAction<PostDocument | string> => ({
   type: actionType.post_removed,
   payload: postId
 });

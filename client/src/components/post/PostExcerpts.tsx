@@ -1,40 +1,37 @@
 import * as React from "react";
 import PostExcerpt from "./PostExcerpt";
 import * as mapUtil from "../../utils/mapUtil";
-import {
-  IPost,
-  IPostData,
-  IAuthState,
-  PostExcerptFilter
-} from "../../interface";
+import { PostData, PostDocument } from "../../interface/PostData";
+import { PostExcerptFilter } from "../../interface/PostExcerptFilter";
+import { AuthState } from "../../interface/AuthState";
 
 export function comparePostPublishedDescending(
-  postA: IPost,
-  postB: IPost
+  postA: PostDocument,
+  postB: PostDocument
 ): number {
-  const date_a = (mapUtil.getValue(postA) as IPostData)
+  const date_a = (mapUtil.getValue(postA) as PostData)
     .publish_date as number;
-  const date_b = (mapUtil.getValue(postB) as IPostData)
+  const date_b = (mapUtil.getValue(postB) as PostData)
     .publish_date as number;
   return date_a > date_b ? -1 : 1;
 }
 
 export function compareUpdatedDateDescending(
-  postA: IPost,
-  postB: IPost
+  postA: PostDocument,
+  postB: PostDocument
 ): number {
-  const date_a = (mapUtil.getValue(postA) as IPostData)
+  const date_a = (mapUtil.getValue(postA) as PostData)
     .updated_date as number;
-  const date_b = (mapUtil.getValue(postB) as IPostData)
+  const date_b = (mapUtil.getValue(postB) as PostData)
     .updated_date as number;
   return date_a > date_b ? -1 : 1;
 }
 
-const filterPosts = (posts: IPost[], filterBy: PostExcerptFilter) => {
+const filterPosts = (posts: PostDocument[], filterBy: PostExcerptFilter) => {
   if (filterBy === "published") {
     return posts.filter(
       post =>
-        (mapUtil.getValue(post) as IPostData).status === filterBy
+        (mapUtil.getValue(post) as PostData).status === filterBy
     );
   }
 
@@ -43,8 +40,8 @@ const filterPosts = (posts: IPost[], filterBy: PostExcerptFilter) => {
 
 export interface PostExcerptsProps {
   filterBy: PostExcerptFilter;
-  posts: IPost[];
-  authState: IAuthState;
+  posts: PostDocument[];
+  authState: AuthState;
 }
 class PostExcerpts extends React.Component<PostExcerptsProps, any> {
   render() {

@@ -1,7 +1,10 @@
 import * as React from "react";
 import SideNav from "./SideNav";
 import { connect, Dispatch } from "react-redux";
-import { IAppState, IAuthState, IBlogSettings } from "../../interface";
+import { AuthState } from "../../interface/AuthState";
+import { BlogSettingData } from "../../interface/BlogSettingData";
+import { AppState } from "../../interface/AppState";
+
 
 const OpenNavButton = (props: { onClick: React.EventHandler<any> }) => (
   <a href="#" className="open-nav-button" onClick={props.onClick}>
@@ -10,8 +13,8 @@ const OpenNavButton = (props: { onClick: React.EventHandler<any> }) => (
 );
 
 interface FromStateProps {
-  authState: IAuthState;
-  blogSettings: IBlogSettings;
+  authState: AuthState;
+  blogSettings: BlogSettingData;
 }
 
 export interface HeaderProps extends FromStateProps {
@@ -62,7 +65,7 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
   }
 }
 
-const mapStateToProps = (state: IAppState): FromStateProps => ({
+const mapStateToProps = (state: AppState): FromStateProps => ({
   authState: state.authState,
   blogSettings: state.blogSettingsState
 });

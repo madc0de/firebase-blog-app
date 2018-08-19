@@ -2,12 +2,6 @@ import * as React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { connect } from "react-redux";
-import {
-  IAppState,
-  IAuthState,
-  IAppInitState,
-  IBlogSettings
-} from "./interface";
 
 import PublishedPosts from "./components/views/PublishedPosts";
 import RecentPosts from "./components/views/RecentPosts";
@@ -16,12 +10,16 @@ import SigninView from "./components/views/SigninView";
 import PostFormPage from "./components/views/PostFormView";
 import PrivateRoute from "./components/PrivateRoute";
 import Loading from "./components/layout/Loading";
+import { AuthState } from "./interface/AuthState";
+import { AppInitState } from "./interface/AppInitState";
+import { BlogSettingData } from "./interface/BlogSettingData";
+import { AppState } from "./interface/AppState";
 
 interface AppProps {}
 interface ConnectProps {
-  authState: IAuthState;
-  appInitState: IAppInitState;
-  blogSettings: IBlogSettings;
+  authState: AuthState;
+  appInitState: AppInitState;
+  blogSettings: BlogSettingData;
 }
 
 class App extends React.Component<AppProps & ConnectProps, {}> {
@@ -41,7 +39,7 @@ class App extends React.Component<AppProps & ConnectProps, {}> {
       authState == null ||
       authState.authenticated == null
     ) {
-      return <Loading>Loading...</Loading>;
+      return <Loading>Loading</Loading>;
     }
 
     return (
@@ -73,7 +71,7 @@ class App extends React.Component<AppProps & ConnectProps, {}> {
   }
 }
 
-const mapStateToProps = (state: IAppState): ConnectProps => {
+const mapStateToProps = (state: AppState): ConnectProps => {
   return {
     authState: state.authState,
     appInitState: state.appInitState,

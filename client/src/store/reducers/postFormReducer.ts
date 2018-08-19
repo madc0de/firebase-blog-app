@@ -1,34 +1,32 @@
 import * as actionType from '../actions/actionType';
-import {
-  IAction,
-  IPost,
-  IPostFormState,
-  ILoadingStatus,
-  IPostFormValues
-} from '../../interface';
 import { initial_PostFormState } from '../../store/initialState';
 import { getKey } from '../../utils/mapUtil';
+import { PostDocument } from '../../interface/PostData';
+import { PostFormState } from '../../interface/PostFormState';
+import { ReduxAction } from '../../interface/ReduxAction';
+import { PostFormValues } from '../../interface/PostFormValues';
+import { LoadingStatus } from '../../interface/LoadingStatus';
 
 export const postFormReducer = (
-  state: IPostFormState,
-  action: IAction<string | IPost | IPostFormValues | string | undefined>
-): IPostFormState => {
+  state: PostFormState,
+  action: ReduxAction<string | PostDocument | PostFormValues | string | undefined>
+): PostFormState => {
   state = state ? state : initial_PostFormState;
   switch (action.type) {
     case actionType.postform_loading_status: {
-      return handle_set_status(state, action as IAction<string>);
+      return handle_set_status(state, action as ReduxAction<string>);
     }
     case actionType.postform_values: {
-      return handle_set_formValues(state, action as IAction<IPostFormValues>);
+      return handle_set_formValues(state, action as ReduxAction<PostFormValues>);
     }
     case actionType.postform_submit_start: {
-      return handle_submit_start(state, action as IAction<any>);
+      return handle_submit_start(state, action as ReduxAction<any>);
     }
     case actionType.postform_submit_success: {
-      return handle_submit_success(state, action as IAction<IPost>);
+      return handle_submit_success(state, action as ReduxAction<PostDocument>);
     }
     case actionType.postform_submit_error: {
-      return handle_submit_error(state, action as IAction<string>);
+      return handle_submit_error(state, action as ReduxAction<string>);
     }
     default:
       return state;
@@ -36,46 +34,46 @@ export const postFormReducer = (
 };
 
 const handle_set_status = (
-  state: IPostFormState,
-  action: IAction<string | IPost | undefined>
-): IPostFormState => {
+  state: PostFormState,
+  action: ReduxAction<string | PostDocument | undefined>
+): PostFormState => {
   return {
     ...state,
-    loadingStatus: action.payload as ILoadingStatus
+    loadingStatus: action.payload as LoadingStatus
   };
 };
 
 const handle_set_formValues = (
-  state: IPostFormState,
-  action: IAction<IPostFormValues>
-): IPostFormState => ({
+  state: PostFormState,
+  action: ReduxAction<PostFormValues>
+): PostFormState => ({
   ...state,
   loadingStatus: 'loaded',
-  formValues: action.payload as IPostFormValues
+  formValues: action.payload as PostFormValues
 });
 
 const handle_submit_start = (
-  state: IPostFormState,
-  action: IAction<IPost>
-): IPostFormState => ({
+  state: PostFormState,
+  action: ReduxAction<PostDocument>
+): PostFormState => ({
   ...state,
   submitStatus: 'started',
 });
 
 
 const handle_submit_success = (
-  state: IPostFormState,
-  action: IAction<IPost>
-): IPostFormState => ({
+  state: PostFormState,
+  action: ReduxAction<PostDocument>
+): PostFormState => ({
   ...state,
   submitStatus: 'saved',
   postId: getKey(action.payload)
 });
 
 const handle_submit_error = (
-  state: IPostFormState,
-  action: IAction<string | undefined>
-): IPostFormState => {
+  state: PostFormState,
+  action: ReduxAction<string | undefined>
+): PostFormState => {
   return {
     ...state,
     loadingStatus: 'error',

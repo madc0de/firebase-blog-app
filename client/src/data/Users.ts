@@ -1,13 +1,13 @@
 import * as firebase from "firebase/app";
 import { firestore } from "./firestore-init";
 import * as mapUtil from "../utils/mapUtil";
-import { IUser, IUserData } from "../interface";
+import { UserDocument, UserData } from "../interface/UserData";
 
-export const getUser = async (userId: string): Promise<IUser | undefined> => {
+export const getUser = async (userId: string): Promise<UserDocument | undefined> => {
   try {
     const snapshot = await firestore.doc(`users/${userId}`).get();
     if (snapshot.exists) {
-      return mapUtil.snapshotToMap(snapshot) as IUser;
+      return mapUtil.snapshotToMap(snapshot) as UserDocument;
     }
     return undefined;
   } catch (error) {
@@ -15,7 +15,7 @@ export const getUser = async (userId: string): Promise<IUser | undefined> => {
   }
 };
 
-export const saveUser = async (userId: string, userData: IUserData): Promise<IUser> => {
+export const saveUser = async (userId: string, userData: UserData): Promise<UserDocument> => {
   try {
     const ref = await firestore.doc(`users/${userId}`);
     await ref.set(userData, { merge: true });
@@ -28,7 +28,7 @@ export const saveUser = async (userId: string, userData: IUserData): Promise<IUs
 
 const getUserByDocRef = async (
   ref: firebase.firestore.DocumentReference
-): Promise<IUser> => {
+): Promise<UserDocument> => {
   const docSnap = await ref.get();
-  return mapUtil.snapshotToMap(docSnap) as IUser;
+  return mapUtil.snapshotToMap(docSnap) as UserDocument;
 };

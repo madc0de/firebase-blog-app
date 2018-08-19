@@ -37,19 +37,18 @@ export type PostStatus = "draft" | "published";
 type Millisecons = number;
 
 export interface IPostData {
-  userId?: string;
-  photoUrl?: string;
+  userId: string;
+  photoUrl: string;
 
   title: string;
   body: string;
   excerpt: string;
-  slug?: string;
+  slug: string;
 
   created_date?: Millisecons;
   updated_date?: Millisecons;
   status: PostStatus;
   publish_date: Millisecons;
-  pinned?: boolean;
 }
 
 export interface IPostFormValues extends IPostData {

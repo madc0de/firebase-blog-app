@@ -47,10 +47,10 @@ export const initial_UsersState: IUsersState = {
 
 export const initial_PostData: IPostData = {
   userId: '',
+  photoUrl: '',
   title: '',
   body: '',
   excerpt: '',
-  pinned: false,
   status: 'draft',
   publish_date: 0,
   slug: '',

@@ -12,12 +12,10 @@ function isSignedIn() {
 }
 
 function isUser(user) {
-  return  
-    user.size() <= 8 &&
+  return
       user.email is string && user.email.size() <= 254 &&
       user.displayName is string && user.displayName.size() <= 254 &&
-      user.photoUrl is string && user.photoUrl.size() < 2038 &&
-      user.roles != null
+      user.photoUrl is string && user.photoUrl.size() < 2038
 }
 
 function isPost(post) {

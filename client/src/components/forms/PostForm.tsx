@@ -112,7 +112,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   savePost: (postId: string, formValues: PostFormValues) =>
-    dispatch(postFormActions.asyncSavePostAction(postId, formValues))
+    dispatch(postFormActions.savePostAction(postId, formValues))
 });
 
 const _connectWrapped = connect(

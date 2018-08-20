@@ -12,7 +12,7 @@ import { GetStateFn } from "../../../interface/GetStateFn";
 import { PostData, PostDocument } from "../../../interface/PostData";
 import { PostFormValues } from "../../../interface/PostFormValues";
 
-export const async_existingPost_SetFormValuesAction = (postId: string) => async (
+export const loadPostFormValuesAction = (postId: string) => async (
   dispatch: Dispatch,
   getState: GetStateFn
 ) => {

@@ -4,11 +4,11 @@ import  { Posts } from "../../../data";
 const removeMd = require("remove-markdown");
 import { getExcerptText } from "../../../utils/textUtil";
 import { dateToMilliseconds } from "../../../utils/dateUtil";
-import { postFormSubmitStart, postFormSubmitSuccess, postFormSubmitError } from './index'
+import { postFormSubmitStart, postFormSubmitSuccess, postFormSubmitError } from '.'
 import { PostFormValues } from "../../../interface/PostFormValues";
 import { PostData } from "../../../interface/PostData";
 
-export const asyncSavePostAction = (postId: string, formValues: PostFormValues) => async (
+export const savePostAction = (postId: string, formValues: PostFormValues) => async (
   dispatch: Dispatch
 ) => {
   try {

@@ -90,7 +90,7 @@ const mapDispatchToProps = (dispatch: any): DispatchToProps => ({
   initializeViewState: () =>
     dispatch(postFormActions.postFormSetStatusAction("init")),
   loadExistingPostFormValues: (postId: string) =>
-    dispatch(postFormActions.async_existingPost_SetFormValuesAction(postId)),
+    dispatch(postFormActions.loadPostFormValuesAction(postId)),
   loadNewPostFormValues: () =>
     dispatch(postFormActions.async_newPost_SetFormValuesAction())
 });

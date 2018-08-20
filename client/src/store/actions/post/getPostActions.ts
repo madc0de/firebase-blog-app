@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { getPublishedPosts, getRecentlyUpdatedPosts } from '../../../data/Posts'
 import { postLoadedAction } from './postLoadedAction';
 
-export const asyncGetPublishedPostsAction = () => async (
+export const getPublishedPostsAction = () => async (
   dispatch: Dispatch
 ) => {
   try {
@@ -13,7 +13,7 @@ export const asyncGetPublishedPostsAction = () => async (
   }
 }
 
-export const asyncGetRecentlyUpdatedPosts = () => async (
+export const getRecentlyUpdatedPostsAction = () => async (
   dispatch: Dispatch
 ) => {
   try {

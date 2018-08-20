@@ -45,7 +45,7 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any): MappedDispatchProps => ({
-  loadRencenltyUpdatedPosts: () => dispatch(postActions.asyncGetRecentlyUpdatedPosts())
+  loadRencenltyUpdatedPosts: () => dispatch(postActions.getPublishedPostsAction())
 });
 
 const _PublisedPosts = connect(

@@ -32,7 +32,7 @@ class App extends React.Component<AppProps & ConnectProps, {}> {
   public render() {
     const { authState, appInitState } = this.props;
 
-    if (!appInitState.initialized || !authState || !authState.authenticated) {
+    if (!appInitState.initialized) {
       return <Loading>Loading</Loading>;
     }
 

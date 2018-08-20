@@ -5,7 +5,7 @@ const PrivateRoute = (props: any) => {
   const { component: Component, authState, location, ...rest } = props;
 
 
-  if (authState.authenticated) {
+  if (authState && authState.authenticated) {
     if (authState.isAdmin == null) {
       throw Error("authenticated property required");
     }

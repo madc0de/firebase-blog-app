@@ -6,6 +6,7 @@ import PostForm from "../forms/PostForm";
 import { postFormActions } from "../../store/actions";
 import { PostFormState } from "../../interface/PostFormState";
 import { AppState } from "../../interface/AppState";
+import { PageContent } from "../layout";
 interface RouteParamProps {
   postId: string | undefined;
 }
@@ -34,7 +35,7 @@ class PostFormView extends React.Component<PostFormViewProps, PostFormState> {
     if (postId) {
       this.props.loadExistingPostFormValues(postId as string);
     } else {
-      this.props.loadNewPostFormValues()
+      this.props.loadNewPostFormValues();
     }
   }
 
@@ -68,11 +69,14 @@ class PostFormView extends React.Component<PostFormViewProps, PostFormState> {
     }
 
     return (
-      <div>
+      <div className="full-height">
         <Header />
-        <div className="post-form-content">
-          <PostForm onSave={this.redirectToPostView} initialValues={formValues} />
-        </div>
+        <PageContent>
+          <PostForm
+            onSave={this.redirectToPostView}
+            initialValues={formValues}
+          />
+        </PageContent>
       </div>
     );
   }

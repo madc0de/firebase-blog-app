@@ -37,13 +37,14 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
 
     if (authState.authenticated) {
       if (state.from) {
+        console.log(`state auth:  ${authState.authenticated}, ${state.from.pathname}`)
         return <Redirect to={state.from.pathname} />;
       }
       return <Redirect to="/" />;
     }
 
     return (
-      <div>
+      <React.Fragment>
         <Header />
         <section className="page-content signin-wrapper">
           <div className="signin">
@@ -56,7 +57,7 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
             )}
           </div>
         </section>
-      </div>
+      </React.Fragment>
     );
   }
 }

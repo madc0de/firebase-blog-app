@@ -8,7 +8,7 @@ function incommingData() {
 }
 
 function isSignedIn() {
-  return request.auth.uid != null
+  return request.auth != null
 }
 
 function isUser(user) {

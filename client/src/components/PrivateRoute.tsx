@@ -6,10 +6,6 @@ const PrivateRoute = (props: any) => {
 
 
   if (authState && authState.authenticated) {
-    if (authState.isAdmin == null) {
-      throw Error("authenticated property required");
-    }
-
     if (authState.isAdmin === true) {
       return <Route {...rest} render={props => <Component {...props} />} />;
     }

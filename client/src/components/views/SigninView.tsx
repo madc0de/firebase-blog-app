@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { signInWithGoogle } from "../../data/Auth";
+import { signInWithGoogle, signInWithGithub } from "../../data/Auth";
 import { Redirect, RouteComponentProps, withRouter } from "react-router-dom";
 import { AuthState } from "../../interface/AuthState";
 import { AppState } from "../../interface/AppState";
@@ -26,9 +26,14 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
     };
   }
 
-  onSigninClick = (e: React.SyntheticEvent<any>) => {
+  signInWithGoogle = (e: React.SyntheticEvent<any>) => {
     e.preventDefault();
     signInWithGoogle();
+  };
+
+  singInWithGithub = (e: React.SyntheticEvent<any>) => {
+    e.preventDefault();
+    signInWithGithub();
   };
 
   render() {
@@ -46,8 +51,11 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
       <PageContent>
         <div className="signin-wrap">
           <div className="signin-box">
-            <button className="btn" onClick={this.onSigninClick}>
+            <button className="btn google" onClick={signInWithGoogle}>
               Signin with Google
+            </button>
+            <button className="btn github" onClick={this.signInWithGoogle}>
+              Signin with Github
             </button>
           </div>
         </div>

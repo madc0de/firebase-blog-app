@@ -109,7 +109,17 @@ header .avatar img {
     border-radius: 5px;
     padding: 3rem;
     display: grid;
+    grid-gap: 0.5rem;
     place-content: center;
+}
+
+.btn.github {
+    background-color: #7b7e8c;
+    color: #fff;
+}
+.btn.google {
+    background-color: #4285f4;
+    color: #fff;
 }
 
 /*******************

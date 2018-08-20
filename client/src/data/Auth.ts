@@ -39,6 +39,12 @@ export const signInWithGoogle = async () => {
   firebase.auth().signInWithPopup(provider);
 };
 
+export const signInWithGithub = async () => {
+  var provider = new firebase.auth.GithubAuthProvider()
+  firebase.auth().signInWithPopup(provider);
+};
+
+
 export const signOut = async () => {
   return firebase.auth().signOut();
 };

@@ -2,9 +2,9 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { signInWithGoogle } from "../../data/Auth";
 import { Redirect, RouteComponentProps, withRouter } from "react-router-dom";
-import Header from "../layout/Header";
 import { AuthState } from "../../interface/AuthState";
 import { AppState } from "../../interface/AppState";
+import { PageContent } from "../layout";
 
 interface ConnectProps {
   authState: AuthState;
@@ -43,26 +43,23 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
     }
 
     return (
-      <React.Fragment>
-        <Header />
-        <section className="page-content signin-wrapper">
-          <div className="signin">
-            {!authState.authenticated ? (
-              <button className="btn" onClick={this.onSigninClick}>
-                Signin with Google
-              </button>
-            ) : (
-              <h3>Already signed in as {authState.authUserData.displayName}</h3>
-            )}
+      <PageContent>
+        <div className="signin-wrap">
+          <div className="signin-box">
+            <button className="btn" onClick={this.onSigninClick}>
+              Signin with Google
+            </button>
           </div>
-        </section>
-      </React.Fragment>
+        </div>
+      </PageContent>
     );
   }
 }
 
-const _SigninView = connect((state: AppState) => ({
+const mapStateToProps = (state: AppState): ConnectProps => ({
   authState: state.authState
-}))(withRouter(SigninView));
+});
+
+const _SigninView = connect(mapStateToProps)(withRouter(SigninView));
 
 export default _SigninView;

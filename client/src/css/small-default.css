@@ -88,26 +88,28 @@ header .avatar img {
     height: 100%;
 }
 
+.centered-content {
+    display: grid;
+    place-content: center;
+}
+
 /********************
 *  Signin Section   *
 ********************/
 
-.signin-wrapper {
-    height: 15rem;
-    width: 100%;
+.signin-wrap {
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 45%;
 }
 
-.signin {
-    height: 50%;
-    background-color: var(--bgc-color);
+.signin-box {
+    background-color: #f8fbfd;
+    border: 1px solid rgb(218, 225, 227);    
     border-radius: 5px;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 3rem;
+    display: grid;
+    place-content: center;
 }
 
 /*******************
@@ -255,6 +257,7 @@ textarea {
     font-family: Consolas, "Liberation Mono", 'Courier New';
     color:rgb(61, 64, 67);
     height: 500px;
+    resize: none;
 }
 
 textarea.input {
@@ -286,10 +289,10 @@ input::placeholder {
 
 .btn {
     font-size: inherit;
-    border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     border-radius: 4px;
-    background-color: #ddd;
+    background-color: #eee;
+    border: 1px soid #ddd;
     color: #000;
     cursor: pointer;
 }

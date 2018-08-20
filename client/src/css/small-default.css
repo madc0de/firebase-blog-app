@@ -244,10 +244,6 @@ tr:hover {
     background-color: #f9f9f9;
 } 
 
-.markdown-input {
-    font-family: 'Courier New', Courier, monospace;
-}
-
 input, textarea, select {
     font-size: 16px;
     border: none;
@@ -257,11 +253,12 @@ input, textarea, select {
 
 textarea {
     font-family: Consolas, "Liberation Mono", 'Courier New';
-    color: rgb(61, 64, 67);
+    color:rgb(61, 64, 67);
+    height: 500px;
 }
 
 textarea.input {
-    height: 300px;
+    height: 600px;
 }
 
 input::placeholder {
@@ -505,5 +502,4 @@ pre code, pre tt {
 
 .full-height {
     height: 100%;
-    background-color: #999999;
 }

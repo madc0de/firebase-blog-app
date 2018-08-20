@@ -37,7 +37,6 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
 
     if (authState.authenticated) {
       if (state.from) {
-        console.log(`state auth:  ${authState.authenticated}, ${state.from.pathname}`)
         return <Redirect to={state.from.pathname} />;
       }
       return <Redirect to="/" />;

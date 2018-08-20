@@ -36,8 +36,6 @@ class App extends React.Component<AppProps & ConnectProps, {}> {
       return <Loading>Loading</Loading>;
     }
 
-    console.log(authState)
-
     return (
       <Router>
         <React.Fragment>

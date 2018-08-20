@@ -45,8 +45,6 @@ export const asyncPostViewLoadPostAction = (slugOrId: string) => async (
         if (body) {
           dispatch(postBodyLoadedAction({ postId, body }));
         }
-      } else {
-        console.log('post already has body')
       }
 
       return dispatch(postViewSetPostAction(post));

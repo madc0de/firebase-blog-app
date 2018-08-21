@@ -100,7 +100,7 @@ header .avatar img {
 .signin-wrap {
     display: flex;
     justify-content: center;
-    padding-top: 45%;
+    padding-top: 20vh;
 }
 
 .signin-box {
@@ -131,7 +131,7 @@ header .avatar img {
 }
 
 .post-meta {
-    color: var( --post-meta-color);
+    color:  #9EABB3;
     display: flex;
     align-items: center;
     font-size: 0.95rem;

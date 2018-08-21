@@ -31,7 +31,7 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
     signInWithGoogle();
   };
 
-  singInWithGithub = (e: React.SyntheticEvent<any>) => {
+  signInWithGithub = (e: React.SyntheticEvent<any>) => {
     e.preventDefault();
     signInWithGithub();
   };
@@ -51,10 +51,10 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
       <PageContent>
         <div className="signin-wrap">
           <div className="signin-box">
-            <button className="btn google" onClick={signInWithGoogle}>
+            <button className="btn google" onClick={this.signInWithGoogle}>
               Sign in with Google
             </button>
-            <button className="btn github" onClick={this.signInWithGoogle}>
+            <button className="btn github" onClick={this.signInWithGithub}>
               Sign in with Github
             </button>
           </div>

@@ -11,6 +11,8 @@ export const user_authenticated = 'user_authenticated'
 export const user_signed_out ='user_not_authenticated'
 export const user_loaded = 'user_loaded'
 
+export const auth_error = 'auth_error'
+
 export const postview_set_status =  'postview_set_status'
 export const postview_loaded =  'postview_loaded'
 export const postview_error =  'postview_error'

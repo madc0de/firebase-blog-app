@@ -1,20 +1,25 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { signInWithGoogle, signInWithGithub, signInWithFacebook } from "../../data/Auth";
 import { Redirect, RouteComponentProps, withRouter } from "react-router-dom";
 import { AuthState } from "../../interface/AuthState";
 import { AppState } from "../../interface/AppState";
 import { PageContent } from "../layout";
+import { SigninProviderOption, signInWithProviderAction } from "../../data/Auth";
 
-interface ConnectProps {
+interface StateProps {
   authState: AuthState;
 }
+
+interface DispatchProps {
+  signInWithProvider(authProvider: SigninProviderOption): void
+}
+
 interface SigninState {
   from: any;
 }
 
 export interface SigninViewProps
-  extends ConnectProps,
+  extends StateProps, DispatchProps,
     RouteComponentProps<any> {}
 
 class SigninView extends React.Component<SigninViewProps, SigninState> {
@@ -28,17 +33,17 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
 
   signInWithGoogle = (e: React.SyntheticEvent<any>) => {
     e.preventDefault();
-    signInWithGoogle();
+    this.props.signInWithProvider("google")
   };
 
   signInWithGithub = (e: React.SyntheticEvent<any>) => {
     e.preventDefault();
-    signInWithGithub();
+    this.props.signInWithProvider("github")
   };
 
   signInWithFacebook = (e: React.SyntheticEvent<any>) => {
     e.preventDefault();
-    signInWithFacebook();
+    this.props.signInWithProvider("facebook")
   };
 
   render() {
@@ -72,10 +77,14 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
   }
 }
 
-const mapStateToProps = (state: AppState): ConnectProps => ({
+const mapDispatchToProps = (dispatch: any) => ({
+  signInWithProvider: (authProvider: SigninProviderOption) => dispatch(signInWithProviderAction(authProvider))
+})
+
+const mapStateToProps = (state: AppState): StateProps => ({
   authState: state.authState
 });
 
-const _SigninView = connect(mapStateToProps)(withRouter(SigninView));
+const _SigninView = connect(mapStateToProps, mapDispatchToProps)(withRouter(SigninView));
 
 export default _SigninView;

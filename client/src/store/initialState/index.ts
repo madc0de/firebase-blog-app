@@ -32,7 +32,8 @@ export const initial_AuthState: AuthState = {
   authenticated: false,
   isAdmin: false,
   authUserId: '',
-  authUserData: initial_UserData  
+  authUserData: initial_UserData,
+  error: ''
 };
 
 export const initial_PostsState: PostsState = {

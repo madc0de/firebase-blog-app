@@ -7,7 +7,7 @@ import { ReduxAction } from "../../interface/ReduxAction";
 
 export const authReducer = (
   state: AuthState,
-  action: ReduxAction<UserData | UserDocument>
+  action: ReduxAction<UserData | UserDocument | string>
 ) => {
   state = state ? state : initial_AuthState;
 
@@ -18,6 +18,7 @@ export const authReducer = (
       return handle_user_signed_out();
     case actionType.user_loaded:
       return handle_user_loaded(state, action as ReduxAction<UserDocument>);
+    case actionType.auth_error: return handle_auth_error(state, action as ReduxAction<string>)
     default:
       return state;
   }
@@ -57,4 +58,11 @@ function handle_user_loaded(state: AuthState, action: ReduxAction<UserDocument>)
     };
   }
   return state;
+}
+
+function handle_auth_error(state: AuthState, action: ReduxAction<string>): AuthState {
+  return {
+    ...state,
+    error: action.payload
+  }
 }

@@ -16,13 +16,13 @@ import { BlogSettingData } from "./interface/BlogSettingData";
 import { AppState } from "./interface/AppState";
 
 interface AppProps {}
-interface ConnectProps {
+interface StateProps {
   authState: AuthState;
   appInitState: AppInitState;
   blogSettings: BlogSettingData;
 }
 
-class App extends React.Component<AppProps & ConnectProps, {}> {
+class App extends React.Component<AppProps & StateProps, {}> {
   componentDidUpdate() {
     if (this.props.blogSettings.loaded && !document.title) {
       document.title = this.props.blogSettings.blog_title;
@@ -65,7 +65,7 @@ class App extends React.Component<AppProps & ConnectProps, {}> {
   }
 }
 
-const mapStateToProps = (state: AppState): ConnectProps => {
+const mapStateToProps = (state: AppState): StateProps => {
   return {
     authState: state.authState,
     appInitState: state.appInitState,

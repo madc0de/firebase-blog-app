@@ -5,4 +5,5 @@ export interface AuthState {
   isAdmin: boolean;
   authUserId: string;
   authUserData: UserData;
+  error: string
 }

@@ -25,17 +25,17 @@ body {
 
 
 /*******************
-*  Signin Section   *
+*      Header      *
 ********************/
 
-header {  
+.blog-header {  
     height: 180px;
     background-image: url('https://storage.googleapis.com/pauly-static/webp/pan_pacific_1100.webp');
     background-position: center;
     background-size: cover;
 }
 
-header .overlay {
+.blog-header .overlay {
     height: 100%;
 
     background-color: rgba(0, 0, 0, 0.5);
@@ -46,20 +46,20 @@ header .overlay {
     align-items: center;
 }
 
-header.no-cover {
+.blog-header.no-cover {
     background-image: none;
     background-color: inherit;
 }
 
 
-header h1 {
+.blog-header h1 {
     margin: 1rem 0 0 0;
     letter-spacing: -1px;
     font-weight: var(--font-bold);
     color: #fff;
 }
 
-header .description {
+.blog-header .description {
     margin-top: 1rem;
     font-size: 2rem;
     line-height: 1.5em;
@@ -69,19 +69,14 @@ header .description {
     color: #fff;
 }
 
+/*******************
+*      Admin       *
+********************/
 
-header .avatar {
-    display: block;
-    max-width: 3rem;
-    max-height: 3rem;
-}
+/********************
+*    Page Content   *
+********************/
 
-header .avatar img {
-    object-fit: contain;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-}
 
 .page-content {
     padding: 0 1rem;

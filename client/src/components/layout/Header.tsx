@@ -47,7 +47,7 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
 
     return (
       <React.Fragment>
-        <header>
+        <header className="blog-header">
           <div className="overlay">
             <h1 className="title">{blogSettings.blog_title}</h1>
             <div className="description">{blogSettings.blog_description}</div>

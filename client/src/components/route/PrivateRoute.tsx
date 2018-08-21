@@ -4,19 +4,8 @@ import { Route, Redirect, withRouter } from "react-router-dom";
 const PrivateRoute = (props: any) => {
   const { component: Component, authState, location, ...rest } = props;
 
-
-  if (authState && authState.authenticated) {
-    if (authState.isAdmin === true) {
-      return <Route {...rest} render={props => <Component {...props} />} />;
-    }
-
-    // non admin cannot access private route, redirect to 'home'
-    <Redirect
-      to={{
-        pathname: "/",
-        state: { from: props.location }
-      }}
-    />;
+  if (authState.authenticated) {
+    return <Route {...rest} render={props => <Component {...props} />} />;
   }
 
   return (

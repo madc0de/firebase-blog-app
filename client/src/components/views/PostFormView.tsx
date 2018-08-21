@@ -26,7 +26,6 @@ export interface PostFormViewProps
 class PostFormView extends React.Component<PostFormViewProps, PostFormState> {
   constructor(props: PostFormViewProps) {
     super(props);
-
     props.initializeViewState();
   }
 

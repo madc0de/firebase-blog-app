@@ -32,6 +32,7 @@ export function initStore(cb: (store: BlogStore) => void) {
     ? window["devToolsExtension"]()
     : (f: any) => f;
   let middleware = applyMiddleware(thunk);
+
   const store: any = middleware(devtools(createStore))(rootReducer);
 
   cb(store);

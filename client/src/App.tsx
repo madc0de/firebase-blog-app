@@ -7,8 +7,8 @@ import PublishedPosts from "./components/views/PublishedPosts";
 import RecentPosts from "./components/views/RecentPosts";
 import PostView from "./components/views/PostView";
 import SigninView from "./components/views/SigninView";
-import PostFormPage from "./components/views/PostFormView";
-import PrivateRoute from "./components/PrivateRoute";
+import PostFormView from "./components/views/PostFormView";
+import PrivateRoute from "./components/route/PrivateRoute";
 import Loading from "./components/layout/Loading";
 import { AuthState } from "./interface/AuthState";
 import { AppInitState } from "./interface/AppInitState";
@@ -52,12 +52,12 @@ class App extends React.Component<AppProps & StateProps, {}> {
           <PrivateRoute
             path="/new-post"
             authState={authState}
-            component={PostFormPage}
+            component={PostFormView}
           />
           <PrivateRoute
             path="/edit-post/:postId"
             authState={authState}
-            component={PostFormPage}
+            component={PostFormView}
           />
         </React.Fragment>
       </Router>

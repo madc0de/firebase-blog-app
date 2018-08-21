@@ -12,7 +12,7 @@ interface PostMetaProps {
 const PostMeta: React.SFC<PostMetaProps> = ({ post, authState }) => {  
   const postId = Object.keys(post)[0];
   const postData = post[postId] as PostData;
-  const canEdit = authState.authenticated && authState.authUserId === postData.userId
+  const canEdit = authState.authenticated && authState.authUserId === postData.userId 
 
   const date =
     postData.status === "published"

@@ -83,8 +83,7 @@ header .avatar img {
     border-radius: 50%;
 }
 
-.page-content {
-    padding: 0 1rem;
+.full-height {
     height: 100%;
 }
 

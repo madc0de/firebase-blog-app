@@ -27,7 +27,7 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
     super(props);
 
     this.state = {
-      from: props.location.state ? props.location.state.from : ""
+      from: props.location.state ? props.location.state.from : "",
     };
   }
 
@@ -46,12 +46,13 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
     this.props.signInWithProvider("facebook")
   };
 
+
   render() {
     const { authState } = this.props;
     const { state } = this;
-
+    
     if (authState.authenticated) {
-      if (state.from) {
+      if (state.from && state.from.pathname != '/signin') {
         return <Redirect to={state.from.pathname} />;
       }
       return <Redirect to="/" />;

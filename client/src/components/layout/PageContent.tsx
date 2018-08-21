@@ -6,7 +6,7 @@ interface PageContentProps {
 
 const PageContent: React.SFC<PageContentProps> = (props) => {
   return (
-      <main className="full-height">
+      <main className="page-content">
         {props.children}
       </main>
   )

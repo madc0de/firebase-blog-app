@@ -44,6 +44,11 @@ export const signInWithGithub = async () => {
   firebase.auth().signInWithPopup(provider);
 };
 
+export const signInWithFacebook = async () => {
+  var provider = new firebase.auth.FacebookAuthProvider()
+  firebase.auth().signInWithPopup(provider);
+};
+
 
 export const signOut = async () => {
   return firebase.auth().signOut();

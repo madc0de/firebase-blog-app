@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { signInWithGoogle, signInWithGithub } from "../../data/Auth";
+import { signInWithGoogle, signInWithGithub, signInWithFacebook } from "../../data/Auth";
 import { Redirect, RouteComponentProps, withRouter } from "react-router-dom";
 import { AuthState } from "../../interface/AuthState";
 import { AppState } from "../../interface/AppState";
@@ -36,6 +36,11 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
     signInWithGithub();
   };
 
+  signInWithFacebook = (e: React.SyntheticEvent<any>) => {
+    e.preventDefault();
+    signInWithFacebook();
+  };
+
   render() {
     const { authState } = this.props;
     const { state } = this;
@@ -56,6 +61,9 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
             </button>
             <button className="btn github" onClick={this.signInWithGithub}>
               Sign in with Github
+            </button>
+            <button className="btn facebook" onClick={this.signInWithFacebook}>
+              Sign in with Facebook
             </button>
           </div>
         </div>

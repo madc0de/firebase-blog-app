@@ -9,12 +9,12 @@ import { LoadingStatus } from '../../interface/LoadingStatus';
 
 export const postFormReducer = (
   state: PostFormState,
-  action: ReduxAction<string | PostDocument | PostFormValues | string | undefined>
+  action: ReduxAction<string | PostDocument | PostFormValues | LoadingStatus | undefined>
 ): PostFormState => {
   state = state ? state : initial_PostFormState;
   switch (action.type) {
     case actionType.postform_loading_status: {
-      return handle_set_status(state, action as ReduxAction<string>);
+      return handle_set_status(state, action as ReduxAction<LoadingStatus>);
     }
     case actionType.postform_values: {
       return handle_set_formValues(state, action as ReduxAction<PostFormValues>);
@@ -35,8 +35,13 @@ export const postFormReducer = (
 
 const handle_set_status = (
   state: PostFormState,
-  action: ReduxAction<string | PostDocument | undefined>
+  action: ReduxAction<LoadingStatus>
 ): PostFormState => {
+
+  if (action.payload === 'init') {
+    return { ...initial_PostFormState }
+  }
+
   return {
     ...state,
     loadingStatus: action.payload as LoadingStatus

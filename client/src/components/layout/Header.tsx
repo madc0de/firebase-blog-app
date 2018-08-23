@@ -50,7 +50,7 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
         <header className="blog-header">
           <div className="overlay">
             <h1 className="title">{blogSettings.blog_title}</h1>
-            <div className="description">{blogSettings.blog_description}</div>
+            <h4 className="description">{blogSettings.blog_description}</h4>
 
             <OpenNavButton onClick={this.showNav} />
           </div>

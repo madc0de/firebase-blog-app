@@ -8,10 +8,9 @@ import {
 import thunk from "redux-thunk";
 import { reducer as formReducer } from "redux-form";
 
-import * as  reducers from './reducers'
+import * as reducers from "./reducers";
 import { AppState } from "../interface/AppState";
 import { ReduxAction } from "../interface/ReduxAction";
-
 
 const rootReducer: Reducer<AppState, ReduxAction<any>> = combineReducers({
   appInitState: reducers.appInitReducer,
@@ -28,12 +27,18 @@ const rootReducer: Reducer<AppState, ReduxAction<any>> = combineReducers({
 export type BlogStore = Store<AppState>;
 
 export function initStore(cb: (store: BlogStore) => void) {
-  let devtools: any = window["devToolsExtension"]
-    ? window["devToolsExtension"]()
-    : (f: any) => f;
+
   let middleware = applyMiddleware(thunk);
-
-  const store: any = middleware(devtools(createStore))(rootReducer);
-
+  if (process.env.NODE_ENV === "development") {
+    let devtools: any = window["devToolsExtension"]
+      ? window["devToolsExtension"]()
+      : (f: any) => f;
+   const store = middleware(devtools(createStore))(rootReducer);
+   cb(store)
+   return
+  } 
+  
+  
+  const store = createStore(rootReducer, middleware);
   cb(store);
 }

@@ -8,7 +8,7 @@ html {
     font-size: 16px;
 }
 
-html, body {
+html, body, #root {
     height: 100%;
 }
 
@@ -19,16 +19,11 @@ body {
     color: var(--color);
 }
 
-#root {
-    height: 100%;
-}
-
-
 /*******************
 *      Header      *
 ********************/
 
-.blog-header {  
+.blog-header {
     height: 180px;
     background-image: url('https://storage.googleapis.com/pauly-static/webp/pan_pacific_1100.webp');
     background-position: center;
@@ -37,9 +32,7 @@ body {
 
 .blog-header .overlay {
     height: 100%;
-
     background-color: rgba(0, 0, 0, 0.5);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +44,6 @@ body {
     background-color: inherit;
 }
 
-
 .blog-header h1 {
     margin: 1rem 0 0 0;
     letter-spacing: -1px;
@@ -61,7 +53,7 @@ body {
 
 .blog-header .description {
     margin-top: 1rem;
-    font-weight: 400;    
+    font-weight: 400;
     font-family: "Merriweather", serif;
     font-size: 1.5;
     letter-spacing: 0.01rem;
@@ -75,7 +67,6 @@ body {
 /********************
 *    Page Content   *
 ********************/
-
 
 .page-content {
     padding: 0 1rem;
@@ -99,7 +90,7 @@ body {
 
 .signin-box {
     background-color: #f8fbfd;
-    border: 1px solid rgb(218, 225, 227);    
+    border: 1px solid rgb(218, 225, 227);
     border-radius: 5px;
     padding: 3rem;
     display: grid;
@@ -111,10 +102,12 @@ body {
     background-color: #7b7e8c;
     color: #fff;
 }
+
 .btn.google {
     background-color: #4285f4;
     color: #fff;
 }
+
 .btn.facebook {
     background-color: #4465ac;
     color: #fff;
@@ -129,7 +122,7 @@ body {
 }
 
 .post-meta {
-    color:  #9EABB3;
+    color: #9EABB3;
     display: flex;
     align-items: center;
     font-size: 0.95rem;
@@ -188,6 +181,24 @@ body {
     list-style-type: decimal;
 }
 
+input {
+    padding-left: 1rem;
+}
+
+input::placeholder {
+    color: #ddd;
+}
+
+.post-body textarea {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    outline: none;
+    border: none;
+    resize: none;
+    box-sizing: border-box;
+}
+
 /********************
 *        table      *
 ********************/
@@ -207,128 +218,95 @@ tr:hover {
     background-color: #f5f5f5;
 }
 
-/* form & input */
-
-.veritical-form {
-    padding: 1rem;
+/********************
+* post-edit-section *
+********************/
+.post-edit-section {
+    height: 100%;
     display: grid;
-    grid-gap: 0.2rem;
-    grid-template-columns: 1;
-}
-
-.input-group {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 50px auto;
+    grid-template-areas: "title title title action" "body body body body"
+  }
+  
+  .field {
     display: grid;
-    grid-gap: 0.1rem;
-    grid-template-columns: 1;
-    grid-auto-rows: auto;
-    font-size: 0.95rem;
-}
-
-.input-group.with-label .input {
-    grid-column: span 2;
-}
-
-.input-group .error {
-    display: grid;
-    place-content: center end;
-    color: #821;
-    font-size: 0.9rem;
-}
-
-.input-group.active {
-    border: 1px solid #479;
-}
-
-.input {
-    height: 2rem;
-    border: 2px solid #eee;
-}
-
-.input-group.error  .input {
-    border-color: #821;
-}
-
-.input-group  .input:focus {
-    outline: none;
-    border-color: #888;
-    background-color: #f9f9f9;
-} 
-
-input, textarea, select {
-    font-size: 16px;
+  }
+  
+  .post-edit-section input, textarea {
     border: none;
-    padding: 0.5rem;
-    color: #555;
-}
-
-textarea {
-    font-family: Consolas, "Liberation Mono", 'Courier New';
-    color:rgb(61, 64, 67);
-    height: 500px;
+    outline: none;
     resize: none;
-}
-
-textarea.input {
-    height: 600px;
-}
-
-input::placeholder {
-    color: #ccc;
-}
-
-.button-group {
-    padding: 0.5rem 0.5rem 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .post-title {
+    grid-area: title;
+    display: grid;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .post-action {
+    grid-area: action;
     display: flex;
-    justify-content: flex-start;
-}
-
-.button-group .btn {
-    margin-right: 0.5rem;
-}
-
-.submission-error {
-    padding: 0.5rem 1rem;
-    background-color: #faa;
-    color: #444;
-    font-size: 0.9rem;
-}
-
-/* button */
-
-.btn {
-    font-size: inherit;
-    padding: 0.5rem 2rem;
-    border-radius: 4px;
-    background-color: #eee;
-    border: 1px soid #ddd;
-    color: #000;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .post-body {
+    grid-area: body;
+  }
+  
+  .post-preview {
+    display: none;
+  }
+  
+  .post-edit-section input {
+    padding-left: 1rem;
+  }
+  
+  .post-edit-section  input::placeholder {
+    color: #ddd;
+  }
+  
+  .post-body textarea {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    outline: none;
+    border: none;
+    resize: none;
+    box-sizing: border-box;
+  }
+  
+  @media(min-width: 800px) {
+    .post-edit-section {
+      grid-template-areas: "title title title action" "body body preview preview"
+    }
+    .post-preview {
+      display: block;
+      grid-area: preview;
+      border: 1px solid #ddd;
+      border-width: 0 0 0 1px;
+      padding: 1rem;  
+    }
+  }
+  
+  .btn {
+    padding: 7px 15px;
+    font-style: 1rem;
+    color: white;
+    background-color: #7777cc;
+    border: 1px solid #66b;
+    border-radius: 2px;
     cursor: pointer;
-}
+  }
 
-.btn.btn-primary {
-    background-color: #444;
-    color: #fff;
-}
-
-.btn.btn-warning {
-    background-color: #944;
-    color: #fff;
-}
-
-.btn:disabled {
-    background-color: #ccc;
-    color: #999;
-}
-
-/* blockquote */
-
-blockquote {
-    margin: 1.6em 0;
-    padding: 0 1.6em;
-    border-left: #dfe1e3 .6em solid;
-}
-
-/*  open nav button */
+/********************
+*    Open Nav      *
+********************/
 
 .open-nav-button {
     position: absolute;
@@ -337,12 +315,13 @@ blockquote {
     font-size: 2rem;
     color: #fff;
 }
+
 .open-nav-button:hover {
     color: #ddd;
 }
 
 /********************
-*        Side Nav   *
+*     Side Nav      *
 ********************/
 
 .side-nav {
@@ -399,7 +378,7 @@ blockquote {
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
-    line-height: 1.5em; 
+    line-height: 1.5em;
     margin: 0 0 0.4em 0;
     font-family: "Open Sans", sans-serif;
     font-weight: var(--font-bold);
@@ -514,6 +493,16 @@ small {
     display: grid;
     grid-gap: 0.5rem;
     grid-template-columns: 1fr 1fr;
+}
+
+/*******************
+*    blockquote    *
+********************/
+
+blockquote {
+    margin: 1.6em 0;
+    padding: 0 1.6em;
+    border-left: #dfe1e3 .6em solid;
 }
 
 /*******************

@@ -1,34 +1,29 @@
-/*  tslint:disable */
 import * as React from "react";
 import { connect } from "react-redux";
 import {
   Field,
   reduxForm,
+  formValueSelector,
   InjectedFormProps,
   SubmissionError
 } from "redux-form";
-import {
-  RenderTextInput,
-  RenderTextArea,
-  RenderSelect,
-  RenderDateInput
-} from "../../form/RenderFields";
 import { validatePostFormValues } from "../../validation/validatePost";
 import { postFormActions } from "../../store/actions";
 import { PostFormState } from "../../interface/PostFormState";
 import { PostFormValues } from "../../interface/PostFormValues";
-import { PostStatus } from "../../interface/PostData";
 import { AppState } from "../../interface/AppState";
+import MarkdownViewer from "../MarkdownViewer";
 
-interface MapStateProps {
+interface StateProps {
   postFormState: PostFormState;
+  postBody: string;
 }
 
-interface MapDispatchProps {
+interface DispatchProps {
   savePost(postId: string, formValues: PostFormValues): void;
 }
 
-interface PostFormProps extends MapDispatchProps, MapStateProps {
+interface PostFormProps extends DispatchProps, StateProps {
   onSave(postId: string): void;
 }
 
@@ -52,62 +47,42 @@ class PostForm extends React.Component<
   }
 
   render() {
-    const {
-      handleSubmit,
-      invalid,
-      submitting,
-      pristine,
-      error,
-      reset,
-    } = this.props;
+    const { handleSubmit, invalid, submitting, pristine, postBody } = this.props;
 
-    const draftStatus: PostStatus = "draft";
-    const publishStatus: PostStatus = "published";
+    console.log('postByd', postBody)
 
     return (
-      <form onSubmit={handleSubmit(this.savePost)}>
-        <div className="veritical-form">
-          {error && <div className="submission-error">{error}</div>}
-          <div className="two-columns">
-            <Field
-              name="title"
-              placeholder="Title"
-              component={RenderTextInput}
-            />
-            <Field name="slug" placeholder="Post url" component={RenderTextInput} />
-          </div>
-          <Field name="body" component={RenderTextArea} />
-
-          <div className="two-columns">
-            <Field name="status" component={RenderSelect}>
-              <option value={draftStatus}>Draft</option>
-              <option value={publishStatus}>Published</option>
-            </Field>
-            <div> 
-              <Field name="publish_date_string" component={RenderDateInput} />
-            </div>
-          </div>
-          <div className="button-group">
-            <button
-              className="btn btn-primary"
-              disabled={submitting || invalid || pristine}
-              type="submit"
-            >
-              Submit
-            </button>
-            <button className="btn btn-warning" onClick={reset}>
-              Reset
-            </button>
-            {submitting && <span>saving...</span>}
-          </div>
+      <form
+        onSubmit={handleSubmit(this.savePost)}
+        className="post-edit-section"
+      >
+        <div className="post-title">
+          <Field name="title" placeholder="Title" component="input" />
+        </div>
+        <div className="post-action">
+          <button
+            className="btn"
+            disabled={submitting || invalid || pristine}
+            type="submit"
+          >
+            Save
+          </button>
+        </div>
+        <div className="post-body">
+          <Field name="body" component="textarea" />
+        </div>
+        <div className="post-preview">
+          <MarkdownViewer markdown={postBody} />
         </div>
       </form>
     );
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  postFormState: state.postFormState
+const selector = formValueSelector("post");
+const mapStateToProps = (state: AppState): StateProps => ({
+  postFormState: state.postFormState,
+  postBody: selector(state, "body")
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

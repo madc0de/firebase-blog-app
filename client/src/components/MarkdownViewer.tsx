@@ -13,12 +13,12 @@ function htmlFromMarkdown(text: string) {
 }
  
 interface MarkdownProps {
-    text: string
+    markdown: string
 }
 
-const Markdown: React.SFC<MarkdownProps> = ({text}) => {
-    const html = htmlFromMarkdown(text)
+const MarkdownViewer: React.SFC<MarkdownProps> = ({markdown}) => {
+    const html = htmlFromMarkdown(markdown)
     return <div dangerouslySetInnerHTML={html} />
 };
 
-export default Markdown;
+export default MarkdownViewer;

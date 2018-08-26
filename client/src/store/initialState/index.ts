@@ -8,6 +8,7 @@ import { PostData } from "../../interface/PostData";
 import { PostViewState } from "../../interface/PostViewState";
 import { PostFormValues } from "../../interface/PostFormValues";
 import { PostFormState } from "../../interface/PostFormState";
+import { PostTitlesState } from "../../interface/PostTitlesState";
 
 export const initail_BlogSetting: BlogSettingData =  {
   blog_title: '',
@@ -38,6 +39,10 @@ export const initial_AuthState: AuthState = {
 
 export const initial_PostsState: PostsState = {
   posts: []
+};
+
+export const initial_PostTitlesState: PostTitlesState = {
+  postTitles: []
 };
 
 export const initial_UsersState: UsersState = {

@@ -11,12 +11,13 @@ import { reducer as formReducer } from "redux-form";
 import * as reducers from "./reducers";
 import { AppState } from "../interface/AppState";
 import { ReduxAction } from "../interface/ReduxAction";
-
+ 
 const rootReducer: Reducer<AppState, ReduxAction<any>> = combineReducers({
   appInitState: reducers.appInitReducer,
   blogSettingsState: reducers.blogSettingsReducer,
   metaDataState: reducers.metaDataReducer,
   postsState: reducers.postReducer,
+  postTitlesState: reducers.postTitlesReducer,
   authState: reducers.authReducer,
   usersState: reducers.userReducer,
   postViewState: reducers.postViewReducer,

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Header, PageContent } from "../layout";
+import { Header, PostContent } from "../layout";
 import PostExcerpts from "../post/PostExcerpts";
 import { connect } from "react-redux";
 import { postActions } from "../../store/actions";
@@ -27,13 +27,13 @@ class PublishedPosts extends React.Component<Props, {}> {
     return (
       <div className="full-height">
         <Header />
-        <PageContent>
+        <PostContent>
           <PostExcerpts
             posts={posts}
             filterBy={"published"}
             authState={authState}
           />
-        </PageContent>
+        </PostContent>
       </div>
     );
   }

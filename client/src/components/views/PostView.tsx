@@ -4,7 +4,7 @@ import { connect, DispatchProp } from "react-redux";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { postViewActions } from "../../store/actions";
 import Header from "../layout/Header";
-import PageContent from "../layout/PageContent";
+import PostContent from "../layout/PostContent";
 import Loading from "../layout/Loading";
 import Post from "../post/Post";
 import PostNotFound from "../post/PostNotFound";
@@ -58,25 +58,25 @@ class PostView extends React.Component<
     }
     if (loadingStatus === "loading") {
       return;
-      <PageContent>
-        <Loading>Loading Post...</Loading>;
-      </PageContent>;
+      <PostContent>
+        <Loading>Loading...</Loading>;
+      </PostContent>;
     }
     if (loadingStatus === "not-found") {
       return <PostNotFound />;
     }
     if (loadingStatus === "error") {
       return (
-        <PageContent>
+        <PostContent>
           <h4>Error loading post</h4>
           <div>{error}</div>
-        </PageContent>
+        </PostContent>
       );
     }
     return (
-      <PageContent>
+      <PostContent>
         <Post post={post as PostDocument} authState={this.props.authState} />
-      </PageContent>
+      </PostContent>
     )
   };
 

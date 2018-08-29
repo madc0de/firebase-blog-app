@@ -78,7 +78,6 @@ body {
     }
 }
 
-
 .section-content {
     height: 100%;
 }
@@ -173,16 +172,20 @@ body {
     font-size: 1.1rem;
 }
 
-.post a {
+.post-body-view a, .post-body-preview a {
     color: #4a4a4a;
     text-decoration: underline;
 }
 
-.post ul {
+.post-body-preview a {
+    color: #4285f4;
+}
+
+.post-body-view ul, .post-body-preview ul {
     list-style-type: circle;
 }
 
-.post ol {
+.post-body-view ol, .post-body-preview oll {
     list-style-type: decimal;
 }
 
@@ -226,62 +229,63 @@ tr:hover {
 /********************
 * post-edit-section *
 ********************/
+
 .post-edit-section {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 50px auto;
     grid-template-areas: "title title title action" "body body body body"
-  }
-  
-  .field {
+}
+
+.field {
     display: grid;
-  }
-  
-  .post-edit-section input, textarea {
+}
+
+.post-edit-section input, textarea {
     border: none;
     outline: none;
     resize: none;
     font-size: 1.1rem;
-  }
-  
-  .post-title {
+}
+
+.post-title {
     grid-area: title;
     display: grid;
     border-bottom: 1px solid #ddd;
-  }
+}
 
-  .post-title input {
-      font-size: 1.6rem;
-      font-weight: bold;
-  }
-  
-  .post-action {
+.post-title input {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.post-action {
     grid-area: action;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding-right: 1rem;
     border-bottom: 1px solid #ddd;
-  }
-  
-  .post-body {
+}
+
+.post-body {
     grid-area: body;
-  }
-  
-  .post-preview {
+}
+
+.post-preview {
     display: none;
-  }
-  
-  .post-edit-section input {
+}
+
+.post-edit-section input {
     padding-left: 1rem;
-  }
-  
-  .post-edit-section  input::placeholder {
+}
+
+.post-edit-section input::placeholder {
     color: #ddd;
-  }
-  
-  .post-body textarea {
+}
+
+.post-body textarea {
     height: 100%;
     width: 100%;
     padding: 1rem;
@@ -289,22 +293,22 @@ tr:hover {
     border: none;
     resize: none;
     box-sizing: border-box;
-  }
-  
-  @media(min-width: 800px) {
+}
+
+@media(min-width: 800px) {
     .post-edit-section {
-      grid-template-areas: "title title title action" "body body preview preview"
+        grid-template-areas: "title title title action" "body body preview preview"
     }
     .post-preview {
-      display: block;
-      grid-area: preview;
-      border: 1px solid #ddd;
-      border-width: 0 0 0 1px;
-      padding: 1rem;  
+        display: block;
+        grid-area: preview;
+        border: 1px solid #ddd;
+        border-width: 0 0 0 1px;
+        padding: 1rem;
     }
-  }
-  
-  .btn {
+}
+
+.btn {
     padding: 7px 15px;
     font-style: 1rem;
     color: white;
@@ -313,7 +317,7 @@ tr:hover {
     border-radius: 2px;
     cursor: pointer;
     min-width: 6rem;
-  }
+}
 
 /********************
 *    Open Nav      *
@@ -533,6 +537,10 @@ blockquote {
 }
 
 @keyframes spinning {
-    0% { transform: rotate(0deg) }
-    100% { transform: rotate(100deg) }
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(100deg)
+    }
 }

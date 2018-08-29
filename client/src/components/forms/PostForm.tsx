@@ -71,7 +71,7 @@ class PostForm extends React.Component<
         <div className="post-body">
           <Field name="body" component="textarea" />
         </div>
-        <div className="post-preview">
+        <div className="post-body-preview">
           <MarkdownViewer markdown={postBody} />
         </div>
       </form>

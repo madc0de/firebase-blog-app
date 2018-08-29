@@ -20,7 +20,7 @@ const Post: React.SFC<PostProps> = props => {
         <h1>{postData.title}</h1>
         <PostMeta post={post} authState={authState} />
       </div>
-      <div className="post-body">
+      <div className="post-body post-body-view">
         <MarkdownViewer markdown={postData.body} />
       </div>
     </div>

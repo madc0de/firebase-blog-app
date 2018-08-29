@@ -71,6 +71,14 @@ body {
     max-width: 800px;
 }
 
+@media only screen and (min-width: 800px) {
+    .post-content {
+        width: 800px;
+        margin: 0 auto;
+    }
+}
+
+
 .section-content {
     height: 100%;
 }
@@ -241,6 +249,11 @@ tr:hover {
     grid-area: title;
     display: grid;
     border-bottom: 1px solid #ddd;
+  }
+
+  .post-title input {
+      font-size: 1.6rem;
+      font-weight: bold;
   }
   
   .post-action {

@@ -1,9 +1,9 @@
 import * as React from "react";
-import Markdown from "./Makrdown";
 import PostMeta from "../layout/PostMeta";
 import * as mapUtil from "../../utils/mapUtil";
 import { PostDocument, PostData } from "../../interface/PostData";
 import { AuthState } from "../../interface/AuthState";
+import MarkdownViewer from "../MarkdownViewer";
 
 interface PostProps {
   post: PostDocument;
@@ -21,7 +21,7 @@ const Post: React.SFC<PostProps> = props => {
         <PostMeta post={post} authState={authState} />
       </div>
       <div className="post-body">
-        <Markdown text={postData.body} />
+        <MarkdownViewer markdown={postData.body} />
       </div>
     </div>
   );

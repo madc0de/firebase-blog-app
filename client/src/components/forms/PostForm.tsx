@@ -13,6 +13,7 @@ import { PostFormState } from "../../interface/PostFormState";
 import { PostFormValues } from "../../interface/PostFormValues";
 import { AppState } from "../../interface/AppState";
 import MarkdownViewer from "../MarkdownViewer";
+import SubmitButton from "../SubmitButton";
 
 interface StateProps {
   postFormState: PostFormState;
@@ -60,13 +61,12 @@ class PostForm extends React.Component<
           <Field name="title" placeholder="Title" component="input" />
         </div>
         <div className="post-action">
-          <button
-            className="btn"
+          <SubmitButton
             disabled={submitting || invalid || pristine}
-            type="submit"
+            saving={submitting}
           >
             Save
-          </button>
+          </SubmitButton>
         </div>
         <div className="post-body">
           <Field name="body" component="textarea" />

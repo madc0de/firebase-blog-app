@@ -312,6 +312,7 @@ tr:hover {
     border: 1px solid #66b;
     border-radius: 2px;
     cursor: pointer;
+    min-width: 6rem;
   }
 
 /********************
@@ -521,4 +522,17 @@ blockquote {
 
 .full-height {
     height: 100%;
+}
+
+/*******************
+*    animation     *
+********************/
+
+.spin {
+    animation: spinning 1s linear infinite;
+}
+
+@keyframes spinning {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(100deg) }
 }

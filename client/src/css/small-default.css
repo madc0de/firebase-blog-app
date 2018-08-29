@@ -182,7 +182,7 @@ body {
 }
 
 .post-body-view ul, .post-body-preview ul {
-    list-style-type: circle;
+    list-style-type: disc;
 }
 
 .post-body-view ol, .post-body-preview oll {

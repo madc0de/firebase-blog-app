@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, RouteComponentProps, withRouter } from "react-router-dom";
 import { AuthState } from "../../interface/AuthState";
 import { AppState } from "../../interface/AppState";
-import { PageContent } from "../layout";
+import { PostContent } from "../layout";
 import { SigninProviderOption, signInWithProviderAction } from "../../data/Auth";
 
 interface StateProps {
@@ -59,7 +59,7 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
     }
 
     return (
-      <PageContent>
+      <PostContent>
         <div className="signin-wrap">
           <div className="signin-box">
             <button className="btn google" onClick={this.signInWithGoogle}>
@@ -73,7 +73,7 @@ class SigninView extends React.Component<SigninViewProps, SigninState> {
             </button>
           </div>
         </div>
-      </PageContent>
+      </PostContent>
     );
   }
 }

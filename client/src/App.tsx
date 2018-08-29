@@ -33,7 +33,7 @@ class App extends React.Component<AppProps & StateProps, {}> {
     const { authState, appInitState } = this.props;
 
     if (!appInitState.initialized) {
-      return <Loading>Loading</Loading>;
+      return <Loading>Loading...</Loading>;
     }
 
     return (

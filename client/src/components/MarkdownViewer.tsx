@@ -1,10 +1,13 @@
 import * as React from 'react';
 import * as showdown from 'showdown'
 
-const converter = new showdown.Converter()
-converter.setOption('simpleLineBreaks', true)
-converter.setOption('tables', true)
-converter.setOption('openLinksInNewWindow', true)
+const converter = new showdown.Converter({
+    simpleLineBreaks: true,
+    tables: true,
+    openLinksInNewWindow: true,
+    disableForced4SpacesIndentedSublists: true,
+    simplifiedAutoLink: true
+})
 
 function htmlFromMarkdown(text: string) {
     return {

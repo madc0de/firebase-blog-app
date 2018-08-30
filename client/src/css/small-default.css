@@ -118,12 +118,8 @@ body {
 }
 
 /*******************
-*       post       *
+*   post-meta       *
 ********************/
-
-.post-header {
-    padding: 2rem 0;
-}
 
 .post-meta {
     color: #9EABB3;
@@ -148,6 +144,19 @@ body {
     width: 100%;
     border-radius: 50%;
 }
+
+.post-meta a {
+    text-decoration: underline;
+}
+
+/*******************
+*       post       *
+********************/
+
+.post-header {
+    padding: 2rem 0;
+}
+
 
 .post-content .post-body {
     margin: 1rem 0;
@@ -459,6 +468,10 @@ ol, ul {
 ol ol, ul ul, ul ol, ol ul {
     margin: 0 0 0.4em 0;
     padding-left: 2em;
+}
+
+strong, em {
+    font-weight: bold;
 }
 
 /*******************

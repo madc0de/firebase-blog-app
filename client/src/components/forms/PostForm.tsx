@@ -49,9 +49,6 @@ class PostForm extends React.Component<
 
   render() {
     const { handleSubmit, invalid, submitting, pristine, postBody } = this.props;
-
-    console.log('postByd', postBody)
-
     return (
       <form
         onSubmit={handleSubmit(this.savePost)}

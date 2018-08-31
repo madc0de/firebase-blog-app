@@ -5,37 +5,51 @@ import {
   reduxForm,
   formValueSelector,
   InjectedFormProps,
-  SubmissionError
+  SubmissionError,
+  submit
 } from "redux-form";
 import { validatePostFormValues } from "../../validation/validatePost";
-import { postFormActions } from "../../store/actions";
 import { PostFormState } from "../../interface/PostFormState";
 import { PostFormValues } from "../../interface/PostFormValues";
 import { AppState } from "../../interface/AppState";
 import MarkdownViewer from "../MarkdownViewer";
 import SubmitButton from "../SubmitButton";
+import { submitPost } from "./submitPost";
+
+interface DispatchProps {
+  triggerSubmit(): void;
+}
 
 interface StateProps {
   postFormState: PostFormState;
   postBody: string;
 }
 
-interface DispatchProps {
-  savePost(postId: string, formValues: PostFormValues): void;
-}
-
-interface PostFormProps extends DispatchProps, StateProps {
+interface Props extends StateProps, DispatchProps, InjectedFormProps<PostFormValues> {
   onSave(postId: string): void;
 }
 
-class PostForm extends React.Component<
-  PostFormProps & InjectedFormProps<PostFormValues>,
-  {}
-> {
-  savePost = async (values: PostFormValues) => {
-    const { postId } = this.props.initialValues;
-    await this.props.savePost(postId as string, values);
-  };
+class PostForm extends React.Component<Props, {}> {
+  formRef: React.RefObject<HTMLFormElement>;
+
+  constructor(props: Props) {
+    super(props);
+
+    this.formRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.triggerSubmitOn_metaKey_Enter()
+  }
+
+  triggerSubmitOn_metaKey_Enter = () => {
+    const element = this.formRef.current as HTMLFormElement;
+    element.addEventListener("keydown", e => {
+      if ((e.metaKey || e.ctrlKey) && e.keyCode === 13) {
+        this.props.triggerSubmit()
+      }
+    });
+  }
 
   componentDidUpdate() {
     const { postFormState, onSave } = this.props;
@@ -48,11 +62,18 @@ class PostForm extends React.Component<
   }
 
   render() {
-    const { handleSubmit, invalid, submitting, pristine, postBody } = this.props;
+    const {
+      handleSubmit,
+      invalid,
+      submitting,
+      pristine,
+      postBody
+    } = this.props;
     return (
       <form
-        onSubmit={handleSubmit(this.savePost)}
+        onSubmit={handleSubmit}
         className="post-edit-section"
+        ref={this.formRef}
       >
         <div className="post-title">
           <Field name="title" placeholder="Title" component="input" />
@@ -77,14 +98,14 @@ class PostForm extends React.Component<
 }
 
 const selector = formValueSelector("post");
+
 const mapStateToProps = (state: AppState): StateProps => ({
   postFormState: state.postFormState,
   postBody: selector(state, "body")
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
-  savePost: (postId: string, formValues: PostFormValues) =>
-    dispatch(postFormActions.savePostAction(postId, formValues))
+const mapDispatchToProps = (dispatch: any): DispatchProps => ({
+  triggerSubmit: () => dispatch(submit("post"))
 });
 
 const _connectWrapped = connect(
@@ -96,7 +117,8 @@ const _reduxFormWrapped = reduxForm({
   form: "post",
   validate: validatePostFormValues,
   enableReinitialize: true,
-  destroyOnUnmount: true
+  destroyOnUnmount: true,
+  onSubmit: submitPost
 })(_connectWrapped);
 
 export default _reduxFormWrapped;

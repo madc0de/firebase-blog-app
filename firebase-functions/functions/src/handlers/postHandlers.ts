@@ -14,7 +14,7 @@ export async function handle_post_create(
     const data = doc.data();
 
     await postBodyActions.set_postBody(id, data.userId, data.body);
-    await postTitleActions.set_postTitle(id, data.userId, data.title);
+    await postTitleActions.set_postTitle(id, data.userId, data.status, data.title);
 
     const post_count = await metaDataActions.update_post_count("increment");
     // remove post body, set post_umber. created_date
@@ -61,7 +61,7 @@ export async function handle_post_write(
     }
 
     await postBodyActions.set_postBody(id, data.userId, data.body);
-    await postTitleActions.set_postTitle(id, data.userId, data.title);
+    await postTitleActions.set_postTitle(id, data.userId, data.status, data.title);
     // post body can be removed
     return change.after.ref.set({ body: ''}, { merge: true });
   } catch (err) {

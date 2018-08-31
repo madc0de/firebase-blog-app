@@ -3,11 +3,12 @@ import * as admin from "firebase-admin";
 export async function set_postTitle(
   postId: string,
   userId: string,
+  status: string,
   title: string
 ) {
   try {
     const ref = admin.firestore().doc(`posttitle/${postId}`);
-    const postBody = { userId, title };
+    const postBody = { userId, status, title };
     return ref.set(postBody);
   } catch (err) {
     return err;

@@ -194,7 +194,7 @@ body {
     list-style-type: disc;
 }
 
-.post-body-view ol, .post-body-preview oll {
+.post-body-view ol, .post-body-preview ol {
     list-style-type: decimal;
 }
 
@@ -282,7 +282,7 @@ tr:hover {
     grid-area: body;
 }
 
-.post-preview {
+.post-body-preview {
     display: none;
 }
 
@@ -308,13 +308,14 @@ tr:hover {
     .post-edit-section {
         grid-template-areas: "title title title action" "body body preview preview"
     }
-    .post-preview {
+    .post-body-preview {
         display: block;
         grid-area: preview;
         border: 1px solid #ddd;
         border-width: 0 0 0 1px;
         padding: 1rem;
     }
+    
 }
 
 .btn {

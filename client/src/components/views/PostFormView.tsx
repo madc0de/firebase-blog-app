@@ -38,7 +38,7 @@ class PostFormView extends React.Component<PostFormViewProps, PostFormState> {
   }
 
   redirectToPostView = (postId: string) => {
-    this.props.history.push(`/post/${postId}`);
+    // this.props.history.push(`/post/${postId}`);
   };
 
   render() {

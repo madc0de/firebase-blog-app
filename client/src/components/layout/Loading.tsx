@@ -1,13 +1,10 @@
 import * as React from 'react';
+import { FaSpinner } from 'react-icons/fa'
 
-interface Props {
-  children: any
-}
-
-function Loading ({ children }: Props) {
+function Loading () {
     return (
       <div className="view-loading">
-         {children}
+        <FaSpinner className="spin" />
       </div>
     );
 }

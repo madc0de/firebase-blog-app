@@ -59,7 +59,7 @@ class PostView extends React.Component<
     if (loadingStatus === "loading") {
       return;
       <PostContent>
-        <Loading>Loading...</Loading>;
+        <Loading />
       </PostContent>;
     }
     if (loadingStatus === "not-found") {

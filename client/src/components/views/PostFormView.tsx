@@ -6,6 +6,7 @@ import PostForm from "../forms/PostForm";
 import { postFormActions } from "../../store/actions";
 import { PostFormState } from "../../interface/PostFormState";
 import { AppState } from "../../interface/AppState";
+import { Loading } from "../layout";
 interface RouteParamProps {
   postId: string | undefined;
 }
@@ -49,10 +50,7 @@ class PostFormView extends React.Component<PostFormViewProps, PostFormState> {
     }
     if (loadingStatus === "loading") {
       return (
-        <div>
-          <Header />
-          <div className="view-loading">Loading....</div>;
-        </div>
+          <Loading />
       );
     }
     if (loadingStatus === "not-found") {

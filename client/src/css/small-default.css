@@ -157,7 +157,6 @@ body {
     padding: 2rem 0;
 }
 
-
 .post-content .post-body {
     margin: 1rem 0;
     color: var(--color);
@@ -213,6 +212,7 @@ input::placeholder {
     outline: none;
     border: none;
     resize: none;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     box-sizing: border-box;
 }
 
@@ -255,7 +255,7 @@ tr:hover {
     border: none;
     outline: none;
     resize: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .post-title {
@@ -315,7 +315,6 @@ tr:hover {
         border-width: 0 0 0 1px;
         padding: 1rem;
     }
-    
 }
 
 .btn {
@@ -480,25 +479,26 @@ strong, em {
 ********************/
 
 code {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: #b73c2c;
+    background-color: #f7f7f7;
+    padding: 0.1rem 0.2rem;
+    border: 1px solid #63a4f9;
+    border-radius: 2px;
 }
 
 pre {
-    box-sizing: border-box;
-    margin: 0 0 1.75em 0;
-    border: #E3EDF3 1px solid;
-    width: 100%;
-    padding: 10px;
-    font-family: Inconsolata, monospace, sans-serif;
-    font-size: 0.9em;
-    white-space: pre;
-    overflow: auto;
-    background: #F7FAFB;
-    border-radius: 3px;
+    background-color: #f7f7f7;
+    padding: 0.85rem 1rem;
 }
 
-pre code, pre tt {
-    font-size: inherit;
+pre code {
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.02rem;
+    font-family: Consolas, monospace, sans-serif;
     white-space: pre-wrap;
     background: transparent;
     border: none;

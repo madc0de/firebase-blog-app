@@ -9,7 +9,7 @@ interface Props {
 
 const SubmitButton: React.SFC<Props> = ({ children, saving, disabled }) => {
   return (
-    <button type="submit" disabled={disabled} className="btn ">
+    <button type="submit" disabled={disabled} className="btn btn-blue btn-small">
       {saving ? (
         <FaSpinner className="spin" />
       ) : (

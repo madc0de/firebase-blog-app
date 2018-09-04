@@ -83,7 +83,7 @@ class PostForm extends React.Component<Props, {}> {
             disabled={submitting || invalid || pristine}
             saving={submitting}
           >
-            Save
+            SAVE
           </SubmitButton>
         </div>
         <div className="post-body">

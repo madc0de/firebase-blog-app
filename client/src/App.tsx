@@ -1,19 +1,16 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import PublishedPosts from "./components/views/PublishedPosts";
-import RecentPosts from "./components/views/RecentPosts";
-import PostView from "./components/views/PostView";
 import SigninView from "./components/views/SigninView";
-import PostFormView from "./components/views/PostFormView";
-import PrivateRoute from "./components/route/PrivateRoute";
 import Loading from "./components/layout/Loading";
 import { AuthState } from "./interface/AuthState";
 import { AppInitState } from "./interface/AppInitState";
 import { BlogSettingData } from "./interface/BlogSettingData";
 import { AppState } from "./interface/AppState";
+import { AdminSection } from "./admin-section/AdminSection";
+import { BlogSection } from "./blog-section/BlogSection";
 
 interface AppProps {}
 interface StateProps {
@@ -39,26 +36,13 @@ class App extends React.Component<AppProps & StateProps, {}> {
     return (
       <Router>
         <React.Fragment>
-          <Route exact path="/" user={authState} component={PublishedPosts} />
-          <Route path="/signin" component={SigninView} />
-          <Route path="/post/:slug" component={PostView} />
-
-          <PrivateRoute
-            exact
-            path="/recent"
-            authState={authState}
-            component={RecentPosts}
-          />
-          <PrivateRoute
-            path="/new-post"
-            authState={authState}
-            component={PostFormView}
-          />
-          <PrivateRoute
-            path="/edit-post/:postId"
-            authState={authState}
-            component={PostFormView}
-          />
+          <Switch>
+            <Route path="/admin" component={AdminSection} />
+            <Route path="/signin" component={SigninView} />
+            <Route path="/post/:slug" component={BlogSection} />
+            <Route exact path="/" user={authState} component={BlogSection} />            
+            <Route render={() => <div style={{padding: '5rem'}}><h1>404 not found</h1></div>} />
+          </Switch>
         </React.Fragment>
       </Router>
     );

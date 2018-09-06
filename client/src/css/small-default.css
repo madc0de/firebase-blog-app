@@ -236,6 +236,48 @@ tr:hover {
 }
 
 /********************
+* admin-section *
+********************/
+
+.admin-section {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 230px auto;
+    grid-template-rows: auto;
+}
+
+.admin-section-nav {
+    border-right: 1px solid #ddd;
+    background-color: #f9f9f9;
+    padding-top: 3.125rem;
+}
+
+.admin-section-nav ul {
+    padding-left: 0;
+}
+
+.admin-section-nav li {
+    line-height: 2;
+}
+
+.admin-section-nav li:hover {
+    background-color: #ddf;
+}
+
+.admin-section-nav a {
+    text-decoration: none;
+    margin: 0 1.6rem;
+}
+
+/********************
+* admin-section *
+********************/
+
+.blog-section {
+    height: 100%;
+}
+
+/********************
 * post-edit-section *
 ********************/
 
@@ -347,15 +389,15 @@ tr:hover {
 }
 
 .btn-red {
-    border-top-color:#e25440;
+    border-top-color: #e25440;
     border: 1px solid #aaa;
     color: white;
 }
 
 .btn-blue {
-  background-color: #5ba4e5;
-  border: 1px solid #66b;
-  color: white;
+    background-color: #5ba4e5;
+    border: 1px solid #66b;
+    color: white;
 }
 
 /********************
@@ -607,7 +649,6 @@ blockquote {
 
 .modal-content {
     background-color: #fff;
-    font-family: ;
     display: inline-block;
     font-family: 'Open Sans', sans-serif;
     font-weight: 200;

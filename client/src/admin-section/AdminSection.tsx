@@ -1,16 +1,28 @@
 import * as React from "react";
-import { connect } from "react-redux";
+import { connect, Dispatch } from "react-redux";
 import { AuthState } from "../interface/AuthState";
 import { AppState } from "../interface/AppState";
 import PrivateRoute from "../components/route/PrivateRoute";
 import PostFormView from "../components/views/PostFormView";
 import { Link } from "react-router-dom";
+import { loadPostTitles } from "../store/actions/post";
 
 interface StateProps {
   authState: AuthState;
 }
 
-class _AdminSection extends React.Component<StateProps, {}> {
+interface DispatchProps {
+  loadPostTitles(userId: string): void
+}
+
+class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
+
+  componentDidMount() {
+    if (this.props.authState && this.props.authState.authUserId) {
+      this.props.loadPostTitles(this.props.authState.authUserId)
+    }
+  }
+
   render() {
     const { authState } = this.props;
     return (
@@ -43,10 +55,15 @@ class _AdminSection extends React.Component<StateProps, {}> {
 }
 
 const mapStateToProps = (state: AppState): StateProps => {
-  console.log("admin-section map state to props");
   return {
     authState: state.authState
   };
 };
 
-export const AdminSection = connect(mapStateToProps)(_AdminSection);
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  loadPostTitles(userId: string) { 
+    dispatch(loadPostTitles(userId))
+  }
+})
+
+export const AdminSection = connect(mapStateToProps, mapDispatchToProps)(_AdminSection);

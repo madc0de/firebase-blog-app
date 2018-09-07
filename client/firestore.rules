@@ -51,6 +51,10 @@ service cloud.firestore {
       allow write: if isSignedIn() && 
       		request.auth.uid == incommingData().userId  &&
           isPostBody(request.resource.data)          
+    }        
+    
+    match /posttitle/{postId} {
+    	allow read: if true;
     }
     
     match /metadata/values {

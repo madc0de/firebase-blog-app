@@ -13,6 +13,7 @@ export const loadPostTitles = (userId: string): any=> async (
     const posts = await getPostTitles(userId)
     return dispatch(postTitlesLoaded(posts))
   } catch(err) {
+    console.log(err)
     return err
   }
 }

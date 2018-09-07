@@ -1,7 +1,7 @@
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 import { Dispatch } from "redux";
-import { userActions, postActions } from "../store/actions/";
+import { userActions } from "../store/actions/";
 import { initial_UserData } from "../store/initialState";
 import { UserData, UserDocument } from "../interface/UserData";
 import { authErrorAction } from "../store/actions/user/authErrorAction";
@@ -29,7 +29,6 @@ const handlerAuthStateChange = async (
     };
 
     dispatch(userActions.userAuthenticatedAction(user));
-    dispatch(postActions.loadPostTitles(userId))
     await dispatch(userActions.ensureUserAccount(userId, userData));
   } else {
     dispatch(userActions.userSignedOut());

@@ -17,6 +17,7 @@ export const getPostTitles = async (
     }
     return [];
   } catch (error) {
+    console.log(error)
     return error;
   }
 };

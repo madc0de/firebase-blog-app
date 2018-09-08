@@ -30,10 +30,10 @@ class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
         <div className="admin-section-nav">
           <ul>
             <li>
-              <Link to="admin/content">Content</Link>
+              <Link to="/admin/content">Content</Link>
             </li>
             <li>
-              <Link to="admin/new-post">New post</Link>
+              <Link to="/admin/new-post">New post</Link>
             </li>
           </ul>
         </div>

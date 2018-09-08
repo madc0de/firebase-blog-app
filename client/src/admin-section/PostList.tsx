@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AppState } from '../interface/AppState';
 import { PostTitlesState } from '../interface/PostTitlesState';
 import { connect } from 'react-redux';
+import PostListItem from './PostListItem';
 
 interface StateProps {
   postTitlesState: PostTitlesState
@@ -17,11 +18,12 @@ export default class _PostList extends React.Component<Props, any> {
     return (
       <div className="post-list">
         {
-          postTitlesState.postTitles.map(postTitle => {
-            const key = Object.keys(postTitle)[0]
-            const postDate = postTitle[key]
-            return <div key={key}>{postDate.title}</div>
-          })
+          postTitlesState.postTitles.map((postTitle, index) => 
+            <PostListItem  
+              key={index}
+              postTitle={postTitle}
+            /> 
+          )
         }
       </div>
     );

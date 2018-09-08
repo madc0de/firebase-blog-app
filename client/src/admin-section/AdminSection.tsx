@@ -4,24 +4,22 @@ import { AuthState } from "../interface/AuthState";
 import { AppState } from "../interface/AppState";
 import PrivateRoute from "../components/route/PrivateRoute";
 import PostFormView from "../components/views/PostFormView";
-import { Link } from "react-router-dom";
+import { Link, Switch } from "react-router-dom";
 import { loadPostTitles } from "../store/actions/post";
+import { PostAdminSection } from "./PostAdminSection";
 
 interface StateProps {
   authState: AuthState;
 }
 
 interface DispatchProps {
-  loadPostTitles(userId: string): void
+  loadPostTitles(userId: string): void;
 }
 
-const Blank = () => <div></div>
-
 class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
-
   componentDidMount() {
     if (this.props.authState && this.props.authState.authUserId) {
-      this.props.loadPostTitles(this.props.authState.authUserId)
+      this.props.loadPostTitles(this.props.authState.authUserId);
     }
   }
 
@@ -32,7 +30,7 @@ class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
         <div className="admin-section-nav">
           <ul>
             <li>
-              <Link to="/admin/content">Content</Link>
+              <Link to="/admin/">Content</Link>
             </li>
             <li>
               <Link to="/admin/new-post">New post</Link>
@@ -40,23 +38,23 @@ class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
           </ul>
         </div>
         <div className="admin-section-content">
-
-          <PrivateRoute
-            path="/admin/new-post"
-            authState={authState}
-            component={PostFormView}
-          />
-          <PrivateRoute
-            path="/admin/edit-post/:postId"
-            authState={authState}
-            component={PostFormView}
-          />
-
-          <PrivateRoute  
-            path="/"
-            authState={authState}
-            component={Blank} 
-          />
+          <Switch>
+            <PrivateRoute
+              path="/admin/new-post"
+              authState={authState}
+              component={PostFormView}
+            />
+            <PrivateRoute
+              path="/admin/edit-post/:postId"
+              authState={authState}
+              component={PostFormView}
+            />
+            <PrivateRoute
+              path="/"
+              authState={authState}
+              component={PostAdminSection}
+            />
+          </Switch>
         </div>
       </div>
     );
@@ -70,9 +68,12 @@ const mapStateToProps = (state: AppState): StateProps => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  loadPostTitles(userId: string) { 
-    dispatch(loadPostTitles(userId))
+  loadPostTitles(userId: string) {
+    dispatch(loadPostTitles(userId));
   }
-})
+});
 
-export const AdminSection = connect(mapStateToProps, mapDispatchToProps)(_AdminSection);
+export const AdminSection = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(_AdminSection);

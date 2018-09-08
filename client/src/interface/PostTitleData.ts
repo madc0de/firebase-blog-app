@@ -1,9 +1,9 @@
 import { FirestoreDocument } from "./FirestoreDocument";
-import { PostData } from "./PostData";
 
 export interface PostTitleData {
-  userId?: string;
+  userId: string;
+  status: string;
   title: string;
 }
 
-export type PostTitleDocument = FirestoreDocument<PostData>
+export type PostTitleDocument = FirestoreDocument<PostTitleData>;

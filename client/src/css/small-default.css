@@ -389,30 +389,32 @@ tr:hover {
 *     post-list    *
 *******************/
 
-.post-list {
-
-}
-
 .post-list-item {
   border-bottom: 1px solid #eee;
-  padding: 24px;
+  padding: 0.9rem;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .post-list-item .title {
-  font-size: 2rem;
-  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #111;
 }
 
 .post-list-item .meta {
-  height: 3rem;
+  height: 2rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
+.post-list-item .meta .status {
+    color: #aaa; 
+    font-size: 0.9rem;
+}
+  
 .post-list-item .meta .avatar {
-  height: 2.5rem;
-  width: 2.5rem;;
+  height: 2rem;
+  width: 2rem;
   margin-right: 2rem;
 }
 
@@ -424,9 +426,6 @@ tr:hover {
 }
 
 
-.post-list-item .meta .status {
-  color: #aaa; 
-}
 
 
 /*******************

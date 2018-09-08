@@ -15,6 +15,8 @@ interface DispatchProps {
   loadPostTitles(userId: string): void
 }
 
+const Blank = () => <div></div>
+
 class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
 
   componentDidMount() {
@@ -38,6 +40,7 @@ class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
           </ul>
         </div>
         <div className="admin-section-content">
+
           <PrivateRoute
             path="/admin/new-post"
             authState={authState}
@@ -47,6 +50,12 @@ class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
             path="/admin/edit-post/:postId"
             authState={authState}
             component={PostFormView}
+          />
+
+          <PrivateRoute  
+            path="/"
+            authState={authState}
+            component={Blank} 
           />
         </div>
       </div>

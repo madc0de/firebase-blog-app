@@ -270,11 +270,33 @@ tr:hover {
 }
 
 /********************
-* admin-section *
+* blog-section *
 ********************/
 
 .blog-section {
     height: 100%;
+}
+
+/*********************
+* post-admin-seciton *
+*********************/
+
+.post-admin-section {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 350px 1fr 1fr;
+    grid-auto-rows: auto;
+    grid-template-areas: "list post post"
+}
+
+.post-admin-section--list {
+    grid-area: list;
+}
+
+.post-admin-section--post {
+    grid-area: post;
+    border-left: 1px solid #ddd;
 }
 
 /********************
@@ -362,6 +384,50 @@ tr:hover {
         padding: 1rem;
     }
 }
+
+/*******************
+*     post-list    *
+*******************/
+
+.post-list {
+
+}
+
+.post-list-item {
+  border-bottom: 1px solid #eee;
+  padding: 24px;
+}
+
+.post-list-item .title {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.post-list-item .meta {
+  height: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.post-list-item .meta .avatar {
+  height: 2.5rem;
+  width: 2.5rem;;
+  margin-right: 2rem;
+}
+
+.post-list-item .meta .avatar img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+
+.post-list-item .meta .status {
+  color: #aaa; 
+}
+
 
 /*******************
 *         btn      *

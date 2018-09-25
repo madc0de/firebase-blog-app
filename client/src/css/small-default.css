@@ -25,18 +25,22 @@ body {
 
 .blog-header {
     height: 180px;
-    background-image: url('https://storage.googleapis.com/pauly-static/webp/pan_pacific_1100.webp');
-    background-position: center;
-    background-size: cover;
-}
 
-.blog-header .overlay {
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+}
+
+.blog-header .overlay {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    
 }
 
 .blog-header.no-cover {
@@ -48,7 +52,7 @@ body {
     margin: 1rem 0 0 0;
     letter-spacing: -1px;
     font-weight: var(--font-bold);
-    color: #fff;
+    color: #444;
 }
 
 .blog-header .description {
@@ -57,7 +61,7 @@ body {
     font-family: "Merriweather", serif;
     font-size: 1.5;
     letter-spacing: 0.01rem;
-    color: #fff;
+    color: #444;
 }
 
 /********************
@@ -474,7 +478,7 @@ tr:hover {
     top: 1.5rem;
     right: 2rem;
     font-size: 2rem;
-    color: #fff;
+    color: #444;
 }
 
 .open-nav-button:hover {

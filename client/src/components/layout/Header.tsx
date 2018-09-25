@@ -48,12 +48,12 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
     return (
       <React.Fragment>
         <header className="blog-header">
-          <div className="overlay">
+          {/* <div className="overlay"> */}
             <h1 className="title">{blogSettings.blog_title}</h1>
             <h4 className="description">{blogSettings.blog_description}</h4>
 
             <OpenNavButton onClick={this.showNav} />
-          </div>
+          {/* </div> */}
         </header>
         <SideNav
           visible={this.state.navVisible}

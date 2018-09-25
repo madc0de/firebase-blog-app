@@ -7,6 +7,7 @@ import PostFormView from "../components/views/PostFormView";
 import { Link, Switch } from "react-router-dom";
 import { loadPostTitles } from "../store/actions/post";
 import { PostAdminSection } from "./PostAdminSection";
+import PostView from "../components/views/PostView";
 
 interface StateProps {
   authState: AuthState;
@@ -39,8 +40,13 @@ class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
         </div>
         <div className="admin-section-content">
           <Switch>
+          <PrivateRoute
+              path="/admin/post/:postId"
+              authState={authState}
+              component={PostView}
+            />
             <PrivateRoute
-              path="/admin/new-post"
+              path="/admin/edit-post"
               authState={authState}
               component={PostFormView}
             />

@@ -16,7 +16,7 @@ class _BlogSection extends React.Component<StateProps, {}> {
     return (
       <div className="blog-section">
         <Route exact path="/" user={authState} component={PublishedPosts} />
-        <Route path="/post/:slug" component={PostView} />
+        <Route path="/post/:slugOrId" component={PostView} />
       </div>
     );
   }

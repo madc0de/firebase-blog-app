@@ -14,7 +14,7 @@ import { AuthState } from "../../interface/AuthState";
 import { AppState } from "../../interface/AppState";
 
 interface RouteParamProps {
-  slug: string;
+  slugOrId: string;
 }
 
 interface DispatchActionProps {
@@ -42,11 +42,11 @@ class PostView extends React.Component<
   }
 
   componentDidUpdate(preProps: PostViewProps) {
-    const { slug } = this.props.match.params;
+    const { slugOrId } = this.props.match.params;
     const { loadingStatus } = this.props.postViewState;
 
     if (loadingStatus === "init") {
-      this.props.loadPost(slug);
+      this.props.loadPost(slugOrId);
     }
   }
 

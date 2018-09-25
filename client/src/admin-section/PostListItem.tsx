@@ -1,8 +1,9 @@
 import * as React from "react";
 import { PostTitleDocument } from "../interface/PostTitleData";
-import { Link } from "react-router-dom";
+import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 
-interface PostListItemProps {
+
+interface PostListItemProps extends RouteComponentProps<any> {
   postTitle: PostTitleDocument;
 }
 
@@ -22,4 +23,4 @@ const PostListItem: React.SFC<PostListItemProps> = ({ postTitle }) => {
   );
 };
 
-export default PostListItem;
+export default withRouter(PostListItem);

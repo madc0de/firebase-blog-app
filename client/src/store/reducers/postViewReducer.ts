@@ -11,6 +11,9 @@ export const postViewReducer = (
 ) => {
   state = state ? state : initial_PostViewState;
   switch (action.type) {
+    case actionType.postview_set_slugOrId: {
+      return handle_postpage_set_slugOrId(state, action);
+    }
     case actionType.postview_set_status: {
       return handle_postpage_set_status(state, action);
     }
@@ -23,6 +26,22 @@ export const postViewReducer = (
     default:
       return state;
   }
+};
+
+const handle_postpage_set_slugOrId = (
+  state: PostViewState,
+  action: ReduxAction<string | PostDocument | undefined>
+): PostViewState => {
+  const slugOrID = action.payload as string
+  if (slugOrID === state.slugOrID) {
+    return state
+  }
+
+  return {
+    ...state,
+    slugOrID,
+    loadingStatus: 'init'
+  };
 };
 
 const handle_postpage_set_status = (

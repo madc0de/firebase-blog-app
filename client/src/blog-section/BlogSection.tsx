@@ -12,7 +12,7 @@ interface StateProps {
 
 class _BlogSection extends React.Component<StateProps, {}> {
   render() {
-    const { authState } = this.props
+    const { authState } = this.props;
     return (
       <div className="blog-section">
         <Route exact path="/" user={authState} component={PublishedPosts} />
@@ -29,4 +29,3 @@ const mapStateToProps = (state: AppState): StateProps => {
 };
 
 export const BlogSection = connect(mapStateToProps)(_BlogSection);
-

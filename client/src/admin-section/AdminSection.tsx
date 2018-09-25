@@ -2,12 +2,9 @@ import * as React from "react";
 import { connect, Dispatch } from "react-redux";
 import { AuthState } from "../interface/AuthState";
 import { AppState } from "../interface/AppState";
-import PrivateRoute from "../components/route/PrivateRoute";
-import PostFormView from "../components/views/PostFormView";
-import { Link, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { loadPostTitles } from "../store/actions/post";
 import { PostAdminSection } from "./PostAdminSection";
-import PostView from "../components/views/PostView";
 
 interface StateProps {
   authState: AuthState;
@@ -25,7 +22,6 @@ class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
   }
 
   render() {
-    const { authState } = this.props;
     return (
       <div className="admin-section">
         <div className="admin-section-nav">
@@ -34,33 +30,15 @@ class _AdminSection extends React.Component<StateProps & DispatchProps, {}> {
               <Link to="/admin/">Content</Link>
             </li>
             <li>
-              <Link to="/admin/new-post">New post</Link>
+              <Link to="/admin/post/new">New post</Link>
+            </li>
+            <li>
+              <Link to="/admin/post/other">Other</Link>
             </li>
           </ul>
         </div>
         <div className="admin-section-content">
-          <Switch>
-          <PrivateRoute
-              path="/admin/post/:postId"
-              authState={authState}
-              component={PostView}
-            />
-            <PrivateRoute
-              path="/admin/edit-post"
-              authState={authState}
-              component={PostFormView}
-            />
-            <PrivateRoute
-              path="/admin/edit-post/:postId"
-              authState={authState}
-              component={PostFormView}
-            />
-            <PrivateRoute
-              path="/"
-              authState={authState}
-              component={PostAdminSection}
-            />
-          </Switch>
+            <PostAdminSection />
         </div>
       </div>
     );

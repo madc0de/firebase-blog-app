@@ -18,17 +18,22 @@ interface RouteParamProps {
 }
 
 interface DispatchActionProps {
-  initView(): void;
+  setPostViewSlugOrId(slugOrId: string): void;
   loading(): void;
   loadPost(slugOrId: string): void;
 }
 
-export interface PostViewProps
-  extends RouteComponentProps<RouteParamProps>,
-    DispatchProp<any> {
+interface StateProps {
   posts: PostDocument[];
   postViewState: PostViewState;
   authState: AuthState;
+  slugOrPostId: string
+}
+
+export interface PostViewProps
+  extends StateProps, RouteComponentProps<RouteParamProps>,
+    DispatchProp<any> {    
+  hideHeader: boolean
 }
 
 class PostView extends React.Component<
@@ -37,15 +42,17 @@ class PostView extends React.Component<
 > {
   constructor(props: PostViewProps & DispatchActionProps) {
     super(props);
-
-    props.initView();
   }
 
   componentDidUpdate(preProps: PostViewProps) {
     const { slugOrId } = this.props.match.params;
-    const { loadingStatus } = this.props.postViewState;
+    const { postViewState } = this.props;
 
-    if (loadingStatus === "init") {
+    if (postViewState.slugOrID !== slugOrId) {
+      this.props.setPostViewSlugOrId(slugOrId)
+    }
+
+    if (postViewState.loadingStatus === "init") {
       this.props.loadPost(slugOrId);
     }
   }
@@ -85,7 +92,7 @@ class PostView extends React.Component<
   render() {
     return (
       <div>
-        <Header />
+        {!this.props.hideHeader && <Header />}
         {this.getContent()}
       </div>
     );
@@ -101,7 +108,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-  initView: () => dispatch(postViewActions.postViewSetStatusAction("init")),
+  setPostViewSlugOrId: (slugOrId: string) => dispatch(postViewActions.postViewSetSlugOrId(slugOrId)),
   loadPost: (slugOrId: string) =>
     dispatch(postViewActions.asyncPostViewLoadPostAction(slugOrId))
 });

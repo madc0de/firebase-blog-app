@@ -5,7 +5,6 @@ import { AuthState } from "../../interface/AuthState";
 import { BlogSettingData } from "../../interface/BlogSettingData";
 import { AppState } from "../../interface/AppState";
 
-
 const OpenNavButton = (props: { onClick: React.EventHandler<any> }) => (
   <a href="#" className="open-nav-button" onClick={props.onClick}>
     &#9776;
@@ -48,12 +47,10 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
     return (
       <React.Fragment>
         <header className="blog-header">
-          {/* <div className="overlay"> */}
             <h1 className="title">{blogSettings.blog_title}</h1>
             <h4 className="description">{blogSettings.blog_description}</h4>
 
             <OpenNavButton onClick={this.showNav} />
-          {/* </div> */}
         </header>
         <SideNav
           visible={this.state.navVisible}

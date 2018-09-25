@@ -10,11 +10,11 @@ export async function handle_post_create(
   context: functions.EventContext
 ) {
   try {
-    const id = doc.id;
-    const data = doc.data();
+    const postId = doc.id;
+    const postData = doc.data();
 
-    await postBodyActions.set_postBody(id, data.userId, data.body);
-    await postTitleActions.set_postTitle(id, data.userId, data.status, data.title);
+    await postBodyActions.set_postBody(postId, postData.userId, postData.body);
+    await postTitleActions.set_postTitle(postId, postData);
 
     const post_count = await metaDataActions.update_post_count("increment");
     // remove post body, set post_umber. created_date
@@ -53,15 +53,15 @@ export async function handle_post_write(
   try {
     // set postbody document
     const id = change.after.id;
-    const data = change.after.data();
+    const postData = change.after.data();
 
     // pevent infinite loop
-    if (!data.body || data.body.trim().length === 0) {
+    if (!postData.body || postData.body.trim().length === 0) {
       return null;
     }
 
-    await postBodyActions.set_postBody(id, data.userId, data.body);
-    await postTitleActions.set_postTitle(id, data.userId, data.status, data.title);
+    await postBodyActions.set_postBody(id, postData.userId, postData.body);
+    await postTitleActions.set_postTitle(id, postData);
     // post body can be removed
     return change.after.ref.set({ body: ''}, { merge: true });
   } catch (err) {

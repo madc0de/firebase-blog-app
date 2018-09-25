@@ -51,33 +51,35 @@ class PostView extends React.Component<
   }
 
   getContent = () => {
-    const { loadingStatus, post, error } = this.props.postViewState;
+    const { loadingStatus, post } = this.props.postViewState;
 
-    if (loadingStatus === "init") {
-      return <div />;
+    switch (loadingStatus) {
+      case "init":
+        return <div />;
+      case "loading":
+        return (
+          <PostContent>
+            <Loading />
+          </PostContent>
+        );
+      case "not-found":
+        return <PostNotFound />;
+      case "error":
+        return (
+          <PostContent>
+            <h4>Error loading post</h4>
+          </PostContent>
+        );
+      default:
+        return (
+          <PostContent>
+            <Post
+              post={post as PostDocument}
+              authState={this.props.authState}
+            />
+          </PostContent>
+        );
     }
-    if (loadingStatus === "loading") {
-      return;
-      <PostContent>
-        <Loading />
-      </PostContent>;
-    }
-    if (loadingStatus === "not-found") {
-      return <PostNotFound />;
-    }
-    if (loadingStatus === "error") {
-      return (
-        <PostContent>
-          <h4>Error loading post</h4>
-          <div>{error}</div>
-        </PostContent>
-      );
-    }
-    return (
-      <PostContent>
-        <Post post={post as PostDocument} authState={this.props.authState} />
-      </PostContent>
-    )
   };
 
   render() {

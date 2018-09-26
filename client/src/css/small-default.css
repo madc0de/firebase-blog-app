@@ -400,11 +400,20 @@ tr:hover {
   align-items: center;
 }
 
-.post-list-item .meta .status {
+.post-list-item .meta > div {
+    margin-right: 1rem;
+}
+
+.post-list-item .meta .status,
+.post-list-item .meta .date {
     color: #aaa; 
     font-size: 0.9rem;
 }
-  
+
+.post-list-item .meta .status.published {
+    color: #5ba4e5;
+}
+
 .post-list-item .meta .avatar {
   height: 2rem;
   width: 2rem;

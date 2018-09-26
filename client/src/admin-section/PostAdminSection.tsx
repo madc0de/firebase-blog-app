@@ -17,16 +17,12 @@ interface Props extends StateProps, RouteComponentProps<any> {}
 
 class _PostAdminSection extends React.Component<Props, any> {
   render() {
-    console.log('postadminsection: ', this.props.match)
-
     return (
       <div className="post-admin-section">
         <div className="post-admin-section--list">
-          <h3>Admin section</h3>
           <PostList />
         </div>
         <div className="post-admin-section--post">
-          <h3>Post Section</h3>
           <Switch>
             <Route exact path="/admin/" render={() => <h4>/admin/</h4>} />
             <Route

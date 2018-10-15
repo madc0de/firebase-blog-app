@@ -6,9 +6,11 @@ import { PostsState } from "../../interface/PostState";
 import { PostBodyData } from "../../interface/PostBodyData";
 import { ReduxAction } from "../../interface/ReduxAction";
 
+type PostPayload = PostDocument | PostDocument[] | PostBodyData | string
+
 export const postReducer = (
   state: PostsState,
-  action: ReduxAction<PostDocument | PostBodyData | string>
+  action: ReduxAction<PostPayload>
 ) => {
   state = state ? state : initial_PostsState;
 
@@ -17,6 +19,9 @@ export const postReducer = (
     case actionType.post_modified:
     case actionType.postform_submit_success: {
       return handle_post_loaded(state, action.payload as PostDocument);
+    }
+    case actionType.posts_loaded: {
+      return handle_posts_loaded(state, action.payload as PostDocument[]);
     }
     case actionType.postbody_loaded: {
       return handle_postbody_loaded(state, action.payload as PostBodyData);
@@ -30,7 +35,7 @@ export const postReducer = (
 };
 
 const handle_post_removed = (
-  action: ReduxAction<string | PostDocument | PostBodyData>,
+  action: ReduxAction<PostPayload>,
   state: PostsState
 ) => {
   const postId = action.payload as string;
@@ -80,6 +85,30 @@ const handle_post_loaded = (
   return {
     ...postsState,
     posts
+  };
+};
+
+const handle_posts_loaded = (
+  postsState: PostsState,
+  loadedPosts: PostDocument[]
+): PostsState => {
+
+  let currentPosts = [...postsState.posts]
+  for(let post of loadedPosts) {
+    const postId = mapUtil.getKey(post);
+    const index = currentPosts.findIndex(
+      docPost => mapUtil.getKey(docPost) === postId
+    );
+    if (index < 0) {
+      currentPosts.push(post)
+    } else {
+      currentPosts.splice(index, 0, post)
+    }
+  }
+
+  return {
+    ...postsState,
+    posts: currentPosts
   };
 };
 

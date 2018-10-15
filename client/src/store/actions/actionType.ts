@@ -2,6 +2,7 @@
 export const blogsetting_loaded = 'blogsetting_loaded'
 
 export const post_loaded = 'post_loaded'
+export const posts_loaded = 'posts_loaded'
 export const post_modified = 'post_modified'
 export const post_removed = 'post_removed'
 

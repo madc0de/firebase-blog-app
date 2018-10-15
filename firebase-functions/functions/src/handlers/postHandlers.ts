@@ -3,7 +3,6 @@ import { DocumentSnapshot } from "@google-cloud/firestore";
 
 import * as postBodyActions from "../actions/postBodyActions";
 import * as metaDataActions from "../actions/metaDataActions";
-import * as postTitleActions from "../actions/postTitleActions";
 
 export async function handle_post_create(
   doc: DocumentSnapshot,
@@ -14,7 +13,6 @@ export async function handle_post_create(
     const postData = doc.data();
 
     await postBodyActions.set_postBody(postId, postData.userId, postData.body);
-    await postTitleActions.set_postTitle(postId, postData);
 
     const post_count = await metaDataActions.update_post_count("increment");
     // remove post body, set post_umber. created_date
@@ -61,7 +59,6 @@ export async function handle_post_write(
     }
 
     await postBodyActions.set_postBody(id, postData.userId, postData.body);
-    await postTitleActions.set_postTitle(id, postData);
     // post body can be removed
     return change.after.ref.set({ body: ''}, { merge: true });
   } catch (err) {
@@ -76,7 +73,6 @@ export async function handle_post_delete(
   try {
     const postId = doc.id;
     await postBodyActions.delete_postBody(postId);
-    await postTitleActions.delete_postTitle(postId);
     return metaDataActions.update_post_count("decrement");
   } catch (err) {
     return err;

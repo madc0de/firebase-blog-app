@@ -17,7 +17,6 @@ const rootReducer: Reducer<AppState, ReduxAction<any>> = combineReducers({
   blogSettingsState: reducers.blogSettingsReducer,
   metaDataState: reducers.metaDataReducer,
   postsState: reducers.postReducer,
-  postTitlesState: reducers.postTitlesReducer,
   authState: reducers.authReducer,
   usersState: reducers.userReducer,
   postViewState: reducers.postViewReducer,

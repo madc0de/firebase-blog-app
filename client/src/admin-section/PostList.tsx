@@ -2,18 +2,16 @@ import * as React from "react";
 import { AppState } from "../interface/AppState";
 import { connect } from "react-redux";
 import PostListItem from "./PostListItem";
-import { PostTitleData } from "../interface/PostTitleData";
-import { FirestoreDocument } from "../interface/FirestoreDocument";
+import { PostDocument } from "../interface/PostData";
+
 
 type SortOption = "title" | "updated";
-
-type PostTitleDoc = FirestoreDocument<PostTitleData>;
 
 interface StateProps {
   sortBy: SortOption;
 }
 interface MappedStateProps {
-  postTitles: FirestoreDocument<PostTitleData>[];
+  posts: PostDocument[];
 }
 
 export interface Props extends MappedStateProps {}
@@ -35,14 +33,14 @@ export default class _PostList extends React.Component<Props, StateProps> {
   };
 
   public render() {
-    const { postTitles } = this.props;
+    const { posts } = this.props;
     const { sortBy } = this.state;
 
     console.log("sortBy: " + sortBy);
 
     const sortHandler =
       sortBy === "updated" ? sortUpdateDescending : sortTitleAscending;
-    const sortedPosts = postTitles.sort(sortHandler);
+    const sortedPosts = posts.sort(sortHandler);
 
     return (
       <React.Fragment>
@@ -54,7 +52,7 @@ export default class _PostList extends React.Component<Props, StateProps> {
           {sortedPosts.map((postTitle, index) => {
             const key = Object.keys(postTitle)[0];
 
-            return <PostListItem key={key} postTitle={postTitle} />;
+            return <PostListItem key={key} post={postTitle} />;
           })}
         </div>
       </React.Fragment>
@@ -62,7 +60,7 @@ export default class _PostList extends React.Component<Props, StateProps> {
   }
 }
 
-function sortTitleAscending(docA: PostTitleDoc, docB: PostTitleDoc) {
+function sortTitleAscending(docA: PostDocument, docB: PostDocument) {
   const ka = Object.keys(docA)[0];
   const kb = Object.keys(docB)[0];
 
@@ -81,15 +79,15 @@ function sortTitleAscending(docA: PostTitleDoc, docB: PostTitleDoc) {
   return 0;
 }
 
-function sortUpdateDescending(docA: PostTitleDoc, docB: PostTitleDoc) {
+function sortUpdateDescending(docA: PostDocument, docB: PostDocument) {
   const ka = Object.keys(docA)[0];
   const kb = Object.keys(docB)[0];
 
   const dataA = docA[ka];
   const dataB = docB[kb];
 
-  const updated_date_A = dataA.updated_date;
-  const updated_date_B = dataB.updated_date;
+  const updated_date_A = dataA.updated_date as number
+  const updated_date_B = dataB.updated_date as number
 
   if (updated_date_A > updated_date_B) {
     return -1;
@@ -101,7 +99,7 @@ function sortUpdateDescending(docA: PostTitleDoc, docB: PostTitleDoc) {
 }
 
 const mapStateToProps = (state: AppState): MappedStateProps => ({
-  postTitles: state.postTitlesState.postTitles
+  posts: state.postsState.posts
 });
 
 export const PostList = connect(mapStateToProps)(_PostList);

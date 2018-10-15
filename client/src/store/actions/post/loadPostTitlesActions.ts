@@ -1,24 +1,24 @@
 import { Dispatch } from 'redux';
-import { getPostTitles } from '../../../data/PostTitles'
-import { PostTitleDocument } from '../../../interface/PostTitleData';
+import { getAllUserPosts } from '../../../data/PostTitles'
+import { PostDocument } from '../../../interface/PostData';
 import { ReduxAction } from '../../../interface/ReduxAction';
 import { actionType } from '..';
 import { GetStateFn } from '../../../interface/GetStateFn';
 
-export const loadPostTitles = (userId: string): any=> async (
+export const loadUserPosts = (userId: string): any=> async (
   dispatch: Dispatch,
   getState: GetStateFn
 ) => {
   try {
-    const posts = await getPostTitles(userId)
-    return dispatch(postTitlesLoaded(posts))
+    const posts = await getAllUserPosts(userId)
+    return dispatch(postsLoaded(posts))
   } catch(err) {
     console.log(err)
     return err
   }
 }
 
-export const postTitlesLoaded = (docs: PostTitleDocument[]): ReduxAction<PostTitleDocument[]> => ({
-  type: actionType.posttitle_loaded,
+export const postsLoaded = (docs: PostDocument[]): ReduxAction<PostDocument[]> => ({
+  type: actionType.posts_loaded,
   payload: docs
 })

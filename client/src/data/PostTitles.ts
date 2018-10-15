@@ -1,10 +1,10 @@
 import { firestore } from "./firestore-init";
 import * as mapUtil from "../utils/mapUtil";
-import { PostTitleDocument } from "../interface/PostTitleData";
+import { PostDocument } from "../interface/PostData";
 
-export const getPostTitles = async (
+export const getAllUserPosts = async (
   userId: string
-): Promise<PostTitleDocument[]> => {
+): Promise<PostDocument[]> => {
   try {
     const querySnap = await firestore
       .collection("posttitle")
@@ -12,7 +12,7 @@ export const getPostTitles = async (
       .get();
     if (querySnap.size > 0) {
       return querySnap.docs.map(
-        doc => mapUtil.snapshotToMap(doc) as PostTitleDocument
+        doc => mapUtil.snapshotToMap(doc) as PostDocument
       );
     }
     return [];

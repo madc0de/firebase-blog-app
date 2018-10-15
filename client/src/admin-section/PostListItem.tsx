@@ -1,16 +1,16 @@
 import * as React from "react";
-import { PostTitleDocument } from "../interface/PostTitleData";
+import { PostDocument } from "../interface/PostData";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import { formatDateTimeIf } from "../utils/dateUtil";
 
 
 interface PostListItemProps extends RouteComponentProps<any> {
-  postTitle: PostTitleDocument;
+  post: PostDocument;
 }
 
-const PostListItem: React.SFC<PostListItemProps> = ({ postTitle }) => {
-  const key = Object.keys(postTitle)[0];
-  const postData = postTitle[key];
+const PostListItem: React.SFC<PostListItemProps> = ({ post }) => {
+  const key = Object.keys(post)[0];
+  const postData = post[key];
 
   const updated_date = formatDateTimeIf(postData.updated_date as number);
   const statusClass = postData.status

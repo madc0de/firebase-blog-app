@@ -3,7 +3,7 @@ import { connect, Dispatch } from "react-redux";
 import { AuthState } from "../interface/AuthState";
 import { AppState } from "../interface/AppState";
 import { Link } from "react-router-dom";
-import { loadPostTitles } from "../store/actions/post";
+import { loadUserPosts } from "../store/actions/post";
 import { PostAdminSection } from "./PostAdminSection";
 
 interface StateProps {
@@ -53,7 +53,7 @@ const mapStateToProps = (state: AppState): StateProps => {
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   loadPostTitles(userId: string) {
-    dispatch(loadPostTitles(userId));
+    dispatch(loadUserPosts(userId));
   }
 });
 

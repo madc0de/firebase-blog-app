@@ -11,6 +11,7 @@ import { BlogSettingData } from "./interface/BlogSettingData";
 import { AppState } from "./interface/AppState";
 import { AdminSection } from "./admin-section/AdminSection";
 import { BlogSection } from "./blog-section/BlogSection";
+import PrivateRoute from './components/route/PrivateRoute'
 
 interface AppProps {}
 interface StateProps {
@@ -37,7 +38,7 @@ class App extends React.Component<AppProps & StateProps, {}> {
       <Router>
         <React.Fragment>
           <Switch>
-            <Route path="/admin" component={AdminSection} />
+            <PrivateRoute authState={authState} path="/admin" component={AdminSection} />
             <Route path="/signin" component={SigninView} />
             <Route path="/post" component={BlogSection} />
             <Route exact path="/" user={authState} component={BlogSection} />            

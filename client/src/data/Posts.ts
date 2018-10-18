@@ -4,6 +4,7 @@ import { firestore } from "./firestore-init";
 import { PostDocument, PostData } from "../interface/PostData";
 import { PostBodyData } from "../interface/PostBodyData";
 
+
 export const getPostById = async (
   postId: string
 ): Promise<PostDocument | undefined> => {
@@ -139,3 +140,25 @@ export const getPublishedPosts = async (
     return error;
   }
 };
+
+
+export const getAllUserPosts = async (
+  userId: string
+): Promise<PostDocument[]> => {
+  try {
+    const querySnap = await firestore
+      .collection("posttitle")
+      .where("userId", "==", userId)
+      .get();
+    if (querySnap.size > 0) {
+      return querySnap.docs.map(
+        doc => mapUtil.snapshotToMap(doc) as PostDocument
+      );
+    }
+    return [];
+  } catch (error) {
+    console.log(error)
+    return error;
+  }
+};
+

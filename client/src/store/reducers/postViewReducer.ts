@@ -1,19 +1,16 @@
 import * as actionType from "../actions/actionType";
-import { initial_PostViewState } from '../../store/initialState';
+import { initial_SelectedPostState } from '../../store/initialState';
 import { PostDocument } from "../../interface/PostData";
-import { PostViewState } from "../../interface/PostViewState";
+import { SelectedPostState } from "../../interface/SelectedPostState";
 import { ReduxAction } from "../../interface/ReduxAction";
 import { LoadingStatus } from "../../interface/LoadingStatus";
 
 export const postViewReducer = (
-  state: PostViewState,
+  state: SelectedPostState,
   action: ReduxAction<string | PostDocument | undefined>
 ) => {
-  state = state ? state : initial_PostViewState;
+  state = state ? state : initial_SelectedPostState;
   switch (action.type) {
-    case actionType.postview_set_slugOrId: {
-      return handle_postpage_set_slugOrId(state, action);
-    }
     case actionType.postview_set_status: {
       return handle_postpage_set_status(state, action);
     }
@@ -28,26 +25,10 @@ export const postViewReducer = (
   }
 };
 
-const handle_postpage_set_slugOrId = (
-  state: PostViewState,
-  action: ReduxAction<string | PostDocument | undefined>
-): PostViewState => {
-  const slugOrID = action.payload as string
-  if (slugOrID === state.slugOrID) {
-    return state
-  }
-
-  return {
-    ...state,
-    slugOrID,
-    loadingStatus: 'init'
-  };
-};
-
 const handle_postpage_set_status = (
-  state: PostViewState,
+  state: SelectedPostState,
   action: ReduxAction<string | PostDocument | undefined>
-): PostViewState => {
+): SelectedPostState => {
   return {
     ...state,
     loadingStatus: action.payload as LoadingStatus
@@ -55,9 +36,9 @@ const handle_postpage_set_status = (
 };
 
 const handle_postpage_loaded = (
-  state: PostViewState,
+  state: SelectedPostState,
   action: ReduxAction<string | PostDocument | undefined>
-): PostViewState => {
+): SelectedPostState => {
   return {
     ...state,
     loadingStatus: "loaded",
@@ -66,9 +47,9 @@ const handle_postpage_loaded = (
 };
 
 const handle_postpage_error = (
-  state: PostViewState,
+  state: SelectedPostState,
   action: ReduxAction<string | PostDocument | undefined>
-): PostViewState => {
+): SelectedPostState => {
   return {
     ...state,
     loadingStatus: "error",

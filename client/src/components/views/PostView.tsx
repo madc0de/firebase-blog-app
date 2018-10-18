@@ -9,7 +9,7 @@ import Loading from "../layout/Loading";
 import Post from "../post/Post";
 import PostNotFound from "../post/PostNotFound";
 import { PostDocument } from "../../interface/PostData";
-import { PostViewState } from "../../interface/PostViewState";
+import { SelectedPostState } from "../../interface/SelectedPostState";
 import { AuthState } from "../../interface/AuthState";
 import { AppState } from "../../interface/AppState";
 
@@ -17,7 +17,7 @@ interface RouteParamProps {
   slugOrId: string;
 }
 
-interface DispatchActionProps {
+interface DispatchProps {
   setPostViewSlugOrId(slugOrId: string): void;
   loading(): void;
   loadPost(slugOrId: string): void;
@@ -25,12 +25,12 @@ interface DispatchActionProps {
 
 interface StateProps {
   posts: PostDocument[];
-  postViewState: PostViewState;
+  postViewState: SelectedPostState;
   authState: AuthState;
   slugOrPostId: string
 }
 
-export interface PostViewProps
+export interface Props
   extends StateProps, RouteComponentProps<RouteParamProps>,
     DispatchProp<any> {    
   hideHeader: boolean
@@ -38,10 +38,10 @@ export interface PostViewProps
 }
 
 class PostView extends React.Component<
-  PostViewProps & DispatchActionProps,
-  PostViewState
+  Props & DispatchProps,
+  SelectedPostState
 > {
-  constructor(props: PostViewProps & DispatchActionProps) {
+  constructor(props: Props & DispatchProps) {
     super(props);
   }
 
@@ -51,7 +51,7 @@ class PostView extends React.Component<
     }
   }
   
-  componentDidUpdate(prevProps: PostViewProps) {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.slugOrId !== this.props.slugOrId) {
       this.props.loadPost(this.props.slugOrId);
     }
@@ -108,7 +108,6 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setPostViewSlugOrId: (slugOrId: string) => dispatch(postViewActions.postViewSetSlugOrId(slugOrId)),
   loadPost: (slugOrId: string) =>
     dispatch(postViewActions.asyncPostViewLoadPostAction(slugOrId))
 });

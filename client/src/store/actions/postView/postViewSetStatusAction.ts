@@ -8,8 +8,3 @@ export const postViewSetStatusAction = (
   type: actionType.postview_set_status,
   payload: status
 });
-
-export const postViewSetSlugOrId = (slugOrId: string): ReduxAction<string> => ({
-  type: actionType.postview_set_slugOrId,
-  payload: slugOrId
-})

@@ -1,8 +1,10 @@
 import * as React from "react";
 import { AppState } from "../interface/AppState";
-import { connect } from "react-redux";
+import { connect, Dispatch } from "react-redux";
 import PostListItem from "./PostListItem";
 import { PostDocument } from "../interface/PostData";
+import { loadUserPosts } from "src/store/actions/post";
+import { AuthState } from "src/interface/AuthState";
 
 
 type SortOption = "title" | "updated";
@@ -10,19 +12,32 @@ type SortOption = "title" | "updated";
 interface StateProps {
   sortBy: SortOption;
 }
+
 interface MappedStateProps {
+  authState: AuthState
   posts: PostDocument[];
 }
 
-export interface Props extends MappedStateProps {}
+interface DispatchProps {
+  loadUserPosts(userId: string): void
+}
 
-export default class _PostList extends React.Component<Props, StateProps> {
-  constructor(props: Props) {
+export interface Props extends DispatchProps {
+
+}
+
+export default class _PostList extends React.Component<Props & MappedStateProps, StateProps> {
+  constructor(props: any) {
     super(props);
 
     this.state = {
       sortBy: "title"
     };
+  }
+
+  componentDidMount() {
+    const userId = this.props.authState.authUserId
+    this.props.loadUserPosts(userId)
   }
 
   sortByChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -99,7 +114,15 @@ function sortUpdateDescending(docA: PostDocument, docB: PostDocument) {
 }
 
 const mapStateToProps = (state: AppState): MappedStateProps => ({
+  authState: state.authState,
   posts: state.postsState.posts
 });
 
-export const PostList = connect(mapStateToProps)(_PostList);
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  loadUserPosts(userId: string) {
+    dispatch(loadUserPosts(userId));
+  }
+});
+
+
+export const PostList = connect(mapStateToProps, mapDispatchToProps)(_PostList);

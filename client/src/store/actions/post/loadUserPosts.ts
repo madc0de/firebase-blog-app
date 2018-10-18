@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { getAllUserPosts } from '../../../data/PostTitles'
+import { getAllUserPosts } from '../../../data/Posts'
 import { PostDocument } from '../../../interface/PostData';
 import { ReduxAction } from '../../../interface/ReduxAction';
 import { actionType } from '..';

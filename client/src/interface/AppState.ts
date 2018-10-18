@@ -4,7 +4,7 @@ import { BlogMetaData } from "./BlogMetaData";
 import { AuthState } from "./AuthState";
 import { PostsState } from "./PostState";
 import { UsersState } from "./UserState";
-import { PostViewState } from "./PostViewState";
+import { SelectedPostState } from "./SelectedPostState";
 import { PostFormState } from "./PostFormState";
 import { FormReducer } from "redux-form";
 
@@ -15,7 +15,7 @@ export interface AppState {
   authState: AuthState;
   postsState: PostsState;
   usersState: UsersState;
-  postViewState: PostViewState;
+  postViewState: SelectedPostState;
   postFormState: PostFormState;
   form: FormReducer | Object;
 }

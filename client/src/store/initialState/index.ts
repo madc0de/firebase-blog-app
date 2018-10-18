@@ -5,7 +5,7 @@ import { AuthState } from "../../interface/AuthState";
 import { PostsState } from "../../interface/PostState";
 import { UsersState } from "../../interface/UserState";
 import { PostData } from "../../interface/PostData";
-import { PostViewState } from "../../interface/PostViewState";
+import { SelectedPostState } from "../../interface/SelectedPostState";
 import { PostFormValues } from "../../interface/PostFormValues";
 import { PostFormState } from "../../interface/PostFormState";
 
@@ -56,9 +56,8 @@ export const initial_PostData: PostData = {
   created_date: 0
 };
 
-export const initial_PostViewState: PostViewState = {
+export const initial_SelectedPostState: SelectedPostState = {
   loadingStatus: 'init',
-  slugOrID: '',
   error: '',
   post: undefined
 };

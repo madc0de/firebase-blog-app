@@ -16,7 +16,10 @@ class _BlogSection extends React.Component<StateProps, {}> {
     return (
       <div className="blog-section">
         <Route exact path="/" user={authState} component={PublishedPosts} />
-        <Route path="/post/:slugOrId" component={PostView} />
+        <Route path="/post/:slugOrId" render={(props:any) => {
+          const slugOrId = props.match.params.slugOrId
+          return <PostView {...props} slugOrId={slugOrId} />
+        }} />
       </div>
     );
   }

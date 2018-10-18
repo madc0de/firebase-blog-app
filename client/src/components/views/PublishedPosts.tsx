@@ -20,7 +20,7 @@ class PublishedPosts extends React.Component<Props, {}> {
   componentDidMount() {
     this.props.loadPublishedPosts();
   }
-
+  
   render() {
     const { authState, posts } = this.props;
 

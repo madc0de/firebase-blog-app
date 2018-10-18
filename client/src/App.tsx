@@ -39,7 +39,7 @@ class App extends React.Component<AppProps & StateProps, {}> {
           <Switch>
             <Route path="/admin" component={AdminSection} />
             <Route path="/signin" component={SigninView} />
-            <Route path="/post/:slugOrId" component={BlogSection} />
+            <Route path="/post" component={BlogSection} />
             <Route exact path="/" user={authState} component={BlogSection} />            
             <Route render={() => <div style={{padding: '5rem'}}><h1>404 not found</h1></div>} />
           </Switch>

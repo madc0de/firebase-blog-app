@@ -34,6 +34,7 @@ export interface PostViewProps
   extends StateProps, RouteComponentProps<RouteParamProps>,
     DispatchProp<any> {    
   hideHeader: boolean
+  slugOrId: string
 }
 
 class PostView extends React.Component<
@@ -44,16 +45,15 @@ class PostView extends React.Component<
     super(props);
   }
 
-  componentDidUpdate(preProps: PostViewProps) {
-    const { slugOrId } = this.props.match.params;
-    const { postViewState } = this.props;
-
-    if (postViewState.slugOrID !== slugOrId) {
-      this.props.setPostViewSlugOrId(slugOrId)
+  componentDidMount() {
+    if (this.props.slugOrId) {
+      this.props.loadPost(this.props.slugOrId);
     }
-
-    if (postViewState.loadingStatus === "init") {
-      this.props.loadPost(slugOrId);
+  }
+  
+  componentDidUpdate(prevProps: PostViewProps) {
+    if (prevProps.slugOrId !== this.props.slugOrId) {
+      this.props.loadPost(this.props.slugOrId);
     }
   }
 

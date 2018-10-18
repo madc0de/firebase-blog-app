@@ -1,36 +1,24 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import Header from "../layout/Header";
 import PostForm from "../forms/PostForm";
 import { postFormActions } from "../../store/actions";
 import { PostFormState } from "../../interface/PostFormState";
 import { AppState } from "../../interface/AppState";
 import { Loading } from "../layout";
-interface RouteParamProps {
-  postId: string | undefined;
-}
 
 interface DispatchToProps {
-  initializeViewState(): void;
   loadExistingPostFormValues(postId: string | undefined): void;
   loadNewPostFormValues(): void;
 }
 
-export interface PostFormViewProps
-  extends DispatchToProps,
-    RouteComponentProps<RouteParamProps> {
+export interface Props extends DispatchToProps {
   postFormState: PostFormState;
+  postId: string
 }
 
-class PostFormView extends React.Component<PostFormViewProps, PostFormState> {
-  constructor(props: PostFormViewProps) {
-    super(props);
-    props.initializeViewState();
-  }
-
+class PostFormView extends React.Component<Props, PostFormState> {
   async componentDidMount() {
-    const { postId } = this.props.match.params;
+    const { postId } = this.props
     if (postId) {
       this.props.loadExistingPostFormValues(postId as string);
     } else {
@@ -45,21 +33,13 @@ class PostFormView extends React.Component<PostFormViewProps, PostFormState> {
   render() {
     const { loadingStatus, formValues, postId } = this.props.postFormState;
 
-    if (loadingStatus === "init") {
-      return <div />;
-    }
     if (loadingStatus === "loading") {
-      return (
-          <Loading />
-      );
+      return <Loading />;
     }
     if (loadingStatus === "not-found") {
       return (
-        <div>
-          <Header />
-          <div className="not-found">
-            Sorry couldn't find post with id {postId}
-          </div>
+        <div className="not-found">
+          Sorry couldn't find post with id {postId}
         </div>
       );
     }
@@ -77,17 +57,13 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any): DispatchToProps => ({
-  initializeViewState: () =>
-    dispatch(postFormActions.postFormSetStatusAction("init")),
   loadExistingPostFormValues: (postId: string) =>
     dispatch(postFormActions.loadPostFormValuesAction(postId)),
   loadNewPostFormValues: () =>
     dispatch(postFormActions.async_newPost_SetFormValuesAction())
 });
 
-const _connectWrapped = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PostFormView);
-
-export default withRouter(_connectWrapped);

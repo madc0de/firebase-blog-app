@@ -39,10 +39,10 @@ class PostForm extends React.Component<Props, {}> {
   }
 
   componentDidMount() {
-    this.triggerSubmitOn_metaKey_Enter()
+    this.triggerSubmiton_metaKey_Enter()
   }
 
-  triggerSubmitOn_metaKey_Enter = () => {
+  triggerSubmiton_metaKey_Enter = () => {
     const element = this.formRef.current as HTMLFormElement;
     element.addEventListener("keydown", e => {
       if ((e.metaKey || e.ctrlKey) && e.keyCode === 13) {

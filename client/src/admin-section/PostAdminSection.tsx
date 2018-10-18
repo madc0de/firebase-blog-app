@@ -31,16 +31,20 @@ class _PostAdminSection extends React.Component<Props, any> {
             />
             <Route
               exact
-              path="/admin/post/edit/:slugOrId"
-              compponent={PostFormView}
+              path="/admin/post-edit/:postId"
+              render={props => {
+                const { postId } = props.match.params; 
+                return <PostFormView postId={postId} {...props} />;
+              }}
             />
             <Route
               exact
               path="/admin/post/:slugOrId"
               render={props => {
-                console.log('/admin/post/:slugOrId matched')
-                const { slugOrId } = props.match.params
-                return <PostView {...props} slugOrId={slugOrId} hideHeader={true} />
+                const { slugOrId } = props.match.params;
+                return (
+                  <PostView {...props} slugOrId={slugOrId} hideHeader={true} />
+                );
               }}
             />
             <Route render={() => <h4> NOT FOUND </h4>} />

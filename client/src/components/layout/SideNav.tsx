@@ -25,7 +25,7 @@ export default class SideNav extends React.Component<SideNavProps, any> {
   }
 
   public render() {
-    const { visible, onClose } = this.props;
+    const { visible, onClose, authState } = this.props;
 
     return (
       <div
@@ -36,7 +36,7 @@ export default class SideNav extends React.Component<SideNavProps, any> {
 
         <CloseLink onCloseClick={onClose} />
         <Link to="/">Home</Link>
-        {/* {isAdmin && <Link to="/new-post">New Post</Link>} */}
+        {authState.authenticated && <Link to="/admin">Admin</Link>}
       </div>
     );
   }

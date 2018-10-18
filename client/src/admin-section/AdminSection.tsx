@@ -16,8 +16,11 @@ class _AdminSection extends React.Component<MappedStateProps, {}> {
       <div className="admin-section">
         <div className="admin-section-nav">
           <ul>
+          <li>
+              <Link to="/">Blog</Link>
+            </li>
             <li>
-              <Link to="/admin/">Content</Link>
+              <Link to="/">Content</Link>
             </li>
             <li>
               <Link to="/admin/post/new">New post</Link>

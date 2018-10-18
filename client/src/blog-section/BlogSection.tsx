@@ -4,7 +4,7 @@ import PostView from "../components/views/PostView";
 import { connect } from "react-redux";
 import { AuthState } from "../interface/AuthState";
 import { AppState } from "../interface/AppState";
-import PublishedPosts from "../components/views/PublishedPosts";
+import Posts from "../components/views/Posts";
 
 interface StateProps {
   authState: AuthState;
@@ -12,10 +12,14 @@ interface StateProps {
 
 class _BlogSection extends React.Component<StateProps, {}> {
   render() {
-    const { authState } = this.props;
     return (
       <div className="blog-section">
-        <Route exact path="/" user={authState} component={PublishedPosts} />
+        <Route exact path="/" render={props => {          
+          return <Posts filter="published" />
+        }} />
+        <Route path="/recent" render={props => {          
+          return <Posts filter="recent" />
+        }} />
         <Route
           path="/post/:slugOrId"
           render={(props: any) => {

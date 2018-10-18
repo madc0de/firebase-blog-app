@@ -36,6 +36,7 @@ export default class SideNav extends React.Component<SideNavProps, any> {
 
         <CloseLink onCloseClick={onClose} />
         <Link to="/">Home</Link>
+        {authState.authenticated && <Link to="/recent">Recent</Link>}
         {authState.authenticated && <Link to="/admin">Admin</Link>}
       </div>
     );

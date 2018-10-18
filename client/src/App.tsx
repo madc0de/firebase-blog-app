@@ -42,6 +42,7 @@ class App extends React.Component<AppProps & StateProps, {}> {
             />
             <Route path="/signin" component={SigninView} />
             <Route path="/post" component={BlogSection} />
+            <Route path="/recent" component={BlogSection} />
             <Route exact path="/" user={authState} component={BlogSection} />
             <Route
               render={() => (

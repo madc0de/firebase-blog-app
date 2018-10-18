@@ -39,8 +39,8 @@ class _PostAdminSection extends React.Component<Props, any> {
               path="/admin/post/:slugOrId"
               render={props => {
                 console.log('/admin/post/:slugOrId matched')
-                //@ts-ignore
-                return <PostView hideHeader={true} />
+                const { slugOrId } = props.match.params
+                return <PostView {...props} slugOrId={slugOrId} hideHeader={true} />
               }}
             />
             <Route render={() => <h4> NOT FOUND </h4>} />

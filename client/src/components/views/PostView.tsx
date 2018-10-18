@@ -1,7 +1,6 @@
 import * as React from "react";
 // import { Dispatch } from "redux";
 import { connect, DispatchProp } from "react-redux";
-import { withRouter, RouteComponentProps } from "react-router-dom";
 import { postViewActions } from "../../store/actions";
 import Header from "../layout/Header";
 import PostContent from "../layout/PostContent";
@@ -13,44 +12,33 @@ import { SelectedPostState } from "../../interface/SelectedPostState";
 import { AuthState } from "../../interface/AuthState";
 import { AppState } from "../../interface/AppState";
 
-interface RouteParamProps {
-  slugOrId: string;
-}
-
 interface DispatchProps {
-  setPostViewSlugOrId(slugOrId: string): void;
-  loading(): void;
   loadPost(slugOrId: string): void;
 }
 
-interface StateProps {
+interface MappedStateProps {
   posts: PostDocument[];
   postViewState: SelectedPostState;
   authState: AuthState;
-  slugOrPostId: string
 }
 
-export interface Props
-  extends StateProps, RouteComponentProps<RouteParamProps>,
-    DispatchProp<any> {    
-  hideHeader: boolean
-  slugOrId: string
+export interface Props {
+  hideHeader: boolean;
+  slugOrId: string;
 }
 
 class PostView extends React.Component<
-  Props & DispatchProps,
+  Props & DispatchProps & MappedStateProps ,
+  DispatchProp<any>,
   SelectedPostState
 > {
-  constructor(props: Props & DispatchProps) {
-    super(props);
-  }
 
   componentDidMount() {
     if (this.props.slugOrId) {
       this.props.loadPost(this.props.slugOrId);
     }
   }
-  
+
   componentDidUpdate(prevProps: Props) {
     if (prevProps.slugOrId !== this.props.slugOrId) {
       this.props.loadPost(this.props.slugOrId);
@@ -99,7 +87,7 @@ class PostView extends React.Component<
   }
 }
 
-const mapStateToProps = (state: AppState) => {
+const mapStateToProps = (state: AppState): MappedStateProps => {
   return {
     posts: state.postsState.posts,
     postViewState: state.postViewState,
@@ -107,7 +95,7 @@ const mapStateToProps = (state: AppState) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: any): DispatchProps => ({
   loadPost: (slugOrId: string) =>
     dispatch(postViewActions.asyncPostViewLoadPostAction(slugOrId))
 });
@@ -117,4 +105,4 @@ const _PostPage = connect(
   mapDispatchToProps
 )(PostView);
 
-export default withRouter(_PostPage);
+export default _PostPage

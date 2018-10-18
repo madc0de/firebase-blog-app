@@ -7,42 +7,49 @@ import SigninView from "./components/views/SigninView";
 import Loading from "./components/layout/Loading";
 import { AuthState } from "./interface/AuthState";
 import { AppInitState } from "./interface/AppInitState";
-import { BlogSettingData } from "./interface/BlogSettingData";
 import { AppState } from "./interface/AppState";
 import { AdminSection } from "./admin-section/AdminSection";
 import { BlogSection } from "./blog-section/BlogSection";
-import PrivateRoute from './components/route/PrivateRoute'
+import PrivateRoute from "./components/route/PrivateRoute";
+import blogSettings from "./blogSettings";
 
 interface AppProps {}
 interface StateProps {
   authState: AuthState;
   appInitState: AppInitState;
-  blogSettings: BlogSettingData;
 }
 
 class App extends React.Component<AppProps & StateProps, {}> {
   componentDidUpdate() {
-    if (this.props.blogSettings.loaded && !document.title) {
-      document.title = this.props.blogSettings.blog_title;
-    }
+    document.title = blogSettings.blog_title;
   }
 
   public render() {
     const { authState, appInitState } = this.props;
 
     if (!appInitState.initialized) {
-      return <Loading />
+      return <Loading />;
     }
 
     return (
       <Router>
         <React.Fragment>
           <Switch>
-            <PrivateRoute authState={authState} path="/admin" component={AdminSection} />
+            <PrivateRoute
+              authState={authState}
+              path="/admin"
+              component={AdminSection}
+            />
             <Route path="/signin" component={SigninView} />
             <Route path="/post" component={BlogSection} />
-            <Route exact path="/" user={authState} component={BlogSection} />            
-            <Route render={() => <div style={{padding: '5rem'}}><h1>404 not found</h1></div>} />
+            <Route exact path="/" user={authState} component={BlogSection} />
+            <Route
+              render={() => (
+                <div style={{ padding: "5rem" }}>
+                  <h1>404 not found</h1>
+                </div>
+              )}
+            />
           </Switch>
         </React.Fragment>
       </Router>
@@ -53,8 +60,7 @@ class App extends React.Component<AppProps & StateProps, {}> {
 const mapStateToProps = (state: AppState): StateProps => {
   return {
     authState: state.authState,
-    appInitState: state.appInitState,
-    blogSettings: state.blogSettingsState
+    appInitState: state.appInitState
   };
 };
 

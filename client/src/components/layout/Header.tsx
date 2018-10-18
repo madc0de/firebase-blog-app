@@ -2,8 +2,10 @@ import * as React from "react";
 import SideNav from "./SideNav";
 import { connect, Dispatch } from "react-redux";
 import { AuthState } from "../../interface/AuthState";
-import { BlogSettingData } from "../../interface/BlogSettingData";
 import { AppState } from "../../interface/AppState";
+
+import blogSettings from '../../blogSettings'
+
 
 const OpenNavButton = (props: { onClick: React.EventHandler<any> }) => (
   <a href="#" className="open-nav-button" onClick={props.onClick}>
@@ -13,7 +15,6 @@ const OpenNavButton = (props: { onClick: React.EventHandler<any> }) => (
 
 interface FromStateProps {
   authState: AuthState;
-  blogSettings: BlogSettingData;
 }
 
 export interface HeaderProps extends FromStateProps {
@@ -42,8 +43,7 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
   };
 
   public render() {
-    const { blogSettings } = this.props;
-
+    
     return (
       <React.Fragment>
         <header className="blog-header">
@@ -63,8 +63,7 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
 }
 
 const mapStateToProps = (state: AppState): FromStateProps => ({
-  authState: state.authState,
-  blogSettings: state.blogSettingsState
+  authState: state.authState
 });
 
 const _Header = connect(mapStateToProps)(Header);

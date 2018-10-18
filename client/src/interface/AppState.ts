@@ -1,5 +1,4 @@
 import { AppInitState } from "./AppInitState";
-import { BlogSettingData } from "./BlogSettingData";
 import { BlogMetaData } from "./BlogMetaData";
 import { AuthState } from "./AuthState";
 import { PostsState } from "./PostState";
@@ -10,7 +9,6 @@ import { FormReducer } from "redux-form";
 
 export interface AppState {
   appInitState: AppInitState;
-  blogSettingsState: BlogSettingData;
   metaDataState: BlogMetaData;
   authState: AuthState;
   postsState: PostsState;

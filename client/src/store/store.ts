@@ -14,7 +14,6 @@ import { ReduxAction } from "../interface/ReduxAction";
  
 const rootReducer: Reducer<AppState, ReduxAction<any>> = combineReducers({
   appInitState: reducers.appInitReducer,
-  blogSettingsState: reducers.blogSettingsReducer,
   metaDataState: reducers.metaDataReducer,
   postsState: reducers.postReducer,
   authState: reducers.authReducer,

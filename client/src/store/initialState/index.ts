@@ -1,4 +1,3 @@
-import { BlogSettingData } from "../../interface/BlogSettingData";
 import { BlogMetaData } from "../../interface/BlogMetaData";
 import { UserData } from "../../interface/UserData";
 import { AuthState } from "../../interface/AuthState";
@@ -8,13 +7,6 @@ import { PostData } from "../../interface/PostData";
 import { SelectedPostState } from "../../interface/SelectedPostState";
 import { PostFormValues } from "../../interface/PostFormValues";
 import { PostFormState } from "../../interface/PostFormState";
-
-export const initail_BlogSetting: BlogSettingData =  {
-  blog_title: '',
-  blog_description: '',
-  blog_background_cover_url: '',
-  loaded: false
-}
 
 export const initial_MetaData: BlogMetaData = {
   post_count: 0,

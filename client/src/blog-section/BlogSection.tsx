@@ -19,7 +19,7 @@ class _BlogSection extends React.Component<StateProps, {}> {
         <Route
           path="/post/:slugOrId"
           render={(props: any) => {
-            const slugOrId = props.match.params.slugOrId;
+            const slugOrId = props.match.params.slugOrId
             return <PostView {...props} slugOrId={slugOrId} />;
           }}
         />

@@ -20,6 +20,8 @@ export const asyncPostViewLoadPostAction = (slugOrId: string) => async (
 ) => {
   try {
     dispatch(postViewSetStatusAction("loading"));
+
+    slugOrId = (slugOrId || '').toLowerCase()
     let post: PostDocument | undefined = getState().postsState.posts.find(post => {
       let postId = getKey(post);
       let slug = (getValue(post) as PostData).slug;

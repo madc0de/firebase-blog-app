@@ -2,7 +2,7 @@ import * as React from "react";
 import { Header, PostContent } from "../layout";
 import PostExcerpts from "../post/PostExcerpts";
 import { connect } from "react-redux";
-import { postActions } from "../../store/actions";
+import * as postActions from "../../store/actions/post";
 import { PostDocument } from "../../interface/PostData";
 import { AuthState } from "../../interface/AuthState";
 import { AppState } from "../../interface/AppState";
@@ -44,7 +44,7 @@ const mapStateToProps = (state: AppState) => ({
   authState: state.authState
 });
 
-const mapDispatchToProps = (dispatch: any): MappedDispatchProps => ({
+const mapDispatchToProps = (dispatch: any): MappedDispatchProps => ({  
   loadPublishedPosts: () => dispatch(postActions.loadPublishedPostsAction())
 });
 

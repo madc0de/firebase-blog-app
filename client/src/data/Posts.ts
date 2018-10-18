@@ -147,7 +147,7 @@ export const getAllUserPosts = async (
 ): Promise<PostDocument[]> => {
   try {
     const querySnap = await firestore
-      .collection("posttitle")
+      .collection("posts")
       .where("userId", "==", userId)
       .get();
     if (querySnap.size > 0) {

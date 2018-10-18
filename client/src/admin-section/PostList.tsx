@@ -64,10 +64,10 @@ export default class _PostList extends React.Component<Props & MappedStateProps,
           <option value="updated">Updated</option>
         </select>
         <div className="post-list">
-          {sortedPosts.map((postTitle, index) => {
-            const key = Object.keys(postTitle)[0];
+          {sortedPosts.map((post, index) => {
+            const key = Object.keys(post)[0];
 
-            return <PostListItem key={key} post={postTitle} />;
+            return <PostListItem key={key} post={post} />;
           })}
         </div>
       </React.Fragment>

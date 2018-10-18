@@ -1,6 +1,1 @@
-export * from './postLoadedAction'
-export * from './postModifiedAction'
-export * from './postRemovedAction'
-export * from './postBodyLoadedAction'
-export * from './postTitleActions'
-export * from './loadUserPosts'
+export * from './postActions'

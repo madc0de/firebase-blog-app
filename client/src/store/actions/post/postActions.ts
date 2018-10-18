@@ -70,3 +70,12 @@ export const postRemovedAction = (
   type: actionType.post_removed,
   payload: postId
 });
+
+
+export const postLoadedAction = (
+  post: PostDocument
+): ReduxAction<PostDocument> => ({
+  type: actionType.post_loaded,
+  payload: post
+});
+

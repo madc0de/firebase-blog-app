@@ -7,7 +7,6 @@ export const post_modified = 'post_modified'
 export const post_removed = 'post_removed'
 
 export const postbody_loaded = 'postbody_loaded'
-export const posttitle_loaded = 'posttitle_loaded'
 
 export const user_authenticated = 'user_authenticated'
 export const user_signed_out ='user_not_authenticated'

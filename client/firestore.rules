@@ -52,11 +52,7 @@ service cloud.firestore {
       		request.auth.uid == incommingData().userId  &&
           isPostBody(request.resource.data)          
     }        
-    
-    match /posttitle/{postId} {
-    	allow read: if true;
-    }
-    
+        
     match /metadata/values {
     	allow read: if true
     }    

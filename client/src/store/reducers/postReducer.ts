@@ -102,7 +102,7 @@ const handle_posts_loaded = (
     if (index < 0) {
       currentPosts.push(post)
     } else {
-      currentPosts.splice(index, 0, post)
+      currentPosts.splice(index, 1, post)
     }
   }
 

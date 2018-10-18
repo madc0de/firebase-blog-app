@@ -18,9 +18,14 @@ interface Props extends MappedDispatchProps {
 
 class PublishedPosts extends React.Component<Props, {}> {
   componentDidMount() {
+    console.log('PublishedPosts componentDidMount')
     this.props.loadPublishedPosts();
   }
-  
+
+  componentDidUpdate(prevProps: Props) {
+    console.log('PublishedPosts componentDidUpdate')
+  }
+
   render() {
     const { authState, posts } = this.props;
 
@@ -39,12 +44,14 @@ class PublishedPosts extends React.Component<Props, {}> {
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  posts: state.postsState.posts,
-  authState: state.authState
-});
+const mapStateToProps = (state: AppState) => {
+  return {
+    posts: state.postsState.posts,
+    authState: state.authState
+  };
+};
 
-const mapDispatchToProps = (dispatch: any): MappedDispatchProps => ({  
+const mapDispatchToProps = (dispatch: any): MappedDispatchProps => ({
   loadPublishedPosts: () => dispatch(postActions.loadPublishedPostsAction())
 });
 

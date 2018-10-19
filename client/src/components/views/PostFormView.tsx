@@ -13,7 +13,7 @@ interface DispatchToProps {
 
 export interface Props extends DispatchToProps {
   postFormState: PostFormState;
-  postId: string
+  postId: string | undefined
 }
 
 class PostFormView extends React.Component<Props, PostFormState> {

@@ -24,10 +24,12 @@ class _PostAdminSection extends React.Component<Props, any> {
         </div>
         <div className="post-admin-section--post">
           <Switch>
-            <Route exact path="/admin/" render={() => <h4>/admin/</h4>} />
-            <Route
-              path="/admin/post/new"
-              render={() => <h4>/admin/post/new</h4>}
+          <Route
+              exact
+              path="/admin/post-create"
+              render={props => {
+                return <PostFormView postId={undefined} {...props} />;
+              }}
             />
             <Route
               exact
@@ -47,7 +49,6 @@ class _PostAdminSection extends React.Component<Props, any> {
                 );
               }}
             />
-            <Route render={() => <h4> NOT FOUND </h4>} />
           </Switch>
         </div>
       </div>

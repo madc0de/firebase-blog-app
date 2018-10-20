@@ -28,11 +28,10 @@ export interface Props {
 }
 
 class PostView extends React.Component<
-  Props & DispatchProps & MappedStateProps ,
+  Props & DispatchProps & MappedStateProps,
   DispatchProp<any>,
   SelectedPostState
 > {
-
   componentDidMount() {
     if (this.props.slugOrId) {
       this.props.loadPost(this.props.slugOrId);
@@ -79,10 +78,10 @@ class PostView extends React.Component<
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {!this.props.hideHeader && <Header />}
         {this.getContent()}
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -105,4 +104,4 @@ const _PostPage = connect(
   mapDispatchToProps
 )(PostView);
 
-export default _PostPage
+export default _PostPage;

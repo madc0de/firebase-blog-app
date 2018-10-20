@@ -10,9 +10,7 @@ import { listenForAuthStateChange } from './data/Auth'
 
 import './css/variables.css'
 import './css/reset.css'
-import './css/small-default.css'
-import './css/medium.css'
-import './css/large.css'
+import './css/style.css'
 
 
 initStore(store => {

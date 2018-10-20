@@ -2,36 +2,39 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { AuthState } from "../interface/AuthState";
 import { AppState } from "../interface/AppState";
-import { Link } from "react-router-dom";
-import { PostAdminSection } from "./PostAdminSection";
+import { Link, Route, Switch } from "react-router-dom";
+import { PostEditSection } from "./PostEditSection";
+import { PostListSection } from "./PostListSection";
 
 interface MappedStateProps {
   authState: AuthState;
 }
 
 class _AdminSection extends React.Component<MappedStateProps, {}> {
-
   render() {
     return (
       <div className="admin-section">
         <div className="admin-section-nav">
           <ul>
-          <li>
+            <li>
               <Link to="/">Blog</Link>
             </li>
             <li>
-              <Link to="/">Content</Link>
-            </li>
-            <li>
-              <Link to="/admin/post/new">New post</Link>
-            </li>
-            <li>
-              <Link to="/admin/post/other">Other</Link>
+              <Link to="/admin">Content</Link>
             </li>
           </ul>
         </div>
         <div className="admin-section-content">
-            <PostAdminSection />
+          <Switch>
+            <Route
+              path="/admin/post-edit/"
+              render={props => {
+                console.log("post edit");
+                return <PostEditSection {...props} />;
+              }}
+            />
+            <Route path="/admin" component={PostListSection} />
+          </Switch>
         </div>
       </div>
     );
@@ -44,6 +47,4 @@ const mapStateToProps = (state: AppState): MappedStateProps => {
   };
 };
 
-export const AdminSection = connect(
-  mapStateToProps
-)(_AdminSection);
+export const AdminSection = connect(mapStateToProps)(_AdminSection);

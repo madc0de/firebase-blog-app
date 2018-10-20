@@ -18,7 +18,7 @@ const PostListItem: React.SFC<PostListItemProps> = ({ post }) => {
   return (
     <div className="post-list-item">
       <div className="title">
-        <Link to={`/admin/post/${key}`}>{postData.title}</Link>
+        <Link to={`/admin/post-list/${key}`}>{postData.title}</Link>
       </div>
       <div className="meta">
         <div className="date">{updated_date}</div>

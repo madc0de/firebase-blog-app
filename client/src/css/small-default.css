@@ -274,7 +274,7 @@ tr:hover {
 * post-admin-seciton *
 *********************/
 
-.post-admin-section {
+.post-list-section {
     height: 100%;
     width: 100%;
     display: grid;
@@ -283,11 +283,11 @@ tr:hover {
     grid-template-areas: "list post post"
 }
 
-.post-admin-section--list {
+.post-list-section--list {
     grid-area: list;
 }
 
-.post-admin-section--post {
+.post-list-section--post {
     grid-area: post;
     border-left: 1px solid #ddd;
 }

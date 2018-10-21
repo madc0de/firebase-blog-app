@@ -4,8 +4,9 @@ import { PostDocument } from '../../../interface/PostData';
 import { ReduxAction } from '../../../interface/ReduxAction';
 import { actionType } from '..';
 import { GetStateFn } from '../../../interface/GetStateFn';
-import { getPublishedPosts, getRecentlyUpdatedPosts } from '../../../data/Posts'
+import { getPublishedPosts, getRecentlyUpdatedPosts, removePost } from '../../../data/Posts'
 import { PostBodyData } from 'src/interface/PostBodyData';
+
 
 export const loadUserPosts = (userId: string): any=> async (
   dispatch: Dispatch,
@@ -37,8 +38,19 @@ export const loadRecentlyUpdatedPostsAction = () => async (
   try {
     const posts = await getRecentlyUpdatedPosts(undefined, 50) // hard coded for now
     dispatch(postsLoaded(posts))
-  } catch(err) {
-    return err
+  } catch(error) {
+    return error
+  }
+}
+
+export const removePostAction = (postId: string) => async(
+  dispatch: Dispatch
+) => {
+  try {
+    await removePost(postId)
+    dispatch(postRemovedAction(postId))
+  } catch (error) {
+    return error
   }
 }
 
@@ -70,7 +82,6 @@ export const postRemovedAction = (
   type: actionType.post_removed,
   payload: postId
 });
-
 
 export const postLoadedAction = (
   post: PostDocument

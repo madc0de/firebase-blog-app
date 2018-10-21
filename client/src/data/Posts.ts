@@ -98,7 +98,6 @@ export const removePost = async (postId: string) => {
   return undefined;
 };
 
-
 export const getRecentlyUpdatedPosts = async (
   startAfterDate: number | undefined,
   limit: number,

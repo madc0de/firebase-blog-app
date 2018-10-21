@@ -20,7 +20,7 @@ export const postReducer = (
     case actionType.postform_submit_success: {
       return handle_post_loaded(state, action.payload as PostDocument);
     }
-    case actionType.posts_loaded: {
+    case actionType.posts_loaded: {https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-vsc?view=aspnetcore-2.1
       return handle_posts_loaded(state, action.payload as PostDocument[]);
     }
     case actionType.postbody_loaded: {

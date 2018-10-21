@@ -2,7 +2,7 @@ import * as React from "react";
 import { AuthState } from "../interface/AuthState";
 import { AppState } from "../interface/AppState";
 import { connect } from "react-redux";
-import { Route, withRouter } from "react-router";
+import { Route } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
 import PostFormView from "../components/views/PostFormView";
 
@@ -19,17 +19,17 @@ class _PostEditSection extends React.Component<Props, any> {
       <React.Fragment>
         <Route
           exact
-          path="/admin/post-edit/:postId"
+          path="/admin/post-edit/"
           render={props => {
-            const { postId } = props.match.params;
-            return <PostFormView postId={postId} {...props} />;
+            return <PostFormView postId={undefined} {...props} />;
           }}
         />
         <Route
           exact
-          path="/admin/post-create"
+          path="/admin/post-edit/:postId"
           render={props => {
-            return <PostFormView postId={undefined} {...props} />;
+            const { postId } = props.match.params;
+            return <PostFormView postId={postId} {...props} />;
           }}
         />
       </React.Fragment>
@@ -43,6 +43,5 @@ const mapStateToProps = (state: AppState): StateProps => {
   };
 };
 
-export const PostEditSection = withRouter(
-  connect(mapStateToProps)(_PostEditSection)
-);
+export const PostEditSection = connect(mapStateToProps)(_PostEditSection)
+

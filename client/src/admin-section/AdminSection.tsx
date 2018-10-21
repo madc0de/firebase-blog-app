@@ -29,7 +29,6 @@ class _AdminSection extends React.Component<MappedStateProps, {}> {
             <Route
               path="/admin/post-edit/"
               render={props => {
-                console.log("post edit");
                 return <PostEditSection {...props} />;
               }}
             />

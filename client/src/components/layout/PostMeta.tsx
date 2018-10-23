@@ -3,16 +3,18 @@ import { Link } from "react-router-dom";
 import { formateDateIf, formatDateTimeIf } from "../../utils/dateUtil";
 import { AuthState } from "../../interface/AuthState";
 import { PostData, PostDocument } from "../../interface/PostData";
+import { DeletePostLink } from "../post/DeletePostLink";
 
 interface PostMetaProps {
-  post: PostDocument
-  authState: AuthState
+  post: PostDocument;
+  authState: AuthState;
 }
 
-const PostMeta: React.SFC<PostMetaProps> = ({ post, authState }) => {  
+const PostMeta: React.SFC<PostMetaProps> = ({ post, authState }) => {
   const postId = Object.keys(post)[0];
   const postData = post[postId] as PostData;
-  const canEdit = authState.authenticated && authState.authUserId === postData.userId 
+  const canEdit =
+    authState.authenticated && authState.authUserId === postData.userId;
 
   const date =
     postData.status === "published"
@@ -31,6 +33,7 @@ const PostMeta: React.SFC<PostMetaProps> = ({ post, authState }) => {
       {}
 
       {canEdit && <Link to={`/admin/post-edit/${postId}`}>Edit</Link>}
+      {canEdit && <DeletePostLink postTitle={postData.title} postId={postId} />}
     </div>
   );
 };

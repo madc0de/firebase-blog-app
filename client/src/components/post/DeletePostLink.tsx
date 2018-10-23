@@ -6,14 +6,13 @@ interface State {
 }
 export interface Props {
   postId: string;
-  title: string;
+  postTitle: string;
 }
 
-export default class DeletePost extends React.Component<Props, State> {
+export class DeletePostLink extends React.Component<Props, State> {
   state = {
     showDialog: false
   };
-
 
   openDialog = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -31,20 +30,18 @@ export default class DeletePost extends React.Component<Props, State> {
 
   public render() {
     const { showDialog } = this.state;
+    const { postTitle } = this.props;
     return (
       <React.Fragment>
-        <button className="btn btn-red btn-small" onClick={this.openDialog}>
+        <a href="#" onClick={this.openDialog}>
           Delete
-        </button>
+        </a>
 
         <Modal open={showDialog} onClose={this.closeDialog}>
           <h3>Delete Post</h3>
-          <p>
-            You are about to delete this post. <br />
-            You cannot undo do. <br />
-            Are your sure?
-          </p>
-          <div>
+          <div>Delete this post?</div>
+          <div>{postTitle}</div>
+          <div className="btn-group">
             <button onClick={this.closeDialog} className="btn btn-small">
               Cancel
             </button>

@@ -25,7 +25,10 @@ interface StateProps {
   postBody: string;
 }
 
-interface Props extends StateProps, DispatchProps, InjectedFormProps<PostFormValues> {
+interface Props
+  extends StateProps,
+    DispatchProps,
+    InjectedFormProps<PostFormValues> {
   onSave(postId: string): void;
 }
 
@@ -39,17 +42,17 @@ class PostForm extends React.Component<Props, {}> {
   }
 
   componentDidMount() {
-    this.triggerSubmiton_metaKey_Enter()
+    this.triggerSubmiton_metaKey_Enter();
   }
 
   triggerSubmiton_metaKey_Enter = () => {
     const element = this.formRef.current as HTMLFormElement;
     element.addEventListener("keydown", e => {
       if ((e.metaKey || e.ctrlKey) && e.keyCode === 13) {
-        this.props.triggerSubmit()
+        this.props.triggerSubmit();
       }
     });
-  }
+  };
 
   componentDidUpdate() {
     const { postFormState, onSave } = this.props;
@@ -78,13 +81,13 @@ class PostForm extends React.Component<Props, {}> {
         <div className="post-title">
           <Field name="title" placeholder="Title" component="input" />
         </div>
-        <div className="post-action">
-          <SubmitButton
-            disabled={submitting || invalid || pristine}
-            saving={submitting}
-          >
-            SAVE
-          </SubmitButton>
+        <div className="post-action btn-group">
+            <SubmitButton
+              disabled={submitting || invalid || pristine}
+              saving={submitting}
+            >
+              SAVE
+            </SubmitButton>
         </div>
         <div className="post-body">
           <Field name="body" component="textarea" />

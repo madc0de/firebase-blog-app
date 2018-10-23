@@ -22,13 +22,8 @@ export default class extends React.Component<Props, {}> {
   render() {
     const { open, children } = this.props;
 
-    const style = {
+    const modalStyle = {
       display: open ? "block" : "none",
-      left: 0,
-      top: 0,
-      width: "100%",
-      height: "100%",
-      backgroundColor: "rgba(0, 0, 0, 0.7"
     };
 
     let clonedChildren = undefined;
@@ -43,8 +38,10 @@ export default class extends React.Component<Props, {}> {
     }
 
     return (
-      <div style={style} onClick={this.modalClick}>
-        {clonedChildren}
+      <div className='modal'  style={modalStyle} onClick={this.modalClick}>
+        <div className="modal-content">
+          {clonedChildren}
+        </div>
       </div>
     );
   }

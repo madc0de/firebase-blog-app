@@ -266,10 +266,6 @@ tr:hover {
     margin: 0 1.6rem;
 }
 
-.admin-section-content {
-    
-}
-
 /********************
 * blog-section *
 ********************/
@@ -339,14 +335,17 @@ tr:hover {
 
 .post-action {
     grid-area: action;
+    border-bottom: 1px solid #ddd;
+    padding-right: 1rem;
+}
+
+.btn-group {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding-right: 1rem;
-    border-bottom: 1px solid #ddd;
 }
 
-.post-action .btn {
+.btn-group .btn {
     margin-left: 0.5rem;
 }
 
@@ -718,49 +717,28 @@ blockquote {
 *   modal dialog   *
 ********************/
 
-.modal-container {
+.modal {
     display: block;
+    z-index: 1000;
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    padding-top: 15vh;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
+    background-color: rgba(0,0,0,0.7);  
+  }
+  
+  .modal-content {
+    display: block;
+    margin: 15% auto;  
+    width: 300px;
+    min-height: 150px;
     background-color: #fff;
-    display: inline-block;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 200;
-    color: var(--color);
-    border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, .2) 0 0 0 6px;
-}
-
-.modal-header {
-    margin: 0;
-    padding-top: 1rem;
-    font-size: 1.5rem;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 100;
-}
-
-.modal-body {
-    text-align: left;
+    border-radius: 5px;
     padding: 1rem;
-}
+  }
 
-.modal-footer {
-    text-align: right;
-    padding: 0.5rem 1rem 1rem 1rem;
-}
-
-.modal-footer .btn {
-    margin-left: 1rem;
-}
+/* buttons */
 
 .btn {
     padding: 0.5rem 1rem;

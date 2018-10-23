@@ -23,6 +23,7 @@ interface DispatchProps {
 interface StateProps {
   postFormState: PostFormState;
   postBody: string;
+  postId: string;
 }
 
 interface Props
@@ -70,7 +71,7 @@ class PostForm extends React.Component<Props, {}> {
       invalid,
       submitting,
       pristine,
-      postBody
+      postBody,
     } = this.props;
     return (
       <form
@@ -82,12 +83,12 @@ class PostForm extends React.Component<Props, {}> {
           <Field name="title" placeholder="Title" component="input" />
         </div>
         <div className="post-action btn-group">
-            <SubmitButton
-              disabled={submitting || invalid || pristine}
-              saving={submitting}
-            >
-              SAVE
-            </SubmitButton>
+          <SubmitButton
+            disabled={submitting || invalid || pristine}
+            saving={submitting}
+          >
+            SAVE
+          </SubmitButton>
         </div>
         <div className="post-body">
           <Field name="body" component="textarea" />
@@ -104,7 +105,8 @@ const selector = formValueSelector("post");
 
 const mapStateToProps = (state: AppState): StateProps => ({
   postFormState: state.postFormState,
-  postBody: selector(state, "body")
+  postBody: selector(state, "body"),
+  postId: selector(state, "postId")
 });
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({

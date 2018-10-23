@@ -2,11 +2,12 @@
 import { Dispatch } from "redux";
 import  { Posts } from "../../../data";
 const removeMd = require("remove-markdown");
-import { getExcerptText } from "../../../utils/textUtil";
+import { getExcerptText, getSlug } from "../../../utils/textUtil";
 import { dateToMilliseconds } from "../../../utils/dateUtil";
 import { postFormSubmitStart, postFormSubmitSuccess, postFormSubmitError } from '.'
 import { PostFormValues } from "../../../interface/PostFormValues";
 import { PostData } from "../../../interface/PostData";
+
 
 export const savePostAction = (postId: string, formValues: PostFormValues) => async (
   dispatch: Dispatch
@@ -26,7 +27,7 @@ export const postDataFromValues = (values: PostFormValues): PostData => {
     userId: values.userId,
     photoUrl: values.photoUrl,
     title: values.title,
-    slug: values.slug != null ? values.slug.trim() : "",
+    slug: getSlug(values.title),
     body: values.body,
     excerpt: getExcerptText(removeMd(values.body), 28),
     status: values.status,
@@ -34,3 +35,4 @@ export const postDataFromValues = (values: PostFormValues): PostData => {
   };
   return postData;
 };
+

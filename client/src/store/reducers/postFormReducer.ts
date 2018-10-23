@@ -38,7 +38,7 @@ const handle_set_status = (
   action: ReduxAction<LoadingStatus>
 ): PostFormState => {
 
-  if (action.payload === 'init') {
+  if (action.payload === '') {
     return { ...initial_PostFormState }
   }
 
@@ -62,7 +62,7 @@ const handle_submit_start = (
   action: ReduxAction<PostDocument>
 ): PostFormState => ({
   ...state,
-  submitStatus: 'started',
+  updatingStatus: 'submitting',
 });
 
 
@@ -71,7 +71,7 @@ const handle_submit_success = (
   action: ReduxAction<PostDocument>
 ): PostFormState => ({
   ...state,
-  submitStatus: 'saved',
+  updatingStatus: 'success',
   postId: getKey(action.payload)
 });
 

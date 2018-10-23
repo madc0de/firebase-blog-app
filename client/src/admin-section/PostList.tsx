@@ -31,7 +31,7 @@ export default class _PostList extends React.Component<Props & MappedStateProps,
     super(props);
 
     this.state = {
-      sortBy: "title"
+      sortBy: "updated"
     };
   }
 
@@ -51,8 +51,6 @@ export default class _PostList extends React.Component<Props & MappedStateProps,
     const { posts } = this.props;
     const { sortBy } = this.state;
 
-    console.log("sortBy: " + sortBy);
-
     const sortHandler =
       sortBy === "updated" ? sortUpdateDescending : sortTitleAscending;
     const sortedPosts = posts.sort(sortHandler);
@@ -60,8 +58,8 @@ export default class _PostList extends React.Component<Props & MappedStateProps,
     return (
       <React.Fragment>
         <select name="sortby" onChange={this.sortByChange}>
-          <option value="title">Title</option>
           <option value="updated">Updated</option>
+          <option value="title">Title</option>
         </select>
         <div className="post-list">
           {sortedPosts.map((post, index) => {

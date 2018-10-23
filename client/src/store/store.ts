@@ -18,7 +18,7 @@ const rootReducer: Reducer<AppState, ReduxAction<any>> = combineReducers({
   postsState: reducers.postReducer,
   authState: reducers.authReducer,
   usersState: reducers.userReducer,
-  postViewState: reducers.postViewReducer,
+  selectedPostState: reducers.postViewReducer,
   postFormState: reducers.postFormReducer,
   form: formReducer
 });

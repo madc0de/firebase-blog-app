@@ -1,10 +1,10 @@
 import { LoadingStatus } from './LoadingStatus';
-import { SubmitStatus } from './SubmitStatus';
+import { UpdatingStatus } from './UpdatingStatus';
 import { PostFormValues } from './PostFormValues';
 
 export interface PostFormState {
   loadingStatus: LoadingStatus;
-  submitStatus: SubmitStatus;
+  updatingStatus: UpdatingStatus;
   postId: string | undefined;
   formValues?: PostFormValues;
   error: string;

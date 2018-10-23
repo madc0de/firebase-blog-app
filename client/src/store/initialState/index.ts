@@ -13,7 +13,7 @@ export const initial_MetaData: BlogMetaData = {
   user_count: 0
 }
 
-export const initial_UserData: UserData = {
+export const initial_UserData: UserData ={ 
   email: '',
   displayName: '',
   photoUrl: '',
@@ -49,7 +49,7 @@ export const initial_PostData: PostData = {
 };
 
 export const initial_SelectedPostState: SelectedPostState = {
-  loadingStatus: 'init',
+  loadingStatus: '',
   error: '',
   post: undefined
 };
@@ -63,8 +63,8 @@ export const initial_PostFormValuesState: PostFormValues = {
 };
 
 export const initial_PostFormState: PostFormState = {
-  loadingStatus: 'init',
-  submitStatus: '',
+  loadingStatus: 'loading',
+  updatingStatus: '',
   postId: '',
   formValues: initial_PostFormValuesState,
   error: ''

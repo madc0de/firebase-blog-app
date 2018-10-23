@@ -13,7 +13,7 @@ export interface AppState {
   authState: AuthState;
   postsState: PostsState;
   usersState: UsersState;
-  postViewState: SelectedPostState;
+  selectedPostState: SelectedPostState;
   postFormState: PostFormState;
   form: FormReducer | Object;
 }

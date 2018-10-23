@@ -56,10 +56,10 @@ class PostForm extends React.Component<Props, {}> {
 
   componentDidUpdate() {
     const { postFormState, onSave } = this.props;
-    if (postFormState.submitStatus === "saved") {
+    if (postFormState.updatingStatus === "success") {
       onSave(postFormState.postId as string);
     }
-    if (postFormState.submitStatus === "error") {
+    if (postFormState.updatingStatus === "error") {
       throw new SubmissionError({ _error: postFormState.error });
     }
   }

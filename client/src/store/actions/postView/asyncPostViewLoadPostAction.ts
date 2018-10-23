@@ -14,7 +14,7 @@ import { GetStateFn } from '../../../interface/GetStateFn';
 import { PostDocument, PostData } from '../../../interface/PostData';
 
 
-export const asyncPostViewLoadPostAction = (slugOrId: string) => async (
+export const loadPosttAction = (slugOrId: string) => async (
   dispatch: Dispatch,
   getState: GetStateFn
 ) => {

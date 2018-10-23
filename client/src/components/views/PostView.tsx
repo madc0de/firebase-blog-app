@@ -18,7 +18,7 @@ interface DispatchProps {
 
 interface MappedStateProps {
   posts: PostDocument[];
-  postViewState: SelectedPostState;
+  selectedPostState: SelectedPostState;
   authState: AuthState;
 }
 
@@ -45,11 +45,10 @@ class PostView extends React.Component<
   }
 
   getContent = () => {
-    const { loadingStatus, post } = this.props.postViewState;
+    const { loadingStatus, post } = this.props.selectedPostState;
 
     switch (loadingStatus) {
-      case "init":
-        return <div />;
+      case "": return <React.Fragment></React.Fragment>
       case "loading":
         return (
           <PostContent>
@@ -89,14 +88,14 @@ class PostView extends React.Component<
 const mapStateToProps = (state: AppState): MappedStateProps => {
   return {
     posts: state.postsState.posts,
-    postViewState: state.postViewState,
+    selectedPostState: state.selectedPostState,
     authState: state.authState
   };
 };
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => ({
   loadPost: (slugOrId: string) =>
-    dispatch(postViewActions.asyncPostViewLoadPostAction(slugOrId))
+    dispatch(postViewActions.loadPosttAction(slugOrId))
 });
 
 const _PostPage = connect(

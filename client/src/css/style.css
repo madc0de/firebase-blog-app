@@ -1,24 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:200,400,700');
 @import url('https://fonts.googleapis.com/css?family=Merriweather');
+
+:root {
+    --bgc-color: #f5f8fa;
+    --medium-screen: 560px;
+    --large-screen: 1140px;
+
+    --bold-color: rgba(0, 0, 0, 0.8);
+    --color: #3A4145;
+    --light-color: rgba(0, 0, 0, 0.3);
+    --heading-color:  #2E2E2E;
+    --post-meta-color: #9EABB3;
+
+    --font-bold: 700;
+    --font-normal: 300;
+    --input-padding: 0.5rem 1rem;
+}
+
 * {
     box-sizing: border-box;
 }
 
-html {
-    font-size: 16px;
-    height: 100%;
-}
-
-body {
-    height: 100%;
-}
-
-#root {
+html, body, #root {
     height: 100%;
 }
 
 body {
     font-family: "Merriweather", serif;
+    font-size: 18px;
     letter-spacing: 0.01rem;
     line-height: 1.75rem;
     color: var(--color);
@@ -118,10 +127,11 @@ body {
 ********************/
 
 .post-meta {
-    color: #9EABB3;
+    color: var(--post-meta-color);
     display: flex;
     align-items: center;
     font-size: 0.95rem;
+    line-height: calc(0.95rem * 1.5);
 }
 
 .post-meta>* {
@@ -172,7 +182,7 @@ body {
 
 .post-excerpt {
     color: var(--color);
-    font-size: var(--font-normal);
+    font-weight: var(--font-normal);
     font-size: 1.1rem;
 }
 
@@ -550,7 +560,7 @@ tr:hover {
 }
 
 /*******************
-*     h1 - h2      *
+*     h1 - h6      *
 ********************/
 
 h1, h2, h3, h4, h5, h6 {
@@ -563,36 +573,36 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.3rem;
     letter-spacing: -2px;
     text-indent: -3px;
-    line-height: 4rem;
+    line-height:  calc(2.3rem * 1.5);
 }
 
 h2 {
-    font-size: 2.4rem;
+    font-size: 2.1rem;
     letter-spacing: -1px;
-    line-height: 2.5rem;
+    line-height: calc(2.1rem * 1.5);
 }
 
 h3 {
     font-size: 2rem;
-    line-height: 2.2rem;
+    line-height: calc(2rem * 1.5);
 }
 
 h4 {
     font-size: 1.6rem;
-    line-height: 2rem;
+    line-height: calc(1.6rem * 1.5);
 }
 
 h5 {
     font-size: 1.4rem;
-    line-height: 1.9rem;
+    line-height: calc(1.4rem * 1.5);
 }
 
 h6 {
     font-size: 1.2rem;
-    line-height: 1.8rem;
+    line-height: calc(1.2rem * 1.5);
 }
 
 .link {
@@ -614,6 +624,10 @@ a {
 p, ul, ol, dl {
     margin: 0 0 1.75rem 0;
     text-rendering: geometricPrecision;
+}
+
+p {
+    line-height: calc(1rem * 1.5);
 }
 
 ol, ul {

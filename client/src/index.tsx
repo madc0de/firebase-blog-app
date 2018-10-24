@@ -8,7 +8,6 @@ import { metadataActions } from './store/actions'
 
 import { listenForAuthStateChange } from './data/Auth'
 
-import './css/variables.css'
 import './css/reset.css'
 import './css/style.css'
 

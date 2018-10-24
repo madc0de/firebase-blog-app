@@ -2,7 +2,7 @@
 import { Dispatch } from "redux";
 import  { Posts } from "../../../data";
 const removeMd = require("remove-markdown");
-import { getExcerptText, getSlug } from "../../../utils/textUtil";
+import { getExcerptText, slugify } from "../../../utils/textUtil";
 import { dateToMilliseconds } from "../../../utils/dateUtil";
 import { postFormSubmitStart, postFormSubmitSuccess, postFormSubmitError } from '.'
 import { PostFormValues } from "../../../interface/PostFormValues";
@@ -27,7 +27,7 @@ export const postDataFromValues = (values: PostFormValues): PostData => {
     userId: values.userId,
     photoUrl: values.photoUrl,
     title: values.title,
-    slug: getSlug(values.title),
+    slug: slugify(values.title),
     body: values.body,
     excerpt: getExcerptText(removeMd(values.body), 28),
     status: values.status,

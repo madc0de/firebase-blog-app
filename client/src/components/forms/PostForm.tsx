@@ -88,7 +88,7 @@ class PostForm extends React.Component<Props, {}> {
             saving={submitting}
           >
             SAVE
-          </SubmitButton>
+          </SubmitButton>          
         </div>
         <div className="post-body">
           <Field name="body" component="textarea" />

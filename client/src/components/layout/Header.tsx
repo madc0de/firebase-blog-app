@@ -46,7 +46,7 @@ class Header extends React.Component<HeaderProps & Dispatch, HeaderState> {
     return (
       <React.Fragment>
         <header className="blog-header">
-          <NavLink to="/">
+          <NavLink to="/" className="link">
             <h1 className="title">{blogSettings.blog_title}</h1>
           </NavLink>
           <h4 className="description">{blogSettings.blog_description}</h4>

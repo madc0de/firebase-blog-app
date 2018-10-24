@@ -33,7 +33,7 @@ export class DeletePostLink extends React.Component<Props, State> {
     const { postTitle } = this.props;
     return (
       <React.Fragment>
-        <a href="#" onClick={this.openDialog}>
+        <a className="link" href="#" onClick={this.openDialog}>
           Delete
         </a>
 

@@ -32,7 +32,7 @@ const PostMeta: React.SFC<PostMetaProps> = ({ post, authState }) => {
       <span className="date"> {date}</span>
       {}
 
-      {canEdit && <Link to={`/admin/post-edit/${postId}`}>Edit</Link>}
+      {canEdit && <Link to={`/admin/post-edit/${postId}`} className="link">Edit</Link>}
       {canEdit && <DeletePostLink postTitle={postData.title} postId={postId} />}
     </div>
   );

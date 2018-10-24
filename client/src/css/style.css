@@ -591,18 +591,20 @@ h6 {
     line-height: 1.8rem;
 }
 
-a {
+.link {
     text-decoration: none;
     cursor: pointer;
-}
-
-a {
     color: #4A4A4A;
     transition: color 0.3s ease;
 }
 
-a:hover {
+.link:hover {
     color: #111;
+}
+
+a {
+    background-color: #444;
+    text-decoration: none;;
 }
 
 p, ul, ol, dl {

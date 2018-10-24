@@ -35,15 +35,15 @@ class App extends React.Component<AppProps & StateProps, {}> {
       <Router>
         <React.Fragment>
           <Switch>
+            <Route exact path="/" user={authState} component={BlogSection} />
+            <Route path="/signin" component={SigninView} />
+            <Route exact path="/recent" component={BlogSection} />
+            <Route path="/post" component={BlogSection} />
             <PrivateRoute
               authState={authState}
               path="/admin"
               component={AdminSection}
             />
-            <Route path="/signin" component={SigninView} />
-            <Route path="/post" component={BlogSection} />
-            <Route path="/recent" component={BlogSection} />
-            <Route exact path="/" user={authState} component={BlogSection} />
             <Route
               render={() => (
                 <div style={{ padding: "5rem" }}>

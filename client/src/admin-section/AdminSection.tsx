@@ -20,6 +20,9 @@ class _AdminSection extends React.Component<MappedStateProps, {}> {
               <Link to="/">Blog</Link>
             </li>
             <li>
+              <Link to="/recent">Recent</Link>
+            </li>
+            <li>
               <Link to="/admin">Content</Link>
             </li>
             <li>

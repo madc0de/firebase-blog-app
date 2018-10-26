@@ -4,7 +4,7 @@ import { AppState } from "../interface/AppState";
 import { connect } from "react-redux";
 import { Route } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import PostFormView from "../components/views/PostFormView";
+import PostFormView from "../components/post-edit/PostFormView";
 
 // import PrivateRoute from "../components/route/PrivateRoute";
 

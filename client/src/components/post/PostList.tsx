@@ -1,8 +1,8 @@
 import * as React from "react";
-import { AppState } from "../interface/AppState";
+import { AppState } from "../../interface/AppState";
 import { connect, Dispatch } from "react-redux";
 import PostListItem from "./PostListItem";
-import { PostDocument } from "../interface/PostData";
+import { PostDocument } from "../../interface/PostData";
 import { loadUserPosts } from "src/store/actions/post";
 import { AuthState } from "src/interface/AuthState";
 

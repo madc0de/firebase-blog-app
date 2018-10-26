@@ -1,7 +1,7 @@
 import * as React from "react";
-import { PostDocument } from "../interface/PostData";
+import { PostDocument } from "../../interface/PostData";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
-import { formatDateTimeIf } from "../utils/dateUtil";
+import { formatDateTimeIf } from "../../utils/dateUtil";
 
 
 interface PostListItemProps extends RouteComponentProps<any> {

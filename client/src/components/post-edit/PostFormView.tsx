@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import PostForm from "../forms/PostForm";
+import PostForm from "./PostForm";
 import { postFormActions } from "../../store/actions";
 import { PostFormState } from "../../interface/PostFormState";
 import { AppState } from "../../interface/AppState";

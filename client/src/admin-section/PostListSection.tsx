@@ -1,5 +1,5 @@
 import * as React from "react";
-import { PostList } from "./PostList";
+import { PostList } from "../components/post/PostList";
 import { AuthState } from "../interface/AuthState";
 import { AppState } from "../interface/AppState";
 import { connect } from "react-redux";

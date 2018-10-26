@@ -38,12 +38,6 @@ class PostView extends React.Component<
     }
   }
 
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.slugOrId !== this.props.slugOrId) {
-      this.props.loadPost(this.props.slugOrId);
-    }
-  }
-
   getContent = () => {
     const { loadingStatus, post } = this.props.selectedPostState;
 

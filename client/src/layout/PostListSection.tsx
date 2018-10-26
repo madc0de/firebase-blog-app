@@ -28,7 +28,7 @@ class _PostListSection extends React.Component<Props, any> {
             render={props => {
               const { slugOrId } = props.match.params;
               return (
-                <PostView {...props} slugOrId={slugOrId} hideHeader={true} />
+                <PostView {...props} key={slugOrId} slugOrId={slugOrId} hideHeader={true} />
               );
             }}
           />

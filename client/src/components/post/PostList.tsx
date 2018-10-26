@@ -5,6 +5,7 @@ import PostListItem from "./PostListItem";
 import { PostDocument } from "../../interface/PostData";
 import { loadUserPosts } from "src/store/actions/post";
 import { AuthState } from "src/interface/AuthState";
+import { mapUtil } from "src/utils";
 
 
 type SortOption = "title" | "updated";
@@ -63,8 +64,7 @@ export default class _PostList extends React.Component<Props & MappedStateProps,
         </select>
         <div className="post-list">
           {sortedPosts.map((post, index) => {
-            const key = Object.keys(post)[0];
-
+            const key = mapUtil.getKey(post)
             return <PostListItem key={key} post={post} />;
           })}
         </div>

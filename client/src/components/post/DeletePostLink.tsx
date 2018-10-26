@@ -29,8 +29,9 @@ export class DeletePostLink extends React.Component<Props, State> {
   };
 
   public render() {
-    const { showDialog } = this.state;
-    const { postTitle } = this.props;
+    const { showDialog } = this.state
+    const { postTitle } = this.props
+
     return (
       <React.Fragment>
         <a className="link" href="#" onClick={this.openDialog}>
@@ -38,6 +39,7 @@ export class DeletePostLink extends React.Component<Props, State> {
         </a>
 
         <Modal open={showDialog} onClose={this.closeDialog}>
+          <React.Fragment>
           <h3>Delete Post</h3>
           <div>Delete this post?</div>
           <div>{postTitle}</div>
@@ -49,9 +51,10 @@ export class DeletePostLink extends React.Component<Props, State> {
               onClick={this.deleteClick}
               className="btn btn-small btn-red"
             >
-              Delete
+              DELETE
             </button>
           </div>
+          </React.Fragment>
         </Modal>
       </React.Fragment>
     );

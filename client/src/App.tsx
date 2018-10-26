@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import SigninView from "./components/views/SigninView";
+import SigninView from "./components/signin/SigninView";
 import Loading from "./components/layout/Loading";
 import { AuthState } from "./interface/AuthState";
 import { AppInitState } from "./interface/AppInitState";
 import { AppState } from "./interface/AppState";
-import { AdminSection } from "./admin-section/AdminSection";
-import { BlogSection } from "./blog-section/BlogSection";
 import PrivateRoute from "./components/route/PrivateRoute";
 import blogSettings from "./blogSettings";
+import { BlogSection } from "./layout/BlogSection";
+import { AdminSection } from "./layout/AdminSection";
 
 interface AppProps {}
 interface StateProps {

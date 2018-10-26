@@ -1,16 +1,16 @@
 import * as React from "react";
 // import { Dispatch } from "redux";
 import { connect, DispatchProp } from "react-redux";
-import { postViewActions } from "../../store/actions";
-import Header from "../layout/Header";
-import PostContent from "../layout/PostContent";
-import Loading from "../layout/Loading";
-import Post from "../post/Post";
-import PostNotFound from "../post/PostNotFound";
-import { PostDocument } from "../../interface/PostData";
-import { SelectedPostState } from "../../interface/SelectedPostState";
-import { AuthState } from "../../interface/AuthState";
-import { AppState } from "../../interface/AppState";
+import { postViewActions } from "../store/actions";
+import Header from "../components/layout/Header";
+import PostContent from "../components/layout/PostContent";
+import Loading from "../components/layout/Loading";
+import { PostDocument } from "src/interface/PostData";
+import { SelectedPostState } from "src/interface/SelectedPostState";
+import { AuthState } from "src/interface/AuthState";
+import PostNotFound from "src/components/post/PostNotFound";
+import Post from "src/components/post/Post";
+import { AppState } from "src/interface/AppState";
 
 interface DispatchProps {
   loadPost(slugOrId: string): void;

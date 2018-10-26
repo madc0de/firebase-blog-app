@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Header, PostContent } from "../layout";
-import PostExcerpts from "../post/PostExcerpts";
+import PostExcerpts from "./PostExcerpts";
 import { connect } from "react-redux";
 import * as postActions from "../../store/actions/post";
 import { PostDocument } from "../../interface/PostData";

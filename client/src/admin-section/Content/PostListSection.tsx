@@ -1,11 +1,11 @@
 import * as React from "react";
-import { PostList } from "../components/post/PostList";
-import { AuthState } from "../interface/AuthState";
-import { AppState } from "../interface/AppState";
+import { AuthState } from "../../interface/AuthState";
+import { AppState } from "../../interface/AppState";
 import { connect } from "react-redux";
 import { Route, withRouter } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import PostView from "../components/views/PostView";
+import PostView from "../../components/post/PostView";
+import { PostList } from "src/components/post/PostList";
 
 // import PrivateRoute from "../components/route/PrivateRoute";
 

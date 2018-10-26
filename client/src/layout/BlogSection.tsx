@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
-import PostView from "../components/views/PostView";
+import PostView from "../components/post/PostView";
 import { connect } from "react-redux";
 import { AuthState } from "../interface/AuthState";
 import { AppState } from "../interface/AppState";
-import Posts from "../components/views/Posts";
+import Posts from "../components/post/Posts";
 
 interface StateProps {
   authState: AuthState;

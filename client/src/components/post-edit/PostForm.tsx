@@ -8,13 +8,13 @@ import {
   SubmissionError,
   submit
 } from "redux-form";
-import { validatePostFormValues } from "../../validation/validatePost";
 import { PostFormState } from "../../interface/PostFormState";
 import { PostFormValues } from "../../interface/PostFormValues";
 import { AppState } from "../../interface/AppState";
 import MarkdownViewer from "../MarkdownViewer";
 import SubmitButton from "../SubmitButton";
 import { submitPost } from "./submitPost";
+import { validatePostFormValues } from "./validation";
 
 interface DispatchProps {
   triggerSubmit(): void;
@@ -118,7 +118,7 @@ const _connectWrapped = connect(
   mapDispatchToProps
 )(PostForm);
 
-const _reduxFormWrapped = reduxForm({
+export default reduxForm({
   form: "post",
   validate: validatePostFormValues,
   enableReinitialize: true,
@@ -126,4 +126,4 @@ const _reduxFormWrapped = reduxForm({
   onSubmit: submitPost
 })(_connectWrapped);
 
-export default _reduxFormWrapped;
+// export default _reduxFormWrapped;

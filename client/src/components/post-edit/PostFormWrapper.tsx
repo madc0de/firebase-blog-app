@@ -13,12 +13,12 @@ interface DispatchToProps {
 
 export interface Props extends DispatchToProps {
   postFormState: PostFormState;
-  postId: string | undefined
+  postId: string | undefined;
 }
 
-class PostFormView extends React.Component<Props, PostFormState> {
+class PostFormWrapper extends React.Component<Props, PostFormState> {
   async componentDidMount() {
-    const { postId } = this.props
+    const { postId } = this.props;
     if (postId) {
       this.props.loadExistingPostFormValues(postId as string);
     } else {
@@ -52,10 +52,11 @@ class PostFormView extends React.Component<Props, PostFormState> {
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  postFormState: state.postFormState
-});
-
+const mapStateToProps = (state: AppState) => {
+  return {
+    postFormState: state.postFormState
+  };
+};
 const mapDispatchToProps = (dispatch: any): DispatchToProps => ({
   loadExistingPostFormValues: (postId: string) =>
     dispatch(postFormActions.loadPostFormValuesAction(postId)),
@@ -66,4 +67,4 @@ const mapDispatchToProps = (dispatch: any): DispatchToProps => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostFormView);
+)(PostFormWrapper);

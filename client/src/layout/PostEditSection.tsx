@@ -4,7 +4,7 @@ import { AppState } from "../interface/AppState";
 import { connect } from "react-redux";
 import { Route } from "react-router";
 import { RouteComponentProps } from "react-router-dom";
-import PostFormView from "../components/post-edit/PostFormView";
+import PostFormWrapper from "../components/post-edit/PostFormWrapper";
 
 // import PrivateRoute from "../components/route/PrivateRoute";
 
@@ -21,7 +21,7 @@ class _PostEditSection extends React.Component<Props, any> {
           exact
           path="/admin/post-edit/"
           render={props => {
-            return <PostFormView postId={undefined} {...props} />;
+            return <PostFormWrapper postId={undefined} {...props} />;
           }}
         />
         <Route
@@ -29,7 +29,7 @@ class _PostEditSection extends React.Component<Props, any> {
           path="/admin/post-edit/:postId"
           render={props => {
             const { postId } = props.match.params;
-            return <PostFormView postId={postId} {...props} />;
+            return <PostFormWrapper postId={postId} {...props} />;
           }}
         />
       </React.Fragment>

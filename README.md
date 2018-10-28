@@ -21,10 +21,9 @@ This project uses firebase functions/cloud functions for a weak form of referent
 2. Create your google firebase project
 3. Configure `client`
 4. Configure `firebase-functions`
-5. Configure "blog settings"
+5. Configure `blogSettings.js`
 6. Deploy
 7. Login
-
 
 ### Clone and installed packages
 
@@ -34,7 +33,7 @@ clone the repository, then:
 cd client
 npm i
 
-cd firebase-functions/functions 
+cd firebase-functions/functions
 npm i
 ```
 
@@ -81,19 +80,15 @@ Replace `<project name>` in `.firebaserc` with yours
 }
 ```
 
-### Configure "blog settings"
+### Configure `bLogSettings.js`
 
-Ability to set blog title and description will be added to the UI.  For now it's a manual process.
+Find `src/blogSettings.js`
 
-1. In your projects firebase console
-2. Select "Database"
-3. add a collection/doc `settings/blog` 
-
-The add the following fields
-
-```text
-blog_title: '<your title>'
-blog_description: '<your blog description>`
+```javascript
+export default {
+  blog_description: "description",
+  blog_title: "Title"
+}
 ```
 
 ### Deploy

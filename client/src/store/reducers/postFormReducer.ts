@@ -1,15 +1,17 @@
-import * as actionType from '../actions/actionType';
-import { initial_PostFormState } from '../../store/initialState';
-import { getKey } from '../../utils/mapUtil';
-import { PostDocument } from '../../interface/PostData';
-import { PostFormState } from '../../interface/PostFormState';
-import { ReduxAction } from '../../interface/ReduxAction';
-import { PostFormValues } from '../../interface/PostFormValues';
-import { LoadingStatus } from '../../interface/LoadingStatus';
+import * as actionType from "../actions/actionType";
+import { initial_PostFormState } from "../../store/initialState";
+import { PostDocument } from "../../interface/PostData";
+import { PostFormState } from "../../interface/PostFormState";
+import { ReduxAction } from "../../interface/ReduxAction";
+import { PostFormValues } from "../../interface/PostFormValues";
+import { LoadingStatus } from "../../interface/LoadingStatus";
+import { mapUtil } from "src/utils";
 
 export const postFormReducer = (
   state: PostFormState,
-  action: ReduxAction<string | PostDocument | PostFormValues | LoadingStatus | undefined>
+  action: ReduxAction<
+    string | PostDocument | PostFormValues | LoadingStatus | undefined
+  >
 ): PostFormState => {
   state = state ? state : initial_PostFormState;
   switch (action.type) {
@@ -17,7 +19,9 @@ export const postFormReducer = (
       return handle_set_status(state, action as ReduxAction<LoadingStatus>);
     }
     case actionType.postform_values: {
-      return handle_set_formValues(state, action as ReduxAction<PostFormValues>);
+      return handle_set_formValues(state, action as ReduxAction<
+        PostFormValues
+      >);
     }
     case actionType.postform_submit_start: {
       return handle_submit_start(state, action as ReduxAction<any>);
@@ -37,9 +41,8 @@ const handle_set_status = (
   state: PostFormState,
   action: ReduxAction<LoadingStatus>
 ): PostFormState => {
-
-  if (action.payload === '') {
-    return { ...initial_PostFormState }
+  if (action.payload === "") {
+    return { ...initial_PostFormState };
   }
 
   return {
@@ -51,29 +54,35 @@ const handle_set_status = (
 const handle_set_formValues = (
   state: PostFormState,
   action: ReduxAction<PostFormValues>
-): PostFormState => ({
-  ...state,
-  loadingStatus: 'loaded',
-  formValues: action.payload as PostFormValues
-});
+): PostFormState => {
+  const formValues = action.payload as PostFormValues;
+  return {
+    ...state,
+    loadingStatus: "loaded",
+    formValues,
+    postId: formValues.postId
+  };
+};
 
 const handle_submit_start = (
   state: PostFormState,
   action: ReduxAction<PostDocument>
 ): PostFormState => ({
   ...state,
-  updatingStatus: 'submitting',
+  updatingStatus: "submitting"
 });
-
 
 const handle_submit_success = (
   state: PostFormState,
   action: ReduxAction<PostDocument>
-): PostFormState => ({
-  ...state,
-  updatingStatus: 'success',
-  postId: getKey(action.payload)
-});
+): PostFormState => {
+  const postId = mapUtil.getKey(action.payload)
+  return {
+    ...state,
+    updatingStatus: "success",
+    postId
+  };
+};
 
 const handle_submit_error = (
   state: PostFormState,
@@ -81,7 +90,7 @@ const handle_submit_error = (
 ): PostFormState => {
   return {
     ...state,
-    loadingStatus: 'error',
+    loadingStatus: "error",
     error: action.payload as string
   };
 };

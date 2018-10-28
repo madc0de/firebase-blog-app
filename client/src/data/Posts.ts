@@ -156,7 +156,6 @@ export const getAllUserPosts = async (
     }
     return [];
   } catch (error) {
-    console.log(error)
     return error;
   }
 };

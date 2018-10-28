@@ -16,7 +16,6 @@ export const loadUserPosts = (userId: string): any=> async (
     const posts = await getAllUserPosts(userId)
     return dispatch(postsLoaded(posts))
   } catch(err) {
-    console.log(err)
     return err
   }
 }
